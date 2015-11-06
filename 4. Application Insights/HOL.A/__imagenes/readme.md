@@ -1,0 +1,1 @@
+No se preocupen, acá solo estan las imagenes que utilizamos en las guías del laboratorio.
