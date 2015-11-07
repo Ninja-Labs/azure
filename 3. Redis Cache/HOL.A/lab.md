@@ -131,9 +131,9 @@ Se ha creado el controlador EventsController.cs y las diferentes vistas de las a
 	![grupo de recursos](img/18.png)
 	
 Nuestra Aplicación esta lista y utilizando Redis cache para todas sus operaciones :)
-
+	   
 	![grupo de recursos](img/19.png)
-	
+		
 ###Links de referencia sobre el tema:
 * [How to use Azure Redis Cache] (http://azure.microsoft.com/en-us/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/)
 * [Trying Redis Caching as a Service on Azure] (http://www.hanselman.com/blog/TryingRedisCachingAsAServiceOnWindowsAzure.aspx)
