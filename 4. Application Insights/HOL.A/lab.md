@@ -31,6 +31,8 @@ Para esto, integraremos Application Insights a una aplicación a la cual le hemo
 ####Descargar la aplicación ContosoUniversity
 Diríjase al directorio "aplicaciones" de este repositorio y copie la aplicación [ContosoUniversity](./aplicaciones/ContosoUniversity/) en su directorio de trabajo.
 
+> Tambien lo pueden descargar desde https://github.com/qjuanp/nc-azure-ai/tree/example-nc
+
 Abra la aplicación desde Visual Studio 2015.
 
 ![ContosoUniversity](img/steps/01.png)
