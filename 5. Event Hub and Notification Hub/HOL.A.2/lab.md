@@ -47,8 +47,7 @@ Free Trial*.
     región que desee y a continuación, haga clic en **Create a new Event
     Hub**.
 
-![](media/create-event-hub2.png)
-
+    ![](media/create-event-hub2.png)
 1.  Haga clic en el espacio de nombres que acaba de crear
     (generalmente ***event hub name*-ns**).
 
