@@ -105,7 +105,7 @@ Desde el proyecto principal, click derecho -> Add Application Insights Telemetry
 
 Luego, despues de seleccionar la cuenta y la subscripción en la que se encuentra definido nuestro Application Insight, seleccionamos el que habiamos creado previamente, y le damos agregar.
 
-![Seleccionar Aplication Insights](img/steps/0.png)
+![Seleccionar Aplication Insights](img/steps/15.png)
 
 Despues de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde habiamos detectado en la [Tarea 1](#tarea-1) los errores y problemas de performance para comenzar a recopilar datos con Application Insigths.
 
