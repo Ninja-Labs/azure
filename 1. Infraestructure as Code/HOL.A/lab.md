@@ -58,16 +58,19 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	![grupo de recursos](img/HOL-15.png)
 1. Fin 
 
+<span id="Tarea2" />
 ##Tarea 2 - Configurar la consola multiplataforma de Azure
 
 1. Desde la consola de comandos escribir `azure` y presionar ENTER, si tienes instalada la consola multiplataforma de Azure aparecerá lo siguiente en pantalla de lo contrario debes instalarla desde aquí: [Xplat](http://go.microsoft.com/?linkid=9828653&clcid=0x40a)
 
 	![grupo de recursos](img/HOL-16.png)
 1. Para efectos de este NinjaLab debemos configurar la consola de comandos de Azure en modo ARM (Azure Resource Manager) que es como seguira evolucionando Azure en adelante.
+
 	```
 	azure config mode arm
 	```
 1. Seguidamente ingresamos este comando, el cual arroja un mensaje similar al que se ve abajo
+
 	```
 	azure login
 	```
@@ -81,32 +84,70 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 
 	![grupo de recursos](img/HOL-17.png)
 1. Luego de ello iniciamos sesión en el browser, y despues de unos segundos en la consola aparecerá
+
 	```
 	login command OK
 	```
+1. Puede que tengas varias suscriptiones de azure asociadas al mismo live Id, con este comando listamos las suscripciones disponibles
 
-	
-	
+	```
+	azure account list
+	```
+	```
+	data:    Name                       Id                                    Current  State
+	data:    -------------------------  ------------------------------------  -------  -------
+	data:    MSDN - MSFTE               adcbda71-4f93-427c-9ce0-fd7d100a4e1d  true     Enabled
+	data:    MSDN - MVP                 e5a421e7-e4b5-4eda-8512-d810d21040dc  false    Enabled
+	data:    Demos Azure Subscriptions  cbf6d47d-b985-4018-ac3a-9da7a60a092e  false    Enabled
+	```
+1. de la lista desplegada idenifica cual corresponde a la suscripción con la que deseas trabajar, en mi caso "MSDN - MSFTE" así que ingreso el siguiente comando para establecerla como predeterminada
 
+	```
+	azure account set "MSDN - MSFTE"
+	```
+1. Finalmente ingresamos este comando y verificamos que todo este en orden
+
+	```
+	azure account show	
+	```	
+	```
+	info:    Executing command account show
+	data:    Name                        : MSDN - MSFTE
+	data:    ID                          : adcbda71-4f93-427c-9ce0-fd7d100a4e1d
+	data:    State                       : Enabled
+	data:    Tenant ID                   : bcc54008-4288-4ccd-b041-3225637c7154
+	data:    Is Default                  : true
+	data:    Environment                 : AzureCloud
+	data:    Has Certificate             : No
+	data:    Has Access Token            : Yes
+	data:    User name                   : jnk@outlook.com
+	```
+1. Fin - NHK
+
+<span id="Tarea3" />
 ##Tarea 3 - Creación de una máquina virtual desde la línea de comandos multiplataforma
 
 1. Lo primero que debemos crear es un "Grupo de Recursos", lo llamaremos NinjaLabCMD
+
 	```
 	azure group create -n NinjaLabCMD -l EastUS
 	```
 1. Crearemos una MV por consola, para ello necesitamos establecer los mismos parámetros de creación que en nuestra má1quina creada en la [Tarea 1](#Tarea1), esos son los pasos que seguiremos a continuación para crear el comando
 1. Para crear una máquina virtual desde Xplat se pueden usar cualquiera de los siguientes comandos, Si los ejecutas cada uno seguido del comando -h obtendrás ayuda de la consola
+
 	```
 	azure vm quick-create
 	azure vm create
 	```
 1. Para efectos de este NinjaLab haremos uso de `quick-create` el cual nos permite crear la MV con un mínimo de opciones, para una configuración completa es necesario hacer uso de `create`.
 1. Ingresamos este comando para establecer el grupo de recursos y el nombre de la máquina virtual, recuerda escoger un nombre de MV diferente al del ejemplo, que de seguro ese ya esta usado
+
 	```
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd 
 	```  
 1. Presiona *(Ctrl + C)* 2 veces y luego ENTER para cancelar el comando, ya que te pide parámetros adicionales
 1. El primer parámetro adicional que necesitamos es la ubicación de la MV, como no sabemos lsa ubicaciones ingresamos el siguiente comando para obtenerlas
+
 	```
 	azure location list > Locations.csv
 	```
@@ -125,24 +166,29 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	* West Europe
 	* West US
 1. Así que seleccionaremos la ubicación "EastUS", por lo que nuestro script ahora luce así. Al ejecutarlo pedirá más parámetros, cancela nuevamente la ejecución
+
 	```
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS
 	```
 1. El siguiente parámetro es el tipo de OS que queremos instalar, le indicaremos "Linux", ejecutalo pero de nuevo cancela la ejecución.
+
 	```
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux
 	```
 1. Seguidamente adicionamos parámetros para el usuario y la contraseña, ejecutalo pero de nuevo cancela la ejecución.
+
 	```
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux -u ninja-admin -p TUPASSWORD
 	```
 1. Ahora las cosas se ponen más interesantes, si seguiste los pasos la consola te estará pidiendo el parámetro `ImageURN` en el cual pones `Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060` y LISTO... HEY pero estos son **NinjaLabs** para que te vuelbas un duro, un maestro!! de dónde sale ese valor
 1. Para obtener ese valor debemos seguir los siguientes pasos, ese varlor es basicamente el medio (imagen) de instalación que usaremos para instalar Ubuntu, si recuerdas la [Tarea 1](#Tarea1) El OS que seleccionamos era **Ubuntu Server 14.04 LTS** así que navegaremos por la consola de comandos para que con ese datos logremos obtener el `ImageURN`
 1. Con el siguiente comando obtendremos la lista de publishers que han publicado imagenes de MV en Azure, lo único 'raro' allí es la ubicación, pero ya aprendimos de donde se obtienen
+
 	```
 	azure vm image list-publishers -l EastUS
 	```
 1. Ejecutar este comando nos trae una lista bastante larga, pero sabemos que Ubuntu es creado por "Canonical" así que buscaremos algo parecido a "Canonical" en la lista y allí deberiamos encontrar lo siguiente
+
 	```
 	data:    Publisher                                             Location
 	data:    ----------------------------------------------------  --------
@@ -154,6 +200,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	data:    cds                                                   eastus
 	```
 1. Ahora que tenemos certeza de como Azure 'conoce' a "Canonical" le preguntaremos que ofertas de imagen tiene canonical en Azure
+
 	```
 	azure vm image list-offers -l EastUs -p Canonical
 	```
@@ -198,6 +245,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```
 1. Al terminar la lista identificamos que hay varias versiones de "Ubuntu 14.04 LTS" así que seleccionaremos la más reciente, en este caso `14.04.3-LTS`
 1. Ahora que ya tenemos esos datos probemos preguntando a Azure la lista de imagenes y sus correspondientes URN con este comando
+
 	```
 	azure vm image list EastUS Canonical
 	```
@@ -206,6 +254,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	* East US
 	* Ubuntu Server
 	* 14.04.3-LTS
+	
  	```
 	 azure vm image list -l EastUS -p Canonical -o  
 	```
@@ -219,11 +268,13 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```
 1. En la última columna tenemos el Urn de cada una de las imágenes con "UbuntuServer 14.04.2-LTS", seleccionaremos la versión más reciente, en este caso `14.04.201507060` a la cual le corresponde el siguiente Urn `Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060`
 1. Ahora si, el comando completo para crear nuestra MV con las especificaciones necesarias es el que se ve abajo , adicionandole como 'condimento' el parámero --json lo cual puede servirnos de ayuda más adelante. Este parámetro hace que el resumen de los recursos creados aparezca en este formato; no tiene impacto sobre la infraestrctura creada.
+
 	```
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux -Q Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060 -u ninja-admin -p TUPASSWORD --json
 	```
 1. Este proceso tomará varios minutos, puedes seguir avanzando en el NinjaLab mientras tanto.
 1. La salida por consola genera una cadena json similar a esta, guardemosla en un archivo ya que la necesitaremos en una Tarea más adelente
+
 	```
 	{
 	"extensions": [],
@@ -277,8 +328,14 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	}
 	```
 
+<span id="Tarea4" />
+##Tarea 4 - Creación de un website desde la línea de comandos multiplataforma
 
-##Tarea 3 - Grupo de recursos, máquina virtual, website y base de datos desde el portal
+1. Ahora en el mismo grupo de recursos crearemos un sitio web, para ello ingresamos el siguiente comando
+
+
+###Final Parte 1
+Hemos visto como podemos utilizar servic ios en Azure y mantenerlos agrupados por medio del grupo de recursos, esto es muy importante ya que las soluciones de software usualmente constan de una infraestructura compleja con muchos componentes, como pudimos observar el grupo de recursos contiene todos los elementos necesarios para sostener la infraestructura incluyendo Maquinas Viertuales, Websites, Bases de Datos y decenas de componentes más.
 
 #Parte 2 - Infraestructura como código 
 
