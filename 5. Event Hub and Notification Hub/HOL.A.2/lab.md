@@ -43,35 +43,35 @@ Free Trial*.
 
     ![](media/create-event-hub1.png)
 
-1.  Escriba un nombre para su concentrador de eventos, seleccione la
+3.  Escriba un nombre para su concentrador de eventos, seleccione la
     región que desee y a continuación, haga clic en **Create a new Event
     Hub**.
 
     ![](media/create-event-hub2.png)
-1.  Haga clic en el espacio de nombres que acaba de crear
+4.  Haga clic en el espacio de nombres que acaba de crear
     (generalmente ***event hub name*-ns**).
 
-![](media/create-event-hub3.png)
+    ![](media/create-event-hub3.png)
 
-1.  Haga clic en la pestaña **Event Hubs** en la parte superior de la
+5.  Haga clic en la pestaña **Event Hubs** en la parte superior de la
     página y, a continuación, haga clic en el concentrador de eventos
     que acaba de crear.
 
-![](media/create-event-hub4.png)
+    ![](media/create-event-hub4.png)
 
-1.  Haga clic en la pestaña **Configure**  en la parte superior, agregue
+6.  Haga clic en la pestaña **Configure**  en la parte superior, agregue
     una regla denominada **SendRule** con *permisos para enviar (Send)*,
     y agregue otra regla llamada **ReceiveRule** con permisos para
     *Manage, Send, Listen.* Haga clic en **Save**.
 
-![](media/create-event-hub5.png)
+    ![](media/create-event-hub5.png)
 
-1.  Haga clic en la pestaña **Dashboard**  en la parte superior de la
+7.  Haga clic en la pestaña **Dashboard**  en la parte superior de la
     página y a continuación en **Connection Information**. Tome nota de
     las dos cadenas de conexión o cópielos en algún lugar para
     utilizarlos más adelante en este tutorial.
 
-![](media/create-event-hub6.png)
+    ![](media/create-event-hub6.png)
 
 En este punto ya está creado el Hub de eventos y tenemos las cadenas de
 conexión que necesitamos para enviar y recibir eventos.
@@ -86,17 +86,17 @@ que envíe eventos a su Hub de eventos.
     de escritorio utilizando la plantilla de proyecto de **aplicación de
     consola**. Nombre el proyecto como **Sender**.
 
-![](media/create-sender-csharp1.png)
+    ![](media/create-sender-csharp1.png)
 
-1.  En el Explorador de soluciones, haga clic en la solución y, a
+2.  En el Explorador de soluciones, haga clic en la solución y, a
     continuación, haga clic en **Manage NuGet Packages for Solution**
 
 Esto muestra el cuadro de diálogo Administrar Paquetes NuGet.
 
-1.  Búsqueda de Microsoft Azure Service Bus, haga clic en** Install**, y
+3.  Búsqueda de Microsoft Azure Service Bus, haga clic en** Install**, y
     acepte los términos de uso.
 
-![](media/create-sender-csharp2.png)
+    ![](media/create-sender-csharp2.png)
 
 Esto descarga, instala, y añade una referencia a la [*biblioteca de
 Azure Service Bus
@@ -105,17 +105,17 @@ paquete* ](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)NuGet.
 1.  Agregue las siguientes declaraciones de librerias en la parte
     superior del archivo **Program.cs**:
 
-using System.Threading;
-
-using Microsoft.ServiceBus.Messaging;
+    using System.Threading;
+    
+    using Microsoft.ServiceBus.Messaging;
 
 1.  Agregue los siguientes campos a la clase **Program**, sustituyendo
     los valores con el del Event Hub que ha creado en el apartado
     anterior, y la cadena de conexión con permisos de **Send**:
 
-static string eventHubName = "{event hub name}";
-
-static string connectionString = "{send connection string}";
+    static string eventHubName = "{event hub name}";
+    
+    static string connectionString = "{send connection string}";
 
 1.  Agregue el siguiente método para la clase **Program**:
     
@@ -183,12 +183,12 @@ Azure ](https://azure.microsoft.com/en-us/documentation/articles/storage-create
     cuenta de almacenamiento. Seleccione la región que desee y a
     continuación, haga clic en **Create Storage Account**.
 
-![](media/create-eph-csharp2.png)
+    ![](media/create-eph-csharp2.png)
 
-1.  Haga clic en la nueva cuenta de almacenamiento y a continuación,
+3.  Haga clic en la nueva cuenta de almacenamiento y a continuación,
     haga clic en **Manage Access Keys**:
 
-![](media/create-eph-csharp3.png)
+    ![](media/create-eph-csharp3.png)
 
 Copie la clave de acceso para utilizar más adelante en este tutorial.
 
@@ -196,18 +196,18 @@ Copie la clave de acceso para utilizar más adelante en este tutorial.
     consola utilizando la plantilla de proyecto **Console
     Application**. Nombre  el proyecto como **Receiver**.
 
-![](media/create-sender-csharp1A.png)
+    ![](media/create-sender-csharp1A.png)
 
-1.  En el Explorador de soluciones, haga clic en la solución y a
+2.  En el Explorador de soluciones, haga clic en la solución y a
     continuación, haga clic en Administrar paquetes** **NuGet**.**
 
-**Manage NuGet Packages** mostrara el cuadro de diálogo.
+    **Manage NuGet Packages** mostrara el cuadro de diálogo.
 
-1.  Busque  Microsoft Azure Service Bus Event Hub -
+3.  Busque  Microsoft Azure Service Bus Event Hub -
     EventProcessorHost, haga clic en** **Instalar, y acepte los términos
     de uso.
 
-![](media/create-eph-csharp1.png)
+    ![](media/create-eph-csharp1.png)
 
 Esto descarga e instala y añade una referencia al [servicio Azure
 autobús Evento Hub - paquete
@@ -222,88 +222,88 @@ todas sus dependencias.
 2.  Agregue las siguientes instrucciones en la parte superior del
     archivo *SimpleEventProcessor.cs:*
 
-using Microsoft.ServiceBus.Messaging;
+    using Microsoft.ServiceBus.Messaging;
+    
+    using System.Diagnostics;
 
-using System.Diagnostics;
-
-using System.Threading.Tasks;
+    using System.Threading.Tasks;
 
 A continuación, sustituya el siguiente código para el cuerpo de la
 clase::
 
-class SimpleEventProcessor : IEventProcessor
-
-{
-
-Stopwatch checkpointStopWatch;
-
-async Task IEventProcessor.CloseAsync(PartitionContext context,
-CloseReason reason)
-
-{
-
-Console.WriteLine("Processor Shutting Down. Partition '{0}', Reason:
-'{1}'.", context.Lease.PartitionId, reason);
-
-if (reason == CloseReason.Shutdown)
-
-{
-
-await context.CheckpointAsync();
-
-}
-
-}
-
-Task IEventProcessor.OpenAsync(PartitionContext context)
-
-{
-
-Console.WriteLine("SimpleEventProcessor initialized. Partition: '{0}',
-Offset: '{1}'", context.Lease.PartitionId, context.Lease.Offset);
-
-this.checkpointStopWatch = new Stopwatch();
-
-this.checkpointStopWatch.Start();
-
-return Task.FromResult&lt;object&gt;(null);
-
-}
-
-async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
-IEnumerable&lt;EventData&gt; messages)
-
-{
-
-foreach (EventData eventData in messages)
-
-{
-
-string data = Encoding.UTF8.GetString(eventData.GetBytes());
-
-Console.WriteLine(string.Format("Message received. Partition: '{0}',
-Data: '{1}'",
-
-context.Lease.PartitionId, data));
-
-}
-
-//Call checkpoint every 5 minutes, so that worker can resume processing
-from the 5 minutes back if it restarts.
-
-if (this.checkpointStopWatch.Elapsed &gt; TimeSpan.FromMinutes(5))
-
-{
-
-await context.CheckpointAsync();
-
-this.checkpointStopWatch.Restart();
-
-}
-
-}
-
-}
+    class SimpleEventProcessor : IEventProcessor
+    
+    {
+    
+    Stopwatch checkpointStopWatch;
+    
+    async Task IEventProcessor.CloseAsync(PartitionContext context,
+    CloseReason reason)
+    
+    {
+    
+    Console.WriteLine("Processor Shutting Down. Partition '{0}', Reason:
+    '{1}'.", context.Lease.PartitionId, reason);
+    
+    if (reason == CloseReason.Shutdown)
+    
+    {
+    
+    await context.CheckpointAsync();
+    
+    }
+    
+    }
+    
+    Task IEventProcessor.OpenAsync(PartitionContext context)
+    
+    {
+    
+    Console.WriteLine("SimpleEventProcessor initialized. Partition: '{0}',
+    Offset: '{1}'", context.Lease.PartitionId, context.Lease.Offset);
+    
+    this.checkpointStopWatch = new Stopwatch();
+    
+    this.checkpointStopWatch.Start();
+    
+    return Task.FromResult&lt;object&gt;(null);
+    
+    }
+    
+    async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
+    IEnumerable&lt;EventData&gt; messages)
+    
+    {
+    
+    foreach (EventData eventData in messages)
+    
+    {
+    
+    string data = Encoding.UTF8.GetString(eventData.GetBytes());
+    
+    Console.WriteLine(string.Format("Message received. Partition: '{0}',
+    Data: '{1}'",
+    
+    context.Lease.PartitionId, data));
+    
+    }
+    
+    //Call checkpoint every 5 minutes, so that worker can resume processing
+    from the 5 minutes back if it restarts.
+    
+    if (this.checkpointStopWatch.Elapsed &gt; TimeSpan.FromMinutes(5))
+    
+    {
+    
+    await context.CheckpointAsync();
+    
+    this.checkpointStopWatch.Restart();
+    
+    }
+    
+    }
+    
+    }
 
 Esta clase será llamado por el **EventProcessorHost** para procesar
 eventos recibidos desde el Hub de eventos. Tenga en cuenta que la clase
@@ -315,52 +315,52 @@ de procesamiento.
 1.  En la clase **Program** , agregue las siguientes declaraciones
     using  en la parte superior:
 
-> using Microsoft.ServiceBus.Messaging;
->
-> using Microsoft.Threading;
->
-> using System.Threading.Tasks;
+    > using Microsoft.ServiceBus.Messaging;
+    >
+    > using Microsoft.Threading;
+    >
+    > using System.Threading.Tasks;
 
 A continuación, modifique el método **Main**  para la clase **Program** 
 como se muestra a continuación, sustituyendo el nombre y la conexión de
 la cadena de eventos Hub y la cuenta de almacenamiento y clave que ha
 copiado en los apartados anteriores:
 
-static void Main(string\[\] args)
-
-{
-
-string eventHubConnectionString = "{event hub connection string}";
-
-string eventHubName = "{event hub name}";
-
-string storageAccountName = "{storage account name}";
-
-string storageAccountKey = "{storage account key}";
-
-string storageConnectionString =
-string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
-
-storageAccountName, storageAccountKey);
-
-string eventProcessorHostName = Guid.NewGuid().ToString();
-
-EventProcessorHost eventProcessorHost = new
-EventProcessorHost(eventProcessorHostName, eventHubName,
-EventHubConsumerGroup.DefaultGroupName, eventHubConnectionString,
-storageConnectionString);
-
-Console.WriteLine("Registering EventProcessor...");
-
-eventProcessorHost.RegisterEventProcessorAsync&lt;SimpleEventProcessor&gt;().Wait();
-
-Console.WriteLine("Receiving. Press enter key to stop worker.");
-
-Console.ReadLine();
-
-eventProcessorHost.UnregisterEventProcessorAsync().Wait();
-
-}
+    static void Main(string\[\] args)
+    
+    {
+    
+    string eventHubConnectionString = "{event hub connection string}";
+    
+    string eventHubName = "{event hub name}";
+    
+    string storageAccountName = "{storage account name}";
+    
+    string storageAccountKey = "{storage account key}";
+    
+    string storageConnectionString =
+    string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
+    
+    storageAccountName, storageAccountKey);
+    
+    string eventProcessorHostName = Guid.NewGuid().ToString();
+    
+    EventProcessorHost eventProcessorHost = new
+    EventProcessorHost(eventProcessorHostName, eventHubName,
+    EventHubConsumerGroup.DefaultGroupName, eventHubConnectionString,
+    storageConnectionString);
+    
+    Console.WriteLine("Registering EventProcessor...");
+    
+    eventProcessorHost.RegisterEventProcessorAsync&lt;SimpleEventProcessor&gt;().Wait();
+    
+    Console.WriteLine("Receiving. Press enter key to stop worker.");
+    
+    Console.ReadLine();
+    
+    eventProcessorHost.UnregisterEventProcessorAsync().Wait();
+    
+    }
 
 ##### *NOTA:*
 
@@ -390,9 +390,9 @@ Ahora ya está listo para ejecutar las aplicaciones.
     luego espere a que se inicien los receptores para todas
     las particiones.
 
-![](media/run-csharp-ephcs1.png)
+    ![](media/run-csharp-ephcs1.png)
 
-1.  Ejecute el proyecto **Sender**, pulse **Enter** en la ventana de la
+2.  Ejecute el proyecto **Sender**, pulse **Enter** en la ventana de la
     consola, y vea los eventos que aparecen en la ventana del receptor.
 
-![](media/run-csharp-ephcs2.png)
+    ![](media/run-csharp-ephcs2.png)

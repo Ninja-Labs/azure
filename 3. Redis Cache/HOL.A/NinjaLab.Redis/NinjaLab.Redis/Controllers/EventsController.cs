@@ -123,6 +123,7 @@ namespace NinjaLab.Redis.Controllers
                     return HttpNotFound();
                 }
             }
+
             return View(@event);
         }
 
