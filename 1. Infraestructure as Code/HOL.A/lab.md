@@ -392,9 +392,26 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 
 #Parte 2 - Infraestructura como código 
 
-##Tarea 1 - Creación del archivo de configuración
-##Tarea 2 - Ejecución local del archivo de configuración
-##Tarea 3 - Configuración de repositorio en la nube
-##Tarea 4 - Crear solución de prueba en Visual Studio
-##Tarea 5 - Integrar la infraestructura, integración continua
+Ahora que tenemos claro que son los grupos de recursos y estamos más familiarizados en la creación de recursos tanto desde el portal como desde la consola de comandos llegamos al concepto de **IAC** : **I**nfrastructure **A**s **C**ode.
+
+En escencia los conocimientos que acabamos de adquirir nos permiten pensar en la posibilidad de crear infraestructura de manera automatizada, y con ello la posibilidad de mantener nuestros ambientes de ejecución como otro asset más en el ciclo de vida del software.
+
+De esta forma, no solo el código de la aplicación es versionado sino que tambien la infraestructura puede serlo. Esto nos permite crear nuevas infraestructuras de manera muy rápida ya que un ambiente confugurado a manera de script puede reproducirse muy rápidamente con tan solo un click.
+
+Así podemos clonar nuestros ambientes de manera muy rápida y precisa, pero tambien podemos enlazar la integridad del ambiente y la manera como se conecta con la aplicación a traves de provesos de Integración continua.
+
+A la final contamos con la posibilidad de desplegar diferentes versiones de la infraestructura de la aplciación de acuerdo a las necesidades de esta misma en diferntes versiones o branch, y podemos disparar modificaciones de la infraestructura de manera automática con el despliegue de nuevas versiones, llevando nuestra capacidad de implemetación de soluciones a un nuevo nivel de productividad y eficiencia.
+
+Este será el tema de esta parte del Ninja Lab
+
+<span id="Tarea6" />
+##Tarea 6 - Creación de un sitio web básico en Visual Studio
+<span id="Tarea7" />
+##Tarea 7 - Configuración de la cuenta y repositrorio en Visual Studio Online
+<span id="Tarea8" />
+##Tarea 8 - Control de versiones de la aplicación en VSO
+<span id="Tarea9" />
+##Tarea 9 - Definir los recursos de infraestructura en Azure desde Visual Studio
+<span id="Tarea10" />
+##Tarea 10 - Integrar el Release Management desde VSO con la solución de IAC
   
