@@ -62,6 +62,10 @@ lateral +Nuevo --> Datos y almacenamiento --> Caché en Redis
 
 1. En la carpeta Models presionamos click derecho y vamos Agregar --> "Clase..." la cual nombraremos "Event.cs" 
 1. Importamos las librerías necesarias para crear nuestra propiedad de identificación.
+ 	```
+	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
+	```
 1. Creamos las diferentes propiedades requeridas para nuestro demo.
 	
 	![grupo de recursos](img/8.png) 
