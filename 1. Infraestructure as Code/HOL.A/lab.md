@@ -329,9 +329,61 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```
 
 <span id="Tarea4" />
-##Tarea 4 - Creación de un website desde la línea de comandos multiplataforma
+##Tarea 4 - Creación de un website desde el portal 
 
-1. Ahora en el mismo grupo de recursos crearemos un sitio web, para ello ingresamos el siguiente comando
+1. Ahora en el mismo grupo de recursos crearemos un sitio web, para ello primero identificaremos los web farms disponibles en nuestra suscripción, desde el portal de azure damos click en "Buscar" 
+
+	![grupo de recursos](img/HOL-18.png)
+1. En el nuevo panel abierto buscamos "Planes de servicio de Apps"
+
+	![App service plans](img/HOL-19.png)
+1. Verificamos si en la lista que aparece hay algún plan para la región "East US", sino lo hay continuamos
+1. En el portal vamos a Nuevo, Web + Mobile , Web App y en este panel entramos a "App Service plan / Location"
+
+	![App service plans](img/HOL-20.png)
+1. Allí damos click en "Crear Nuevo", lo nombramos "Ninja-WebPlan" y nos aseguramos de que este ubicado en "East US" y tenga como "Price Tier" **B1 Basic** y damos click en "OK"
+
+	![nuevo website](img/HOL-21.png)
+1. Seguidamente al sitio lo nombramos "ninja-web" ,utiliza otro nombre ya que este ya queda usado.
+1. En el grupo de recursos selecciona el grupo de recursos "NinjaLab" creado en [Tarea 1](#Tarea1)
+1. Dale click en crear, esto tomara unos pocos minutos
+1. Una vez creado desde el portal de Azure ve a "Grupos de Recursos"
+
+	![grupo de recursos](img/HOL-01.png)
+1. Y en la lista que aparece seleccionamos "NinjaLabs"
+1. En el panel que aparece encontramos la lista completa de recursos creados hasta el momento en ese grupo de recursos incluyendo todo lo necesario para nmuestra máquina virtual de [Tarea 1](#Tarea1) y todo lo necesario para este website incluyendo el "App Service Plan" y un servicio de "App Insights"
+
+	![Recursos de un grupo de recursos](img/HOL-22.png)
+1. Ingresa a tu nuevo sitio dando click
+
+	![Recursos de un grupo de recursos](img/HOL-24.png)
+1. El sitio que se abre se debe ver como este
+
+	![Recursos de un grupo de recursos](img/HOL-23.png)
+1. 
+	
+<span id="Tarea5" />
+##Tarea 5- Creación de un website desde la línea de comandos multiplataforma 
+
+1. Desde la línea de comandos ejecutamos el siguiente comando para crear un web site 
+	* en el grupo de recursos **NinjaLabCMD** donde creamos la MV por consola en la [Tarea 3](#Tarea3)
+	* Región **East US**
+	* En el mismo "App Service Plan" creado en la [Tarea 4](#Tarea4)
+	
+	```console
+	azure webapp create -g NinjaLabCMD -n ninja-webcmd  -l EastUs -p "Ninja-WebPlan"
+	```
+1. Como veras ahora que sabemos más de la consola de comandos las cosas parecen ser mucho más fáciles y comprensibles, no entraremos en detalles por ello mismo.
+
+	```console
+	info:    Executing command webapp create
+	+ Creating webapp ninja-webcmd
+	info:    Webapp ninja-webcmd has been created
+	info:    webapp create command OK
+	```
+1. Desde el portal de Azure revisamos el grupo de recursos "NinjaLabCMD" y allí aparecen los recursos de la MV y del nuevo web site creado.
+
+1. Fin NHK
 
 
 ###Final Parte 1
