@@ -73,6 +73,7 @@ namespace ContosoUniversity.Controllers
 
         public ActionResult Create()
         {
+            this.DelayCall();
             var instructor = new Instructor();
             instructor.Courses = new List<Course>();
             PopulateAssignedCourseData(instructor);
@@ -84,7 +85,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
         {
-            this.DelayCall();
+            this.Ups();
             if (selectedCourses != null)
             {
                 instructor.Courses = new List<Course>();

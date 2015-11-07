@@ -30,13 +30,13 @@ namespace ContosoUniversity.Controllers
                 .OrderBy(d => d.CourseID)
                 .Include(d => d.Department);
             var sql = courses.ToString();
-            this.DelayCall();
             return View(courses.ToList());
         }
 
         // GET: Course/Details/5
         public ActionResult Details(int? id)
         {
+            this.DelayCall();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

@@ -16,6 +16,7 @@ namespace ContosoUniversity.Controllers
 
         public ActionResult Index()
         {
+            this.DelayCall();
             return View();
         }
 
@@ -44,7 +45,7 @@ namespace ContosoUniversity.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
+            this.DelayCall();
             return View();
         }
 

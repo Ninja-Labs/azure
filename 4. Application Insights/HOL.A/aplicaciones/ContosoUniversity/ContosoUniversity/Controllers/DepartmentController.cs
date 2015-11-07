@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ContosoUniversity.DAL;
 using ContosoUniversity.Models;
 using System.Data.Entity.Infrastructure;
+using ContosoUniversity.Common;
 
 namespace ContosoUniversity.Controllers
 {
@@ -20,6 +21,7 @@ namespace ContosoUniversity.Controllers
         // GET: Department
         public async Task<ActionResult> Index()
         {
+            this.DelayCall();
             var departments = db.Departments.Include(d => d.Administrator);
             return View(await departments.ToListAsync());
         }
@@ -27,6 +29,7 @@ namespace ContosoUniversity.Controllers
         // GET: Department/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            this.DelayCall();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

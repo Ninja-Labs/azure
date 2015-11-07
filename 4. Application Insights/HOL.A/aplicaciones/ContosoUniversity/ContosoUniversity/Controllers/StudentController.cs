@@ -59,7 +59,7 @@ namespace ContosoUniversity.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 1000;
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
         }
@@ -68,6 +68,7 @@ namespace ContosoUniversity.Controllers
         // GET: Student/Details/5
         public ActionResult Details(int? id)
         {
+            this.DelayCall();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -115,6 +116,7 @@ namespace ContosoUniversity.Controllers
         // GET: Student/Edit/5
         public ActionResult Edit(int? id)
         {
+            this.Ups();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -160,6 +162,7 @@ namespace ContosoUniversity.Controllers
         // GET: Student/Delete/5
         public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
+            this.Ups();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -181,6 +184,7 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
+            this.DelayCall();
             try
             {
                 Student student = db.Students.Find(id);

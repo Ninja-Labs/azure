@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace ContosoUniversity.Migrations
 {
     using ContosoUniversity.Models;
@@ -40,6 +42,21 @@ namespace ContosoUniversity.Migrations
 
             students.ForEach(s => context.Students.AddOrUpdate(p => p.LastName, s));
             context.SaveChanges();
+            Trace.TraceWarning("Escritura de muchos registros");
+            for (int i = 0; i < 50; i++)
+            {
+                for (int j = 0; j < 50; j++)
+                {
+                    context.Students.AddOrUpdate(new Student
+                    {
+                        FirstMidName = string.Format("Student {0}-{1}",i,j),
+                        LastName = string.Format("SLastName {0}-{1}", i, j),
+                        EnrollmentDate = DateTime.Parse("2015-11-07")
+                    });
+                }
+                context.SaveChanges();
+            }
+            Trace.TraceWarning("Se terminó de crear los estudiantes");
 
             var instructors = new List<Instructor>
             {

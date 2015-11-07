@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace ContosoUniversity.Common
 {
@@ -6,7 +7,11 @@ namespace ContosoUniversity.Common
     {
         public static void Ups(this object obj)
         {
-            throw new ThisCouldBeAProductionException("Ojo! esto puede ser una excepción no controlada en su código de producción");
+            var ex =
+                new ThisCouldBeAProductionException(
+                    "Ojo! esto puede ser una excepción no controlada en su código de producción");
+            Trace.TraceError("Esta es la excepción que va a lanzar",ex.ToString());
+            throw ex;
         }
     }
 
