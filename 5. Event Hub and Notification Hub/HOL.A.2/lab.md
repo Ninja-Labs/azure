@@ -39,9 +39,9 @@ Free Trial*.
     en **NUEVO** en la parte inferior de la pantalla.
 
 2.  Haga clic en **App Services**, luego en **Service
-    Bus,** **Event** **Hub**, y a continuación, **Quick Create**.
+    Bus,** **Event** **Hub**, y a continuación, **Quick Create**. 
 
-![](media/create-event-hub1.png)
+    ![](media/create-event-hub1.png)
 
 1.  Escriba un nombre para su concentrador de eventos, seleccione la
     región que desee y a continuación, haga clic en **Create a new Event
