@@ -254,9 +254,8 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	* East US
 	* Ubuntu Server
 	* 14.04.3-LTS
-	
  	```console
-	 azure vm image list -l EastUS -p Canonical -o  
+	azure vm image list -l EastUS -p Canonical -o UbuntuServer -k 14.04.3-LTS
 	```
 	```console
 	data:    Publisher  Offer         Sku          OS     Version          Location  Urn
@@ -341,7 +340,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 1. En el portal vamos a Nuevo, Web + Mobile , Web App y en este panel entramos a "App Service plan / Location"
 
 	![App service plans](img/HOL-20.png)
-1. Allí damos click en "Crear Nuevo", lo nombramos "Ninja-WebPlan" y nos aseguramos de que este ubicado en "East US" y tenga como "Price Tier" **B1 Basic** y damos click en "OK"
+1. Allí damos click en "Crear Nuevo", lo nombramos "Ninja-WebPlan" y nos aseguramos de que este ubicado en "East US" y tenga como "Price Tier" **B1 Basic**, y damos click en "OK"
 
 	![nuevo website](img/HOL-21.png)
 1. Seguidamente al sitio lo nombramos "ninja-web" ,utiliza otro nombre ya que este ya queda usado.
