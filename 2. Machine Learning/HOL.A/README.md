@@ -47,8 +47,10 @@ En este laboratorio utilizaremos la suite de aprendizaje automatizado de Azure p
 1. Despliegue el servcio web para consultarlo, haga click en el boton "Deploy Web Service"
  
 
-### Paso 6 - Ejecutar prueba en Excel
-1. Haga click en el botón "Download Excel Workbook" <br />![excel](img/12.jpg)
-2. Habilite la edición del libro de excel, haciendo click en el boton "Enable Editing"
-3. Habilite las macros del libro de excel, haciendo click en el boton "Enable Content"
-4. Ingrese valores de prueba en las celdas de Sepal, Petal Length y Width.
+### Paso 6 - Ejecutar prueba desde el cliente de pruebas de la suite.
+1. Haga click en el botón "Test" <br />![test](img/12.jpg)
+1. Ingrese los datos en la ventana para realizar la clasificación en la ventana <br />![test2](img/13.jpg)
+	* Ingrese los siguientes datos para realizar la primera clasificación: class: En blanco sepal-length: 5.2 sepal width: 4.1 petal length: 1.5 petal width: 0.1
+	* Repita la prueba con los siguientes datos: class:En blanco sepal-length: 5.6 sepal width: 2.8 petal length: 4.9 petal width: 2
+1. Al ejecutar cada una de las pruebas verá en la parte inferior una barra con el resultado de la ejecución <br />![result2](img/14.jpg)
+	* Los primeros valores son los datos ingresados(resaltados en verde), los últimos dos valores son el resultado de la ejecución (reslatados en rojo)
