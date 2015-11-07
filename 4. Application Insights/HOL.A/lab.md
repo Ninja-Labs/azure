@@ -1,12 +1,12 @@
 #Application Insights
 ![Application Insigths](img/ai.png?raw=true)
-##Qué vamos a hacer?
-En este laboratorio veremos como usar Azure Application Insights para el monitoreo de una aplicación en la detección de fallos y problemas de performance.
+##¿Qué vamos a hacer?
+En este laboratorio veremos cómo usar Azure Application Insights para el monitoreo de una aplicación en la detección de fallos y problemas de performance.
 
-##Cómo lo vamos a hacer?
+##¿Cómo lo vamos a hacer?
 Para esto, integraremos Application Insights a una aplicación a la cual le hemos introducido fallas puntuales, el objetivo al finalizar este laboratorio es poder detectar las fallas y poder darles solución.
 
-> El reto: Vamos a simular que la aplicacion se encuentran en producción y verificaremos su comportamiento en ejecución sin revisar el código.
+> El reto: Vamos a simular que la aplicación se encuentran en producción y verificaremos su comportamiento en ejecución sin revisar el código.
 
 ##Pre-requisitos
 * Una suscripción activa a Azure
@@ -19,8 +19,8 @@ Para esto, integraremos Application Insights a una aplicación a la cual le hemo
 - [ ] Interactuar con el tablero de Application Insights
 - [ ] Conocer las herramientas que ofrece Applications Insights
 
-##Treas
-- [Tarea 1 - Descargar la aplicación de ejemplo y publiquela en un WebSite de Azure](#tarea-1)
+##Tareas
+- [Tarea 1 - Descargar e instalar la aplicación ContosoUniversity](#tarea-1)
 - [Tarea 2 - Integrar Application Insights](#tarea-2)
 - [Tarea 3 - Agregar información de excepciones a Application Insights](#tarea-3)
 - [Tarea 4 - Registrar información de Trazas en Application Insights](#tarea-4)
@@ -33,14 +33,14 @@ Abra la aplicación desde Visual Studio 2015.
 
 ![ContosoUniversity](img/steps/01.png)
 
-Compile la aplicación y verifíque que la compilación este correcta antes de realizar el paso de publicación.
+Compile la aplicación y verifique que la compilación este correcta antes de realizar el paso de publicación.
 
 ![Restauración de Nugets](img/steps/02.png)
 
 ![Compilación correcta](img/steps/03.png)
 
 ####Publicar la aplicación en Azure
-Realize la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
+Realice la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
 
 ![Click derecho -> Publicar](img/steps/04.png)
 
@@ -79,8 +79,8 @@ Verifique las diferentes secciones de la aplicación e ingrese datos adicionales
 ![Web App de ContosoUnviersity publicada!](img/steps/10.png)
 
 
-#####**¿Qué sucedio con la aplicación en este punto en este punto?**
-La aplicación tiene algunos problemas de performance y errores dificilmente visibles
+#####**¿Qué sucedió con la aplicación en este punto en este punto?**
+La aplicación tiene algunos problemas de performance y errores difícilmente visibles
 
 ###Tarea 2
 ####Integrar Application Insights
@@ -103,20 +103,20 @@ Desde el proyecto principal, click derecho -> Add Application Insights Telemetry
 
 ![Click derecho -> Add Application Insights Telemetry...](img/steps/14.png)
 
-Luego, despues de seleccionar la cuenta y la subscripción en la que se encuentra definido nuestro Application Insight, seleccionamos el que habiamos creado previamente, y le damos agregar.
+Luego, después de seleccionar la cuenta y la subscripción en la que se encuentra definido nuestro Application Insight, seleccionamos el que habíamos creado previamente, y le damos agregar.
 
 ![Seleccionar Aplication Insights](img/steps/15.png)
 
-Despues de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde habiamos detectado en la [Tarea 1](#tarea-1) los errores y problemas de performance para comenzar a recopilar datos con Application Insigths.
+Después de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde habíamos detectado en la [Tarea 1](#tarea-1) los errores y problemas de performance para comenzar a recopilar datos con Application Insigths.
 
 #####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
-¿En donde se encuentran los problemas de performance?
-¿En donde se reportan errores 500?
+¿En dónde se encuentran los problemas de performance?
+¿En dónde se reportan errores 500?
 ¿Nos hace falta información?
 
 ###Tarea 3
 ####Agregar información de excepciones a Application Insights
-Para integrarlo facilmente a MVC5 creamos el siguiente filtro en nuestro código
+Para integrarlo fácilmente a MVC5 creamos el siguiente filtro en nuestro código
 
 ```C#
 using System;
@@ -160,7 +160,7 @@ public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 Y publicamos de nuevo nuestra aplicación
 
 #####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
-¿Cuales son las excepciones que se estan presentando?
+¿Cuáles son las excepciones que se están presentando?
 
 ###Tarea 4
 ####Registrar información de Trazas en Application Insights
@@ -175,11 +175,11 @@ Luego... simplemente desplegar.
 
 ###Tarea 5
 ####Conteo de eventos
-Podemos urilizar Application Insigths para medir eventos especificos dentro de nuestra aplicación.
-Algo como los nuevos estudiantes e instructores que se registran pueden verse con una metrica en el tablero de Application Insigths
+Podemos urilizar Application Insigths para medir eventos específicos dentro de nuestra aplicación.
+Algo como los nuevos estudiantes e instructores que se registran pueden verse con una métrica en el tablero de Application Insigths
 
 Contar cuantos estudiantes se registran en la aplicación
-En la clase Controllers\StudentController.cs agergar al metodo Crear (POST):
+En la clase Controllers\StudentController.cs agergar al método Crear (POST):
 
 ```C#
 public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDate")]Student student)
@@ -202,8 +202,8 @@ public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDa
 ```
 
 
-Contar cuantos instructores se reginstran en la aplicación
-En la clase Controllers\InstructorController.cs agergar al metodo Crear (POST):
+Contar cuantos instructores se registran en la aplicación
+En la clase Controllers\InstructorController.cs agregar al método Crear (POST):
 
 ```C#
 public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
