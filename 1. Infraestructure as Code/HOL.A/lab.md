@@ -387,9 +387,8 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 
 
 ###Final Parte 1
-<p class="text-info">
-Hemos visto como podemos crear recursos en Azure y mantenerlos agrupados por medio del grupo de recursos, esto es muy importante ya que las soluciones de software usualmente constan de una infraestructura compleja con muchos componentes, como pudimos observar el grupo de recursos contiene todos los elementos necesarios para sostener la infraestructura incluyendo Maquinas Viertuales, Websites, Bases de Datos y decenas de componentes más.
-</p>
+
+>Hemos visto como podemos crear recursos en Azure y mantenerlos agrupados por medio del grupo de recursos, esto es muy importante ya que las soluciones de software usualmente constan de una infraestructura compleja con muchos componentes, como pudimos observar el grupo de recursos contiene todos los elementos necesarios para sostener la infraestructura incluyendo Maquinas Viertuales, Websites, Bases de Datos y decenas de componentes más.
 
 #Parte 2 - Infraestructura como código 
 
