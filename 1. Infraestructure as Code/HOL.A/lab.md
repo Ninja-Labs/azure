@@ -548,7 +548,7 @@ Este será el tema de esta parte del Ninja Lab
 1. Si todo salio bien al revisar en la ventana **output** de Visual Studio veras algo similar a esto
 
 	![Recursos de un grupo de recursos](img/HOL-40.png)
-1. Sin mebargo la prueba de fuego es revisar en el portal, revisa el grupo de recursos **Ninja-ResourceGroupVSResource**	 y podrás ver allí los recursos creados para la MV.
+1. Sin embargo la prueba de fuego es revisar en el portal, revisa el grupo de recursos **Ninja-ResourceGroupVSResource**	 y podrás ver allí los recursos creados para la MV.
 
 	![Recursos de un grupo de recursos](img/HOL-41.png)
 
@@ -712,7 +712,7 @@ Este será el tema de esta parte del Ninja Lab
 1. Vamos al portal de VSO, sobre la definición damos click derecho y seleccionamos "View Builds"		
   	
 	![Recursos de un grupo de recursos](img/HOL-73.png)	
-1. Y en el panel derecho en la pestaña **Queued** aparecerá una nueva build encolada en proceso.
+1. Y en el panel derecho en la pestaña **Queued** aparecerá una nueva build encolada en proceso. Este build se generó al subir los cambios al repostorio.
 
 	![Recursos de un grupo de recursos](img/HOL-74.png)	
 1. Esto tardará unos minutos, revisa cuando la build desaparezca y una vez lo haya hecho ve a la pestaña **Completed**
@@ -721,6 +721,8 @@ Este será el tema de esta parte del Ninja Lab
 	![Recursos de un grupo de recursos](img/HOL-75.png)	
 1. Vamos al portal de Azure a revisar nuevamente el recurso "Ninja-ResourceGroupVS" 
 1. La máquina virtual aparece nuevamente creada.
+  	
+	![Recursos de un grupo de recursos](img/HOL-76.png)	
 1. FIN NHK
 
 ###Final Parte 2
