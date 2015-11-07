@@ -330,7 +330,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 <span id="Tarea4" />
 ##Tarea 4 - Creación de un website desde el portal 
 
-1. Ahora en el mismo grupo de recursos crearemos un sitio web, para ello primero identificaremos los web farms disponibles en nuestra suscripción, desde el portal de azure damos click en "Buscar" 
+1. Ahora en el mismo grupo de recursos **NinjaLabCMD** crearemos un sitio web, para ello primero identificaremos los web farms disponibles en nuestra suscripción, desde el portal de azure damos click en "Buscar" 
 
 	![grupo de recursos](img/HOL-18.png)
 1. En el nuevo panel abierto buscamos "Planes de servicio de Apps"
