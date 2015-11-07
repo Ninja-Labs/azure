@@ -49,3 +49,6 @@ En este laboratorio utilizaremos la suite de aprendizaje automatizado de Azure p
 
 ### Paso 6 - Ejecutar prueba en Excel
 1. Haga click en el botón "Download Excel Workbook" <br />![excel](img/12.jpg)
+2. Habilite la edición del libro de excel, haciendo click en el boton "Enable Editing"
+3. Habilite las macros del libro de excel, haciendo click en el boton "Enable Content"
+4. Ingrese valores de prueba en las celdas de Sepal, Petal Length y Width.
