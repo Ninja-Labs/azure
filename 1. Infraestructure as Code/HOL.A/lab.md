@@ -66,7 +66,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	![grupo de recursos](img/HOL-16.png)
 1. Para efectos de este NinjaLab debemos configurar la consola de comandos de Azure en modo ARM (Azure Resource Manager) que es como seguira evolucionando Azure en adelante.
 
-	```
+	```console
 	azure config mode arm
 	```
 1. Seguidamente ingresamos este comando, el cual arroja un mensaje similar al que se ve abajo
