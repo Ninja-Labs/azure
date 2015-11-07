@@ -66,15 +66,15 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	![grupo de recursos](img/HOL-16.png)
 1. Para efectos de este NinjaLab debemos configurar la consola de comandos de Azure en modo ARM (Azure Resource Manager) que es como seguira evolucionando Azure en adelante.
 
-	```batch
+	```bash session
 	azure config mode arm
 	```
 1. Seguidamente ingresamos este comando, el cual arroja un mensaje similar al que se ve abajo
 
-	```batch
+	```bash session
 	azure login
 	```
-	```batch
+	```bash session
 	To sign in, use a web browser to open the page http://aka.ms/devicelogin. 
 	Enter the code FR6MCKRPA to authenticate. 
 	If you're signing in as an Azure AD application, 
@@ -85,15 +85,15 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	![grupo de recursos](img/HOL-17.png)
 1. Luego de ello iniciamos sesión en el browser, y despues de unos segundos en la consola aparecerá
 
-	```batch
+	```bash session
 	login command OK
 	```
 1. Puede que tengas varias suscriptiones de azure asociadas al mismo live Id, con este comando listamos las suscripciones disponibles
 
-	```batch
+	```bash session
 	azure account list
 	```
-	```batch
+	```bash session
 	data:    Name                       Id                                    Current  State
 	data:    -------------------------  ------------------------------------  -------  -------
 	data:    MSDN - MSFTE               adcbda71-4f93-427c-9ce0-fd7d100a4e1d  true     Enabled
@@ -102,15 +102,15 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```
 1. de la lista desplegada idenifica cual corresponde a la suscripción con la que deseas trabajar, en mi caso "MSDN - MSFTE" así que ingreso el siguiente comando para establecerla como predeterminada
 
-	```batch
+	```bash session
 	azure account set "MSDN - MSFTE"
 	```
 1. Finalmente ingresamos este comando y verificamos que todo este en orden
 
-	```batch
+	```bash session
 	azure account show	
 	```	
-	```batch
+	```bash session
 	info:    Executing command account show
 	data:    Name                        : MSDN - MSFTE
 	data:    ID                          : adcbda71-4f93-427c-9ce0-fd7d100a4e1d
@@ -129,26 +129,26 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 
 1. Lo primero que debemos crear es un "Grupo de Recursos", lo llamaremos NinjaLabCMD
 
-	```batch
+	```bash session
 	azure group create -n NinjaLabCMD -l EastUS
 	```
 1. Crearemos una MV por consola, para ello necesitamos establecer los mismos parámetros de creación que en nuestra má1quina creada en la [Tarea 1](#Tarea1), esos son los pasos que seguiremos a continuación para crear el comando
 1. Para crear una máquina virtual desde Xplat se pueden usar cualquiera de los siguientes comandos, Si los ejecutas cada uno seguido del comando -h obtendrás ayuda de la consola
 
-	```batch
+	```bash session
 	azure vm quick-create
 	azure vm create
 	```
 1. Para efectos de este NinjaLab haremos uso de `quick-create` el cual nos permite crear la MV con un mínimo de opciones, para una configuración completa es necesario hacer uso de `create`.
 1. Ingresamos este comando para establecer el grupo de recursos y el nombre de la máquina virtual, recuerda escoger un nombre de MV diferente al del ejemplo, que de seguro ese ya esta usado
 
-	```batch
+	```bash session
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd 
 	```  
 1. Presiona *(Ctrl + C)* 2 veces y luego ENTER para cancelar el comando, ya que te pide parámetros adicionales
 1. El primer parámetro adicional que necesitamos es la ubicación de la MV, como no sabemos lsa ubicaciones ingresamos el siguiente comando para obtenerlas
 
-	```batch
+	```bash session
 	azure location list > Locations.csv
 	```
 1. Esto genera un archivo separado por comas donde se listan todas las ubicaciones para cada uno de los servicios de Azure, puedes manipular este archivo desde excel para determinar las ubicaciones permitidas para el servicio de máquinas virtuales.
@@ -167,29 +167,29 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	* West US
 1. Así que seleccionaremos la ubicación "EastUS", por lo que nuestro script ahora luce así. Al ejecutarlo pedirá más parámetros, cancela nuevamente la ejecución
 
-	```batch
+	```bash session
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS
 	```
 1. El siguiente parámetro es el tipo de OS que queremos instalar, le indicaremos "Linux", ejecutalo pero de nuevo cancela la ejecución.
 
-	```batch
+	```bash session
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux
 	```
 1. Seguidamente adicionamos parámetros para el usuario y la contraseña, ejecutalo pero de nuevo cancela la ejecución.
 
-	```batch
+	```bash session
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux -u ninja-admin -p TUPASSWORD
 	```
 1. Ahora las cosas se ponen más interesantes, si seguiste los pasos la consola te estará pidiendo el parámetro `ImageURN` en el cual pones `Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060` y LISTO... HEY pero estos son **NinjaLabs** para que te vuelbas un duro, un maestro!! de dónde sale ese valor
 1. Para obtener ese valor debemos seguir los siguientes pasos, ese varlor es basicamente el medio (imagen) de instalación que usaremos para instalar Ubuntu, si recuerdas la [Tarea 1](#Tarea1) El OS que seleccionamos era **Ubuntu Server 14.04 LTS** así que navegaremos por la consola de comandos para que con ese datos logremos obtener el `ImageURN`
 1. Con el siguiente comando obtendremos la lista de publishers que han publicado imagenes de MV en Azure, lo único 'raro' allí es la ubicación, pero ya aprendimos de donde se obtienen
 
-	```batch
+	```bash session
 	azure vm image list-publishers -l EastUS
 	```
 1. Ejecutar este comando nos trae una lista bastante larga, pero sabemos que Ubuntu es creado por "Canonical" así que buscaremos algo parecido a "Canonical" en la lista y allí deberiamos encontrar lo siguiente
 
-	```batch
+	```bash session
 	data:    Publisher                                             Location
 	data:    ----------------------------------------------------  --------
 	...
@@ -201,10 +201,10 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```
 1. Ahora que tenemos certeza de como Azure 'conoce' a "Canonical" le preguntaremos que ofertas de imagen tiene canonical en Azure
 
-	```batch
+	```bash session
 	azure vm image list-offers -l EastUs -p Canonical
 	```
-	```batch
+	```bash session
 	data:    Publisher  Offer                    Location
 	data:    ---------  -----------------------  --------
 	data:    Canonical  Ubuntu15.04Snappy        eastus
@@ -214,10 +214,10 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```
 1. La que nos interesa es `UbuntuServer`, ahora necesitamos conocer que versiones de `UbuntuServer` soporta "Canonical" en Azure , y esa pregunta la hacemos de las siguiente manera
 
-	```batch
+	```bash session
 	azure vm image list-skus -l EastUS -p Canonical -o UbuntuServer
 	```
-	```batch
+	```bash session
 	data:    Publisher  Offer         sku                Location
 	data:    ---------  ------------  -----------------  --------
 	data:    Canonical  UbuntuServer  12.04.2-LTS        eastus
@@ -246,7 +246,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 1. Al terminar la lista identificamos que hay varias versiones de "Ubuntu 14.04 LTS" así que seleccionaremos la más reciente, en este caso `14.04.3-LTS`
 1. Ahora que ya tenemos esos datos probemos preguntando a Azure la lista de imagenes y sus correspondientes URN con este comando
 
-	```batch
+	```bash session
 	azure vm image list EastUS Canonical
 	```
 1. Genial hay tantas que no se puede ni leer, pero para eso tenemos los parámetros adicionales
@@ -255,10 +255,10 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	* Ubuntu Server
 	* 14.04.3-LTS
 	
- 	```batch
+ 	```bash session
 	 azure vm image list -l EastUS -p Canonical -o  
 	```
-	```batch
+	```bash session
 	data:    Publisher  Offer         Sku          OS     Version          Location  Urn
 	data:    ---------  ------------  -----------  -----  ---------------  --------  --------------------------------------------------
 	data:    Canonical  UbuntuServer  14.04.2-LTS  Linux  14.04.201503090  eastus    Canonical:UbuntuServer:14.04.2-LTS:14.04.201503090
@@ -269,13 +269,13 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 1. En la última columna tenemos el Urn de cada una de las imágenes con "UbuntuServer 14.04.2-LTS", seleccionaremos la versión más reciente, en este caso `14.04.201507060` a la cual le corresponde el siguiente Urn `Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060`
 1. Ahora si, el comando completo para crear nuestra MV con las especificaciones necesarias es el que se ve abajo , adicionandole como 'condimento' el parámero --json lo cual puede servirnos de ayuda más adelante. Este parámetro hace que el resumen de los recursos creados aparezca en este formato; no tiene impacto sobre la infraestrctura creada.
 
-	```batch
+	```bash session
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux -Q Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060 -u ninja-admin -p TUPASSWORD --json
 	```
 1. Este proceso tomará varios minutos, puedes seguir avanzando en el NinjaLab mientras tanto.
 1. La salida por consola genera una cadena json similar a esta, guardemosla en un archivo ya que la necesitaremos en una Tarea más adelente
 
-	```batch
+	```bash session
 	{
 	"extensions": [],
 	"tags": {},
