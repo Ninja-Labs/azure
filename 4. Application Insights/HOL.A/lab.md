@@ -113,7 +113,7 @@ Después de seleccionar la cuenta y la subscripción en la que se encuentra defi
 
 Después de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde habíamos detectado en la [Tarea 1](#tarea-1) los errores y problemas de performance para comenzar a recopilar datos con Application Insigths.
 
-(Application Insights)[img/steps/16.png]
+![Application Insights](img/steps/16.png)
 
 #####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
 ¿En dónde se encuentran los problemas de performance?
