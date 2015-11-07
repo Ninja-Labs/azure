@@ -1,13 +1,12 @@
 #Application Insights
-![Application Insigths](__images/ai.png?raw=true)
-
+![Application Insigths](img/ai.png?raw=true)
+##Qué vamos a hacer?
 En este laboratorio veremos como usar Azure Application Insights para el monitoreo de una aplicación en la detección de fallos y problemas de performance.
 
+##Cómo lo vamos a hacer?
 Para esto, integraremos Application Insights a diferentes aplicaciones a las que hemos introducido fallas puntuales, el objetivo al finalizar este laboratorio es poder detectar las fallas y poder darles solución.
 
-El reto: Vamos a simular que las aplicaciones se encuentran en producción y verificaremos su comportamiento en ejecución sin revisar el código.
-
-Empecemos!
+> El reto: Vamos a simular que las aplicaciones se encuentran en producción y verificaremos su comportamiento en ejecución sin revisar el código.
 
 ##Pre-requisitos
 * Una suscripción activa a Azure
@@ -15,8 +14,8 @@ Empecemos!
 * Visual Studio Code (Opcional)
 
 ##Objetivos
-- [ ] Objetivo 1
-- [ ] Objetivo 2
+- [ ] Identificar problemas de desempeño sobre la aplicación ContosoUniversity
+- [ ] Identificar los fallos de la aplicación ContosoUniversity
 - [ ] Objetivo 3
 - [ ] Objetivo 4
 
@@ -32,7 +31,7 @@ Empecemos!
 
 ###Tarea 1
 ####Ejecutar la aplicación base
-Dirijase a la sección de aplicación y copie la aplicación [ContosoUniversity](/aplicaciones/ContosoUniversity/) a su directorio de trabajo.
+Dirijase a la sección de aplicación y copie la aplicación [ContosoUniversity](./aplicaciones/ContosoUniversity/) a su directorio de trabajo.
 
 Abra la aplicación desde visual studio.
 
@@ -50,7 +49,7 @@ Ejecuté la aplicación y verifique su funcionamiento creando:
 La aplicación tiene algunos problemas de performance y errores dificilmente visibles
 
 ###Tarea 3
-
+####
 
 ###Tarea 4
 
