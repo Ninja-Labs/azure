@@ -275,7 +275,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 1. Este proceso tomará varios minutos, puedes seguir avanzando en el NinjaLab mientras tanto.
 1. La salida por consola genera una cadena json similar a esta, guardemosla en un archivo ya que la necesitaremos en una Tarea más adelente
 
-	```json
+	```.json
 	{
 	"extensions": [],
 	"tags": {},
