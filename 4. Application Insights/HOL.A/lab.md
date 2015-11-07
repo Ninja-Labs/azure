@@ -172,3 +172,58 @@ Luego... simplemente desplegar.
 
 #####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
 ¿Cuales información se está registrando en las trazas?
+
+###Tarea 5
+####Conteo de eventos
+Podemos urilizar Application Insigths para medir eventos especificos dentro de nuestra aplicación.
+Algo como los nuevos estudiantes e instructores que se registran pueden verse con una metrica en el tablero de Application Insigths
+
+Contar cuantos estudiantes se registran en la aplicación
+En la clase Controllers\StudentController.cs agergar al metodo Crear (POST):
+
+```C#
+public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDate")]Student student)
+{
+    // .. 
+        if (ModelState.IsValid)
+        {
+            db.Students.Add(student);
+            db.SaveChanges();
+            
+            //----------------------------------------------
+            TelemetryClient telemetry = new TelemetryClient();
+            telemetry.TrackEvent("NewStudent");
+            //----------------------------------------------
+            
+            return RedirectToAction("Index");
+        }
+    //..
+}
+```
+
+
+Contar cuantos instructores se reginstran en la aplicación
+En la clase Controllers\InstructorController.cs agergar al metodo Crear (POST):
+
+```C#
+public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
+{
+    //..
+    if (ModelState.IsValid)
+    {
+        db.Instructors.Add(instructor);
+        db.SaveChanges();
+
+        //----------------------------------------------
+        TelemetryClient telemetry = new TelemetryClient();
+        telemetry.TrackEvent("NewInstructor");
+        //----------------------------------------------
+
+        return RedirectToAction("Index");
+    }
+    //..
+}
+```
+
+#####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
+¿Cuantos usuarios hemos podido crear en nuestra aplicación?
