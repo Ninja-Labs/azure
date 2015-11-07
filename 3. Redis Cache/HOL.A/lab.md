@@ -132,7 +132,7 @@ Se ha creado el controlador EventsController.cs y las diferentes vistas de las a
 	
 1. Nuestra Aplicación esta lista y utilizando Redis cache para todas sus operaciones :)
 	   
-	![grupo de recursos](img/18.png)
+	![grupo de recursos](img/19.png)
 
 <br/>	
 
