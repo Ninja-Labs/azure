@@ -119,51 +119,29 @@ static string eventHubName = "{event hub name}";
 static string connectionString = "{send connection string}";
 
 1.  Agregue el siguiente método para la clase **Program**:
-
-> static void SendingRandomMessages()
->
-> {
->
-> var eventHubClient =
-> EventHubClient.CreateFromConnectionString(connectionString,
-> eventHubName);
->
-> while (true)
->
-> {
->
-> try
->
-> {
->
-> var message = Guid.NewGuid().ToString();
->
-> Console.WriteLine("{0} &gt; Sending message: {1}", DateTime.Now,
-> message);
->
-> eventHubClient.Send(new EventData(Encoding.UTF8.GetBytes(message)));
->
-> }
->
-> catch (Exception exception)
->
-> {
->
-> Console.ForegroundColor = ConsoleColor.Red;
->
-> Console.WriteLine("{0} &gt; Exception: {1}", DateTime.Now,
-> exception.Message);
->
-> Console.ResetColor();
->
-> }
->
-> Thread.Sleep(200);
->
-> }
->
-> }
-
+    
+    ```
+    static void SendingRandomMessages()
+    {
+        var eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, eventHubName);
+        while (true)
+        {
+            try
+            {
+                var message = Guid.NewGuid().ToString();
+                Console.WriteLine("{0} > Sending message: {1}", DateTime.Now, message);
+                eventHubClient.Send(new EventData(Encoding.UTF8.GetBytes(message)));
+            }
+            catch (Exception exception)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("{0} > Exception: {1}", DateTime.Now,exception.Message);
+                Console.ResetColor();
+            }
+        Thread.Sleep(200);
+        }
+    }
+    ```
 Este método envía continuamente eventos a su Hub de eventos con un
 retraso de 200ms.
 
