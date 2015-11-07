@@ -71,6 +71,12 @@ lateral +Nuevo --> Datos y almacenamiento --> Caché en Redis
 1. En la raíz de nuestro proyecto damos click derecho y vamos a Agregar --> Nueva Carpeta y la llamamos Helpers.
 1. Dentro de nuestra nueva carpeta Helpers presionamos click derecho y vamos Agregar --> "Clase..." la cual nombraremos "RedisHelper.cs"
 1. Importamos las librerías necesarias.
+
+	```
+	using Newtonsoft.Json;
+	using NinjaLab.Redis.Models;
+	using ServiceStack.Redis;
+	```
 1. Agregamos nuestra cadena de conexión con los datos respectivos creados en el paso uno bajo la siguiente estructura "password@hostredis?ssl=true" .
 1. Creamos nuestro método de conexión para conectarnos con la cache de redis creada.
 
@@ -110,6 +116,13 @@ Se ha creado el controlador EventsController.cs y las diferentes vistas de las a
 	![grupo de recursos](img/14.png)
  
  Es hora de implementar el código correspondiente para utilizar las características de redis cache, para ello abrimos nuestro archivo "EventController.cs"
+ 
+ 1. Importamos las clases a utilizar
+ 
+ 	```
+	using NinjaLab.Redis.Models;
+	using NinjaLab.Redis.Helpers;
+	```
  
  1. En el método Index, obtenemos todos los datos de Redis con GetAll()
  1. En el método Details obtenemos el objeto según el id seleccionado
