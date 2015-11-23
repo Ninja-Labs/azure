@@ -145,19 +145,14 @@ Este método envía continuamente eventos a su Hub de eventos con un
 retraso de 200ms.
 
 1.  Por último, añadir las siguientes líneas al método Main:
-
-> <span id="receive-messages-with-eventprocessorhost"
-> class="anchor"></span>Console.WriteLine("Press Ctrl-C to stop the
-> sender process");
->
-> Console.WriteLine("Press Enter to start now");
->
-> Console.ReadLine();
->
-> SendingRandomMessages();
-
-**Recibir mensajes con EventProcessorHost**
--------------------------------------------
+    ``` 
+    Console.WriteLine("Press Ctrl-C to stop the
+    sender process");
+    Console.WriteLine("Press Enter to start now");
+    Console.ReadLine();
+    SendingRandomMessages();
+    **Recibir mensajes con EventProcessorHost**
+    ```
 
 [*EventProcessorHost*](http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx) es
 una clase .NET que simplifica la recepción de eventos de concentradores
@@ -221,90 +216,58 @@ todas sus dependencias.
 
 2.  Agregue las siguientes instrucciones en la parte superior del
     archivo *SimpleEventProcessor.cs:*
-
+    ```
     using Microsoft.ServiceBus.Messaging;
-    
     using System.Diagnostics;
-
     using System.Threading.Tasks;
-
+    ```
 A continuación, sustituya el siguiente código para el cuerpo de la
 clase::
-
+    ```
     class SimpleEventProcessor : IEventProcessor
-    
     {
+        Stopwatch checkpointStopWatch;
+        async Task IEventProcessor.CloseAsync(PartitionContext context, CloseReason reason)
+        {
+            Console.WriteLine("Processor Shutting Down. Partition '{0}', Reason:
+                                            '{1}'.", context.Lease.PartitionId, reason);
+            if (reason == CloseReason.Shutdown)
+            {
+                await context.CheckpointAsync();
+            }
+        }
     
-    Stopwatch checkpointStopWatch;
+        Task IEventProcessor.OpenAsync(PartitionContext context)
+        {
+            Console.WriteLine("SimpleEventProcessor initialized. Partition: '{0}',
+                        Offset: '{1}'", context.Lease.PartitionId, context.Lease.Offset);
+            this.checkpointStopWatch = new Stopwatch();
+            this.checkpointStopWatch.Start();
+            return Task.FromResult&lt;object&gt;(null);
+        }
     
-    async Task IEventProcessor.CloseAsync(PartitionContext context,
-    CloseReason reason)
+        async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
+                    IEnumerable&lt;EventData&gt; messages)
+        {
+            foreach (EventData eventData in messages)
+            {
+            string data = Encoding.UTF8.GetString(eventData.GetBytes());
+            Console.WriteLine(string.Format("Message received. Partition: '{0}',
+            Data: '{1}'",
+            context.Lease.PartitionId, data));
+            }
     
-    {
-    
-    Console.WriteLine("Processor Shutting Down. Partition '{0}', Reason:
-    '{1}'.", context.Lease.PartitionId, reason);
-    
-    if (reason == CloseReason.Shutdown)
-    
-    {
-    
-    await context.CheckpointAsync();
-    
+            //Call checkpoint every 5 minutes, so that worker can resume processing
+            //from the 5 minutes back if it restarts.
+            if (this.checkpointStopWatch.Elapsed &gt; TimeSpan.FromMinutes(5))
+            {
+                await context.CheckpointAsync();
+                this.checkpointStopWatch.Restart();
+            }
+        }
     }
+    ```
     
-    }
-    
-    Task IEventProcessor.OpenAsync(PartitionContext context)
-    
-    {
-    
-    Console.WriteLine("SimpleEventProcessor initialized. Partition: '{0}',
-    Offset: '{1}'", context.Lease.PartitionId, context.Lease.Offset);
-    
-    this.checkpointStopWatch = new Stopwatch();
-    
-    this.checkpointStopWatch.Start();
-    
-    return Task.FromResult&lt;object&gt;(null);
-    
-    }
-    
-    async Task IEventProcessor.ProcessEventsAsync(PartitionContext context,
-    IEnumerable&lt;EventData&gt; messages)
-    
-    {
-    
-    foreach (EventData eventData in messages)
-    
-    {
-    
-    string data = Encoding.UTF8.GetString(eventData.GetBytes());
-    
-    Console.WriteLine(string.Format("Message received. Partition: '{0}',
-    Data: '{1}'",
-    
-    context.Lease.PartitionId, data));
-    
-    }
-    
-    //Call checkpoint every 5 minutes, so that worker can resume processing
-    from the 5 minutes back if it restarts.
-    
-    if (this.checkpointStopWatch.Elapsed &gt; TimeSpan.FromMinutes(5))
-    
-    {
-    
-    await context.CheckpointAsync();
-    
-    this.checkpointStopWatch.Restart();
-    
-    }
-    
-    }
-    
-    }
-
 Esta clase será llamado por el **EventProcessorHost** para procesar
 eventos recibidos desde el Hub de eventos. Tenga en cuenta que la clase
 SimpleEventProcessor utiliza un cronómetro para llamar periódicamente el
@@ -315,53 +278,41 @@ de procesamiento.
 1.  En la clase **Program** , agregue las siguientes declaraciones
     using  en la parte superior:
 
-    > using Microsoft.ServiceBus.Messaging;
-    >
-    > using Microsoft.Threading;
-    >
-    > using System.Threading.Tasks;
-
+    ```
+    using Microsoft.ServiceBus.Messaging;
+    using Microsoft.Threading;
+    using System.Threading.Tasks;
+    ```
+    
 A continuación, modifique el método **Main**  para la clase **Program** 
 como se muestra a continuación, sustituyendo el nombre y la conexión de
 la cadena de eventos Hub y la cuenta de almacenamiento y clave que ha
 copiado en los apartados anteriores:
-
+    
+    ```
     static void Main(string\[\] args)
-    
     {
+        string eventHubConnectionString = "{event hub connection string}";
+        string eventHubName = "{event hub name}";
+        string storageAccountName = "{storage account name}";
+        string storageAccountKey = "{storage account key}";
+        string storageConnectionString =
+        string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
+                            storageAccountName, storageAccountKey);
+        string eventProcessorHostName = Guid.NewGuid().ToString();
+        EventProcessorHost eventProcessorHost = new
+        EventProcessorHost(eventProcessorHostName, eventHubName,
+                                EventHubConsumerGroup.DefaultGroupName, eventHubConnectionString,
+                                storageConnectionString);
     
-    string eventHubConnectionString = "{event hub connection string}";
-    
-    string eventHubName = "{event hub name}";
-    
-    string storageAccountName = "{storage account name}";
-    
-    string storageAccountKey = "{storage account key}";
-    
-    string storageConnectionString =
-    string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
-    
-    storageAccountName, storageAccountKey);
-    
-    string eventProcessorHostName = Guid.NewGuid().ToString();
-    
-    EventProcessorHost eventProcessorHost = new
-    EventProcessorHost(eventProcessorHostName, eventHubName,
-    EventHubConsumerGroup.DefaultGroupName, eventHubConnectionString,
-    storageConnectionString);
-    
-    Console.WriteLine("Registering EventProcessor...");
-    
-    eventProcessorHost.RegisterEventProcessorAsync&lt;SimpleEventProcessor&gt;().Wait();
-    
-    Console.WriteLine("Receiving. Press enter key to stop worker.");
-    
-    Console.ReadLine();
-    
-    eventProcessorHost.UnregisterEventProcessorAsync().Wait();
-    
+        Console.WriteLine("Registering EventProcessor...");
+        eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>().Wait();
+        Console.WriteLine("Receiving. Press enter key to stop worker.");
+        Console.ReadLine();
+        eventProcessorHost.UnregisterEventProcessorAsync().Wait();
     }
-
+    ```
+    
 ##### *NOTA:*
 
 *Este tutorial usa una sola instancia de EventProcessorHost. Para
