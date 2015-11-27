@@ -31,37 +31,60 @@ Sin más detalles procedemos con los siguientes pasos.
 	![Crear carpeta Hardware y clase BatteryManager](img/002.png)
 
 
-#TAREA 1:  Creando una App Universal con Windows 10
+##TAREA 1:  Creando una App Universal con Windows 10
 
-<p>
-En esta etapa vamos incluir la fuente necesaria para acceder a los recursos del dispositivo.
- </p>
+1. En esta etapa vamos incluir la fuente necesaria para acceder a los recursos del dispositivo. Le daremos doble clic al nuestro <b>MainPage.xaml</b> e incluiremos la siguiente presentación gráfica entre el  control `<grid />` 
 
- Le daremos doble clic al nuestro <b>MainPage.xaml</b> e incluiremos la siguiente presentación gráfica entre el  control `<grid />` 
+	```xaml
+	<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Button Click="sendReport_click">Send Report !!!</Button>
+		<ListBox x:Name="lstDevices" Height="200"></ListBox>
+		<Button Click="getReport_Click">Get Report !!!</Button>
+		<ListBox x:Name="lstResponses" Height="200"></ListBox>
+	</StackPanel>
+			
+	```
+1. lo siguiente es Acceder a la clase <b>BatteryManager</b> y incluir el espacio de nombre  `Windows.Devices.Power` el cuál contiene la información de la batería del dispositivo. 
 
-		
-```xaml
-			<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-				<Button Click="sendReport_click">Send Report !!!</Button>
-				<ListBox x:Name="lstDevices" Height="200"></ListBox>
-				<Button Click="getReport_Click">Get Report !!!</Button>
-				<ListBox x:Name="lstResponses" Height="200"></ListBox>
-			</StackPanel>
-		
-```
-
-
-
-
- lo siguiente es Acceder a la clase <b>BatteryManager</b> y incluir el espacio de nombre  `Windows.Devices.Power` el cuál contiene la información de la batería del dispositivo. 
-
-```csharp
+	```csharp
 	using Windows.Devices.Power;
-```
+	```
 
-y la inicializamos de la siguiente manera. 
+1. y la inicializamos de la siguiente manera. 
 
-```csharp
+	```csharp
+	/// <summary>
+	/// Recibe la información del hardware del dispositivo 
+	/// </summary>
+	private Battery _battery = Battery.AggregateBattery;
+
+	/// <summary>
+	/// Carga el estado de la bateria 
+	/// </summary>
+	public BatteryReport State
+	{
+		get
+		{
+			//Accede al reporte de la bateria
+			return _battery.GetReport();
+		}
+
+	}
+
+	//TODO: Extender aquí a libertad
+	```
+
+1. el fuente completo de la clase debería presentar la siguiente forma 
+	```csharp
+	using Windows.Devices.Power;
+	
+	namespace EventHubLab01.Hardware
+	{
+		/// <summary>
+		/// Accede a la configuración de la bateria del dispositivo 
+		/// </summary>
+		class BatteryManager
+		{
 			/// <summary>
 			/// Recibe la información del hardware del dispositivo 
 			/// </summary>
@@ -81,44 +104,12 @@ y la inicializamos de la siguiente manera.
 			}
 	
 			//TODO: Extender aquí a libertad
-```
-
-el fuente completo de la clase debería presentar la siguiente forma 
-```csharp
-		using Windows.Devices.Power;
-		
-		namespace EventHubLab01.Hardware
-		{
-			/// <summary>
-			/// Accede a la configuración de la bateria del dispositivo 
-			/// </summary>
-			class BatteryManager
-			{
-				/// <summary>
-				/// Recibe la información del hardware del dispositivo 
-				/// </summary>
-				private Battery _battery = Battery.AggregateBattery;
-		
-				/// <summary>
-				/// Carga el estado de la bateria 
-				/// </summary>
-				public BatteryReport State
-				{
-					get
-					{
-						//Accede al reporte de la bateria
-						return _battery.GetReport();
-					}
-		
-				}
-		
-				//TODO: Extender aquí a libertad
-		
-			}
-		}
 	
-```	
-#TAREA 2: Creando un EventHub en Azure 
+		}
+	}
+		
+	```	
+##TAREA 2: Creando un EventHub en Azure 
 
 Para construir un <b>EventHub</b> debemos ir al [portal de azure](http://azure.microsoft.com) y crearlo de esta manera. 
 
