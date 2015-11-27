@@ -538,7 +538,7 @@ Al ejecutar y pulsar sobre  `Send Report !!!` tendremos lo siguiente
 
 y si revisamos el EventHub en el portal podremos verificar las solicitudes enviadas . 
 
-![Estadisticas de Azure](img/012.png)
+![Estadisticas de Microsoft Azure EventHub](img/012.png)
 
 
 #TAREA 5: Recibir información del EventHub 
