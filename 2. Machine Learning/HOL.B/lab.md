@@ -140,4 +140,39 @@ Hay tres elementos que hacen parte del ciclo basico de entrenamiento:
 
   ![guia](img/31.png)
 
+### Parte 3 - Publicar el modelo entrenado como un servicio 
+
+Para poder usar el modelo, AzureML provee un mecanismo para exponer el modelo entrenado como un servicio, el cual tiene como entradas los datos a evaluar y salida el resultado de ejecutar el modelo sobre esos datos. En el proceso de publicacion, se crea un runtime model de prediccion. 
+
+1. Para hacerlo, seleccionamos el algoritmo ("Train Model") que mas nos gusta en su rendimiento dentro del experimento.  Una vez seleccionado, se selecciona "Set Up Web Service"
+
+  ![guia](img/32.png)
+  
+1. Cuando se crea el modelo predictivo, se transforma el experimento para tomar los datos que entrenaron el modelo en el experimento y expone un servicio web para consumirlo
+
+  ![guia](img/33.png)
+  
+1. Para poderlo exponer, debe primero ejecutarse :
+  
+  ![guia](img/34.png)
+  
+1. Una vez ejecutado, se puede desplegar
+  
+  ![guia](img/35.png)
+
+  ![guia](img/36.png)
+    
+1. El despliegue crea el web service  y provee una interfaz grafica de prueba para ingresar los valores a ser evaluados
+
+  ![guia](img/37.png)
+  
+1. Tomaremos un registro del conjunto de datos de entrada para probar el servicio: 
+  
+  ![guia](img/38.png)
+  
+1. El resultado de la evaluacion viene en el ultimo par de campos del valor de respuesta:
+
+  ![guia](img/39.png)
+  
+  
 
