@@ -111,53 +111,51 @@ Sin más detalles procedemos con los siguientes pasos.
 	```	
 ##TAREA 2: Creando un EventHub en Azure 
 
-Para construir un <b>EventHub</b> debemos ir al [portal de azure](http://azure.microsoft.com) y crearlo de esta manera. 
+1. Para construir un <b>EventHub</b> debemos ir al [portal de azure](http://azure.microsoft.com) y crearlo de esta manera. 
 
-![Creando un EventHub](img/003.png)
+    ![Creando un EventHub](img/003.png)
 
-![Registrar servicio](img/004.png)
+    ![Registrar servicio](img/004.png)
 
-Al construirlo tendremos el siguiente servicio activo 
+   Al construirlo tendremos el siguiente servicio activo 
 
-![Servicios Activos](img/005.png)
+    ![Servicios Activos](img/005.png)
 
 
-#TAREA 3: Preparando para enviar al EventHub  
+##TAREA 3: Preparando para enviar al EventHub  
 
-Añadiremos un proyecto a la solución de tipo <b>Class Library</b> de esta forma 
+1. Añadiremos un proyecto a la solución de tipo <b>Class Library</b> de esta forma 
 
-![Plantilla de tipo Class library](img/006.png)
+    ![Plantilla de tipo Class library](img/006.png)
 
-posterior a la creación incluiremos dos clases de esta forma.  
+1. posterior a la creación incluiremos dos clases de esta forma.  
 
-![Servicios Activos](img/007.png)
+    ![Servicios Activos](img/007.png)
 
-nos ubicaremos en la clase `EventHubNotificationEventArgs` e incrustaremos las siguientes líneas que nos van a permitir controlar los mensajes de envio y recepción de las notificaciones
+1. nos ubicaremos en la clase `EventHubNotificationEventArgs` e incrustaremos las siguientes líneas que nos van a permitir controlar los mensajes de envio y recepción de las notificaciones
 
-```csharp
-    public class EventHubNotificationEventArgs:EventArgs
-    {
-        public string Message { get; set; }
-        public Exception Exception { get; set; }  
-    }
-	
-```
-
-Ahora bien. Nos ubicamos en la clase `EventHubManager` e incrustamos las siguientes líneas de código 
-
-```csharp
-
-		public event EventHandler<EventHubNotificationEventArgs> EventHubNotificacion;
-        private void onEventHubNotification(EventHubNotificationEventArgs e)
+    ```csharp
+        public class EventHubNotificationEventArgs:EventArgs
         {
-            if (EventHubNotificacion != null)
-                EventHubNotificacion(this, e);
-        } 
-``` 
+            public string Message { get; set; }
+            public Exception Exception { get; set; }  
+        }
+        
+    ```
 
-Usamos la clase genérica `EventHandler` para crear nuestro evento y construimos un método privado llamado `onEventHubNotification`donde inicializamos el evento siempre y cuando este se encuentre registrado a un manejador (Handled).  
+1. Ahora bien. Nos ubicamos en la clase `EventHubManager` e incrustamos las siguientes líneas de código 
 
+    ```csharp
+    
+            public event EventHandler<EventHubNotificationEventArgs> EventHubNotificacion;
+            private void onEventHubNotification(EventHubNotificationEventArgs e)
+            {
+                if (EventHubNotificacion != null)
+                    EventHubNotificacion(this, e);
+            } 
+    ``` 
 
+1. Usamos la clase genérica `EventHandler` para crear nuestro evento y construimos un método privado llamado `onEventHubNotification`donde inicializamos el evento siempre y cuando este se encuentre registrado a un manejador (Handled). 
 Deberemos instalar un paquete (nuget) que nos permita comunicarnos con nuestro servicio de <b>EventHub</b>.  para ello abrimos la consola de paquetes e instalamos el paquete llamado `AMQPNetLite`. 
 
  ```batch
@@ -185,384 +183,374 @@ Deberemos instalar un paquete (nuget) que nos permita comunicarnos con nuestro s
  
  ```
 
-Como ya existe el paquete. Entonces definimos las siguientes variables de clase  
+1. Como ya existe el paquete. Entonces definimos las siguientes variables de clase  
 
-```csharp 
-        Amqp.Address address;
-        Amqp.Connection connection;
-        Amqp.Session session;
-		
-		//se definen los parámetros de conexión 
-		
-        string eventHubNamespace = "eventhubcamp-ns";
-        string eventHubName = "eventhubdevcamp";
-        string policyName = "#######";
-        string key = "############################=";
-```		
+    ```csharp 
+            Amqp.Address address;
+            Amqp.Connection connection;
+            Amqp.Session session;
+            
+            //se definen los parámetros de conexión 
+            
+            string eventHubNamespace = "eventhubcamp-ns";
+            string eventHubName = "eventhubdevcamp";
+            string policyName = "#######";
+            string key = "############################=";
+    ```		
 
-luego procedemos a construir los métodos de conexión y desconexión 
-
-```csharp
-		/// <summary>
-        /// Establecer conexión 
-        /// </summary>
-        private void OpenConnection()
-        {
-            address = new Amqp.Address(
-				
-				string.Format("{0}.servicebus.windows.net", eventHubNamespace), //  host de conexión
-				5671, // puerto por defecto
-				policyName, // nombre de la regla
-				key); // llave de la regla     
-
-            connection = new Amqp.Connection(address);
-            session = new Amqp.Session(connection);
-        }
-		
-		
-		/// <summary>
-        /// Cerrar la conexión 
-        /// </summary>
-        private void CloseConection()
-        {
-            connection.Close();
-        }
-``` 
-
-para enviar un mensaje debemos construir el siguiente método 
-
-```csharp
-
-		/// <summary>
-        /// enviar mensaje a eventhub 
-        /// </summary>
-        /// <param name="data">datos a enviar</param>
-        public void SendMessage(string data)
-        {
-            try
+1. luego procedemos a construir los métodos de conexión y desconexión 
+    
+    ```csharp
+            /// <summary>
+            /// Establecer conexión 
+            /// </summary>
+            private void OpenConnection()
             {
-                OpenConnection();
-                var sendLink = new Amqp.SenderLink(
-                                                  session, // sesión actual de conexión
-                                                  "send-link:" + eventHubName,  // encabezado de envio a EventHub
-                                                  eventHubName);   // nombre de la ruta 
-
-				// se codifica en UTF8 el mensaje								  
-                var messageValue = Encoding.UTF8.GetBytes(data);
-
-                var message = new Amqp.Message() { BodySection = new Amqp.Framing.Data() { Binary = messageValue } };
-                
-				//se construye una partición 
-				message.MessageAnnotations = new Amqp.Framing.MessageAnnotations();
-                message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-partition-key")] = "partitionkey";
-
-				// se envia a EventHub 
-                sendLink.Send(message);
-				
-				//se notifia el envío 
-				onEventHubNotification(new EventHubNotificationEventArgs { Message = data + " send" });
-                
-				//cierre de conexión 
-				CloseConection();
+                address = new Amqp.Address(
+                    
+                    string.Format("{0}.servicebus.windows.net", eventHubNamespace), //  host de conexión
+                    5671, // puerto por defecto
+                    policyName, // nombre de la regla
+                    key); // llave de la regla     
+    
+                connection = new Amqp.Connection(address);
+                session = new Amqp.Session(connection);
             }
-            catch (Exception ex)
+                        
+            /// <summary>
+            /// Cerrar la conexión 
+            /// </summary>
+            private void CloseConection()
             {
-                onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                connection.Close();
             }
-        }
-		
-```
+    ``` 
 
-y para recibir el mensaje debemos contruir el método siguiente
+1. para enviar un mensaje debemos construir el siguiente método 
 
-```csharp
-
-
-        /// <summary>
-        /// Recibir  mensajes de  eventHub
-        /// </summary>
-        public void ReceiverMessage()
-        {
-            try
+    ```csharp
+    
+            /// <summary>
+            /// enviar mensaje a eventhub 
+            /// </summary>
+            /// <param name="data">datos a enviar</param>
+            public void SendMessage(string data)
             {
-
-                OpenConnection();
-
-                var receiveLink = new Amqp.ReceiverLink(
-               session,  //sesión actual de conexión 
-               "receive-link:" + eventHubName, // encabezado de recepción a EventHub
-               eventHubName + "/ConsumerGroups/$default/Partitions/0"); // ruta con la particion 0 
-
-                while (true)
+                try
                 {
-					//recibe desde el EventHub
-                    var message = receiveLink.Receive(); 
-                    //si no hay más mensajes sale 
-					if (message == null) break;
-
-
-                    var offset = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-offset")];
-                    var seqNumber = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-sequence-number")];
-                    var enqueuedTime = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-enqueued-time")];
-                    //notifica el recibido a EventHub 
-				    receiveLink.Accept(message);
-
-					//recibe el mensaje codificado en UTF8
-                    var _encode = message.Body;
-					
-					//obtiene y envia la respuesta 
-                    var response = System.Text.Encoding.UTF8.GetString((byte[])_encode);
-                    onEventHubNotification(new EventHubNotificationEventArgs { Message = response });
+                    OpenConnection();
+                    var sendLink = new Amqp.SenderLink(
+                                                    session, // sesión actual de conexión
+                                                    "send-link:" + eventHubName,  // encabezado de envio a EventHub
+                                                    eventHubName);   // nombre de la ruta 
+    
+                    // se codifica en UTF8 el mensaje								  
+                    var messageValue = Encoding.UTF8.GetBytes(data);
+    
+                    var message = new Amqp.Message() { BodySection = new Amqp.Framing.Data() { Binary = messageValue } };
+                    
+                    //se construye una partición 
+                    message.MessageAnnotations = new Amqp.Framing.MessageAnnotations();
+                    message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-partition-key")] = "partitionkey";
+    
+                    // se envia a EventHub 
+                    sendLink.Send(message);
+                    
+                    //se notifia el envío 
+                    onEventHubNotification(new EventHubNotificationEventArgs { Message = data + " send" });
+                    
+                    //cierre de conexión 
+                    CloseConection();
                 }
-
-                CloseConection();
-
+                catch (Exception ex)
+                {
+                    onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                }
             }
-            catch (Exception ex)
+            
+    ```
+
+1. y para recibir el mensaje debemos contruir el método siguiente
+
+    ```csharp
+            /// <summary>
+            /// Recibir  mensajes de  eventHub
+            /// </summary>
+            public void ReceiverMessage()
             {
-                onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                try
+                {
+    
+                    OpenConnection();
+    
+                    var receiveLink = new Amqp.ReceiverLink(
+                session,  //sesión actual de conexión 
+                "receive-link:" + eventHubName, // encabezado de recepción a EventHub
+                eventHubName + "/ConsumerGroups/$default/Partitions/0"); // ruta con la particion 0 
+    
+                    while (true)
+                    {
+                        //recibe desde el EventHub
+                        var message = receiveLink.Receive(); 
+                        //si no hay más mensajes sale 
+                        if (message == null) break;
+       
+                        var offset = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-offset")];
+                        var seqNumber = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-sequence-number")];
+                        var enqueuedTime = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-enqueued-time")];
+                        //notifica el recibido a EventHub 
+                        receiveLink.Accept(message);
+    
+                        //recibe el mensaje codificado en UTF8
+                        var _encode = message.Body;
+                        
+                        //obtiene y envia la respuesta 
+                        var response = System.Text.Encoding.UTF8.GetString((byte[])_encode);
+                        onEventHubNotification(new EventHubNotificationEventArgs { Message = response });
+                    }
+    
+                    CloseConection();
+    
+                }
+                catch (Exception ex)
+                {
+                    onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                }
+    
             }
+    
+    ```
 
-        }
- 
-```
+1. la clase `EventHubManager` deberá quedar de esta manera. 
 
-la clase `EventHubManager` deberá quedar de esta manera. 
-
-```csharp
-namespace EventHubConfigurationManager
-{
-    public class EventHubManager
+    ```csharp
+    namespace EventHubConfigurationManager
     {
-        public event EventHandler<EventHubNotificationEventArgs> EventHubNotificacion;
-        private void onEventHubNotification(EventHubNotificationEventArgs e)
+        public class EventHubManager
         {
-            if (EventHubNotificacion != null)
-                EventHubNotificacion(this, e);
-        }
-
-        string eventHubNamespace = "eventhubcamp-ns";
-        string eventHubName = "eventhubdevcamp";
-        string policyName = "#####";
-        string key = "########=";
-
-        Amqp.Address address;
-        Amqp.Connection connection;
-        Amqp.Session session;
-
-
-        /// <summary>
-        /// Establecer conexión 
-        /// </summary>
-        private void OpenConnection()
-        {
-            address = new Amqp.Address(
-                                           string.Format("{0}.servicebus.windows.net", eventHubNamespace),
-                                           5671, policyName, key);
-
-            connection = new Amqp.Connection(address);
-            session = new Amqp.Session(connection);
-        }
-
-        /// <summary>
-        /// enviar mensaje a eventhub 
-        /// </summary>
-        /// <param name="data">datos a enviar</param>
-        public void SendMessage(string data)
-        {
-            try
+            public event EventHandler<EventHubNotificationEventArgs> EventHubNotificacion;
+            private void onEventHubNotification(EventHubNotificationEventArgs e)
             {
-                OpenConnection();
-                var sendLink = new Amqp.SenderLink(
-                                                  session,
-                                                  "send-link:" + eventHubName,
-                                                  eventHubName);
-
-                var messageValue = Encoding.UTF8.GetBytes(data);
-
-                var message = new Amqp.Message() { BodySection = new Amqp.Framing.Data() { Binary = messageValue } };
-                message.MessageAnnotations = new Amqp.Framing.MessageAnnotations();
-                message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-partition-key")] = "partitionkey";
-
-                sendLink.Send(message);
-
-                onEventHubNotification(new EventHubNotificationEventArgs { Message = data + " send" });
-                CloseConection();
+                if (EventHubNotificacion != null)
+                    EventHubNotificacion(this, e);
             }
-            catch (Exception ex)
+    
+            string eventHubNamespace = "eventhubcamp-ns";
+            string eventHubName = "eventhubdevcamp";
+            string policyName = "#####";
+            string key = "########=";
+    
+            Amqp.Address address;
+            Amqp.Connection connection;
+            Amqp.Session session;
+    
+            /// <summary>
+            /// Establecer conexión 
+            /// </summary>
+            private void OpenConnection()
             {
-                onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                address = new Amqp.Address(
+                                            string.Format("{0}.servicebus.windows.net", eventHubNamespace),
+                                            5671, policyName, key);
+    
+                connection = new Amqp.Connection(address);
+                session = new Amqp.Session(connection);
             }
-        }
-
-        /// <summary>
-        /// Cerrar la conexión 
-        /// </summary>
-        private void CloseConection()
-        {
-
-            connection.Close();
-        }
-
-        /// <summary>
-        /// Recibir  mensajes de  eventHub
-        /// </summary>
-        public void ReceiverMessage()
-        {
-            try
+    
+            /// <summary>
+            /// enviar mensaje a eventhub 
+            /// </summary>
+            /// <param name="data">datos a enviar</param>
+            public void SendMessage(string data)
             {
-
-                OpenConnection();
-
-                var receiveLink = new Amqp.ReceiverLink(
-               session,
-               "receive-link:" + eventHubName,
-               eventHubName + "/ConsumerGroups/$default/Partitions/0");
-
-                while (true)
+                try
                 {
-                    var message = receiveLink.Receive();
-                    if (message == null) break;
-
-                    var offset = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-offset")];
-                    var seqNumber = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-sequence-number")];
-                    var enqueuedTime = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-enqueued-time")];
-                    receiveLink.Accept(message);
-
-                    var _encode = message.Body;
-
-                    var response = System.Text.Encoding.UTF8.GetString((byte[])_encode);
-                    onEventHubNotification(new EventHubNotificationEventArgs { Message = response });
+                    OpenConnection();
+                    var sendLink = new Amqp.SenderLink(
+                                                    session,
+                                                    "send-link:" + eventHubName,
+                                                    eventHubName);
+    
+                    var messageValue = Encoding.UTF8.GetBytes(data);
+    
+                    var message = new Amqp.Message() { BodySection = new Amqp.Framing.Data() { Binary = messageValue } };
+                    message.MessageAnnotations = new Amqp.Framing.MessageAnnotations();
+                    message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-partition-key")] = "partitionkey";
+    
+                    sendLink.Send(message);
+    
+                    onEventHubNotification(new EventHubNotificationEventArgs { Message = data + " send" });
+                    CloseConection();
                 }
-
-                CloseConection();
-
+                catch (Exception ex)
+                {
+                    onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                }
             }
-            catch (Exception ex)
+    
+            /// <summary>
+            /// Cerrar la conexión 
+            /// </summary>
+            private void CloseConection()
             {
-                onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                connection.Close();
             }
-
+    
+            /// <summary>
+            /// Recibir  mensajes de  eventHub
+            /// </summary>
+            public void ReceiverMessage()
+            {
+                try
+                {
+    
+                    OpenConnection();
+    
+                    var receiveLink = new Amqp.ReceiverLink(
+                session,
+                "receive-link:" + eventHubName,
+                eventHubName + "/ConsumerGroups/$default/Partitions/0");
+    
+                    while (true)
+                    {
+                        var message = receiveLink.Receive();
+                        if (message == null) break;
+    
+                        var offset = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-offset")];
+                        var seqNumber = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-sequence-number")];
+                        var enqueuedTime = message.MessageAnnotations[new Amqp.Types.Symbol("x-opt-enqueued-time")];
+                        receiveLink.Accept(message);
+    
+                        var _encode = message.Body;
+    
+                        var response = System.Text.Encoding.UTF8.GetString((byte[])_encode);
+                        onEventHubNotification(new EventHubNotificationEventArgs { Message = response });
+                    }
+    
+                    CloseConection();
+    
+                }
+                catch (Exception ex)
+                {
+                    onEventHubNotification(new EventHubNotificationEventArgs { Exception = ex, Message = ex.Message });
+                }
+    
+            }
+    
         }
-
     }
-}
-``` 
+    ``` 
 
-para las líneas de configuración deberemos dirigirnos a nuestro portal de azure 
+1. para las líneas de configuración deberemos dirigirnos a nuestro portal de azure 
 y en la pestaña de <b>configurar</b>. Vamos a agregar la siguiente configuración  
 
-1. nos  fijamos en la configuración por defecto que nos indica que tenemos 4 particiones.
-1. y en las directivas vamos a crear una nueva denominada <b>SendGet</b>. con al configuración de enviar y escuchar.    
+    1. nos  fijamos en la configuración por defecto que nos indica que tenemos 4 particiones.
+    1. y en las directivas vamos a crear una nueva denominada <b>SendGet</b>. con al configuración de enviar y escuchar.    
 
-![configurar EventHub](img/008.png)
+        ![configurar EventHub](img/008.png)
 
-luego de guardar, actualizamos nuestra clase `EventHubManager` en los campo `policyName` 
+1. luego de guardar, actualizamos nuestra clase `EventHubManager` en los campo `policyName` 
+    
+    ```csharp
+            string policyName = "SendGet";
+    ```
 
-```csharp
-  		string policyName = "SendGet";
-```
+1. la llave de acceso la tendremos despues de guardar. e incluimos la <b>clave principal</b> 
 
-la llave de acceso la tendremos despues de guardar. e incluimos la <b>clave principal</b> 
+    ![Llaves de acceso a EventHub](img/009.png)
 
-![Llaves de acceso a EventHub](img/009.png)
+1. actualizamos nuestra clase `EventHubManager` en el campo `key
+    
+    ```csharp
+            string key = "####Clave Principal#####==";
+    ```
 
-actualizamos nuestra clase `EventHubManager` en el campo `key
+##TAREA 4: Enviando información al EventHub 
 
-```csharp
-  		string key = "####Clave Principal#####==";
-```
+1. Debemos incluir la referencia del proyecto construido de la siguiente forma 
 
-#TAREA 4: Enviando información al EventHub 
+    ![Agregar referencia](img/010.png)
 
-Debemos incluir la referencia del proyecto construido de la siguiente forma 
-
-![Agregar referencia](img/010.png)
-
-Para enviar la información basta con agregar funcionalidad al botón denominado `Send Report !!!` en `MainPage.xaml`
-
-```csharp
-
-   private void sendReport_click(object sender, RoutedEventArgs e)
-        {
-            Task.Factory.StartNew(async () =>
+1. Para enviar la información basta con agregar funcionalidad al botón denominado `Send Report !!!` en `MainPage.xaml`
+    
+    ```csharp
+    private void sendReport_click(object sender, RoutedEventArgs e)
             {
-                var _eventHub = new EventHubManager();
-               
-                _eventHub.EventHubNotificacion += sendEventHub_EventHubNotificacion;
-
-				//obtiene la información del dispositivo
-                var interfaces = await DeviceInformation.FindAllAsync();
+                Task.Factory.StartNew(async () =>
+                {
+                    var _eventHub = new EventHubManager();
+                
+                    _eventHub.EventHubNotificacion += sendEventHub_EventHubNotificacion;
+    
+                    //obtiene la información del dispositivo
+                    var interfaces = await DeviceInformation.FindAllAsync();
+                    await lstDevices.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        lstDevices.Items.Clear(); 
+                    });
+                    
+                    //se envia a EventHub
+                    foreach (var item in interfaces)
+                        _eventHub.SendMessage(item.Id);
+    
+                    //información de la bateria 
+                    var _battery = new Hardware.BatteryManager();
+                    _eventHub.SendMessage("Battery " + _battery.State.Status.ToString());
+    
+                    _eventHub.EventHubNotificacion -= sendEventHub_EventHubNotificacion;
+                });
+            }
+            
+            private async void sendEventHub_EventHubNotificacion(object sender, EventHubNotificationEventArgs e)
+            {
                 await lstDevices.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    lstDevices.Items.Clear(); 
+                    lstDevices.Items.Add(e.Message);
                 });
-				
-				//se envia a EventHub
-                foreach (var item in interfaces)
-                    _eventHub.SendMessage(item.Id);
+            }
+    ```
 
-				//información de la bateria 
-                var _battery = new Hardware.BatteryManager();
-                _eventHub.SendMessage("Battery " + _battery.State.Status.ToString());
-
-                _eventHub.EventHubNotificacion -= sendEventHub_EventHubNotificacion;
-            });
-        }
-		
-		
-		private async void sendEventHub_EventHubNotificacion(object sender, EventHubNotificationEventArgs e)
-        {
-            await lstDevices.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                lstDevices.Items.Add(e.Message);
-            });
-        }
+1. Al ejecutar y pulsar sobre  `Send Report !!!` tendremos lo siguiente 
 
  
-```
+    ![prueba](img/011.png)
 
-Al ejecutar y pulsar sobre  `Send Report !!!` tendremos lo siguiente 
+1. y si revisamos el EventHub en el portal podremos verificar las solicitudes enviadas . 
 
- 
-![prueba](img/011.png)
-
-y si revisamos el EventHub en el portal podremos verificar las solicitudes enviadas . 
-
-![Estadisticas de Microsoft Azure EventHub](img/014.png)
+    ![Estadisticas de Microsoft Azure EventHub](img/014.png)
 
 
 #TAREA 5: Recibir información del EventHub 
 
-Para recibir del EventHub afectamos la clase `MainPage.cs` e incluimos las siguientes líneas
-
-```csharp 
-
-		private void getReport_Click(object sender, RoutedEventArgs e)
-        {
-            ReceivedMessages();
-        }
-		
-		private async void _eventHub_EventHubNotificacion(object sender, EventHubNotificationEventArgs e)
-        {
-            await lstResponses.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+1. Para recibir del EventHub afectamos la clase `MainPage.cs` e incluimos las siguientes líneas
+    
+    ```csharp 
+    
+            private void getReport_Click(object sender, RoutedEventArgs e)
             {
-                lstResponses.Items.Add(e.Message);
-            });
-        }
-
-        private void ReceivedMessages()
-        {
-            Task.Factory.StartNew(() =>
+                ReceivedMessages();
+            }
+            
+            private async void _eventHub_EventHubNotificacion(object sender, EventHubNotificationEventArgs e)
             {
-                var _eventHub = new EventHubManager();
-                _eventHub.EventHubNotificacion += _eventHub_EventHubNotificacion;
-                _eventHub.ReceiverMessage();
-            });
-        }
+                await lstResponses.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    lstResponses.Items.Add(e.Message);
+                });
+            }
+    
+            private void ReceivedMessages()
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    var _eventHub = new EventHubManager();
+                    _eventHub.EventHubNotificacion += _eventHub_EventHubNotificacion;
+                    _eventHub.ReceiverMessage();
+                });
+            }
+    
+    ```
 
-```
+1. y luego pulsamos F5 para probar el recibido de los mensajes. 
 
-y luego pulsamos F5 para probar el recibido de los mensajes. 
-
-![prueba](img/013.png)
+    ![prueba](img/013.png)
