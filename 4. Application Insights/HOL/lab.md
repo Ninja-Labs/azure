@@ -1,45 +1,45 @@
 #Application Insights
 ## ¿Qué es Application Insights?
 Es un servicio de análisis extensible que supervisa su aplicación activa. Le ayuda a detectar y a diagnosticar problemas de rendimiento y a comprender qué hacen los usuarios realmente con su aplicación. Está diseñado para desarrolladores, para ayudarle a mejorar continuamente el rendimiento y la facilidad de uso de la aplicación y que permite:
-*Supervisar el uso y rendimiento de las aplicaciones activas.
-*Supervisar aplicaciones web de ASP.NET o J2EE hospedadas en cualquier lugar: en Azure, en otros servicios en la nube o en sus propios servidores locales.
-*Supervisar aplicaciones de Android, iOS, OSX, Windows, etc.
-*Obtener alertas inmediatas en caso de problemas de rendimiento o disponibilidad.
-*Obtener telemetría para aplicaciones web existentes sin tener que volver a implementarlas.
-*Se puede usar con una amplia variedad de tipos de aplicaciones en ejecución en dispositivos, servidores o equipos de escritorio.
-*Buscar registros de seguimiento y excepción para diagnosticar los errores.
-*Realizar un seguimiento de eventos, métricas, vistas de página, usuarios, bloqueos, dependencias, contadores de rendimiento y tiempos de respuesta.
-*Funciona tanto con aplicaciones web como independientes en una amplia variedad de plataformas: .NET o J2EE, hospedadas localmente o en la nube; aplicaciones de dispositivos en Windows, iOS, Android, OSX y otras plataformas.
+- Supervisar el uso y rendimiento de las aplicaciones activas.
+- Supervisar aplicaciones web de ASP.NET o J2EE hospedadas en cualquier lugar: en Azure, en otros servicios en la nube o en sus propios servidores locales.
+- Supervisar aplicaciones de Android, iOS, OSX, Windows, etc.
+- Obtener alertas inmediatas en caso de problemas de rendimiento o disponibilidad.
+- Obtener telemetría para aplicaciones web existentes sin tener que volver a implementarlas.
+- Se puede usar con una amplia variedad de tipos de aplicaciones en ejecución en dispositivos, servidores o equipos de escritorio.
+- Buscar registros de seguimiento y excepción para diagnosticar los errores.
+- Realizar un seguimiento de eventos, métricas, vistas de página, usuarios, bloqueos, dependencias, contadores de rendimiento y tiempos de respuesta.
+- Funciona tanto con aplicaciones web como independientes en una amplia variedad de plataformas: .NET o J2EE, hospedadas localmente o en la nube; aplicaciones de dispositivos en Windows, iOS, Android, OSX y otras plataformas.
 
 ###Lo que haremos en este laboratorio:
 Revisaremos la forma en que podemos integrar nuestras aplicaciones al servicio de Insights para poder realizar un seguimiento a las mismas
 Requisitos:
-•	Una suscripción activa a Azure
-•	Visual Studio 2015
-•	Visual Studio Code (Opcional)
+- Una suscripción activa a Azure
+- Visual Studio 2015
+- Visual Studio Code (Opcional)
 
 ##Tareas
 - [Tarea 1 - Revisar como adicionar Application Insights a su proyecto de Visual Studio.](#tarea-1)
 - [Tarea 2 - Crear una aplicación web ASP.Net MVC con Application Insights.](#tarea-2)
 - [Tarea 3 - Implementar y publicar Contoso University.](#tarea-3)
 - [Tarea 4 - Crear una instancia de telemetría para asociarlo con la aplicación.](#tarea-4)
-- [Tarea 5 - 
-- [Tarea 6 - 
-- [Tarea 7 - 
+- [Tarea 5 - Agregar información de excepciones a Application Insights.] (#tarea-5)
+- [Tarea 6 - Conteo de eventos.] (#tarea-6)
+- [Tarea 7 - Test de disponibilidad y capacidad de respuesta del web site.] (#tarea-7)
 
 ###Tarea 1
 ####Revisar como adicionar Application Insights a su proyecto de Visual Studio
-1. Se puede adicionar Insights cuando se está creando un proyecto nuevo, abriendo Visual Studio agregando un nuevo proyecto web y se le habilita la opción de Application Insights.
+Se puede adicionar Insights cuando se está creando un proyecto nuevo, abriendo Visual Studio agregando un nuevo proyecto web y se le habilita la opción de Application Insights.
 
 ![Nuevo Proyecto](Images/T1_1.png)
 
-2. O Si se va a realizar desde un proyecto existente, desde el explorador de la solución (Solution Explorer) se hace clic derecho sobre el proyecto y seleccionamos la opción agregar Application Insights.
+O Si se va a realizar desde un proyecto existente, desde el explorador de la solución (Solution Explorer) se hace clic derecho sobre el proyecto y seleccionamos la opción agregar Application Insights.
 
 ![Proyecto existente](Images/T1_2.png)
 
 ###Tarea 2
 ####Crear una aplicación web ASP.Net MVC con Application Insights 
-1. Abrimos Visual Studio en donde agregaremos una nueva aplicación web seleccionar la opción de Application Insights.
+Abrimos Visual Studio en donde agregaremos una nueva aplicación web seleccionar la opción de Application Insights.
 
 ![Proyecto](Images/T2_1.png)
 
@@ -48,13 +48,13 @@ Al hacer clic en Ok seleccionamos la plantilla MVC con la autenticación para cue
 ![Iniciando](Images/T2_2.png)
 
 Lo que hicimos al Agregar Application Insights fue (que podría hacer manualmente en su lugar si lo prefiere):
-*Crear un recurso de Application Insights en el portal de Azure. Es donde verá los datos. Recupera la clave de instrumentación, que identifica el recurso.
-*Agregar el paquete NuGet del SDK web de Application Insights al proyecto. Para verlo en Visual Studio, haga clic con el botón secundario en el proyecto y elija Administrar paquetes de NuGet.
-*Colocar la clave de instrumentación en ApplicationInsights.config.
+- Crear un recurso de Application Insights en el portal de Azure. Es donde verá los datos. Recupera la clave de instrumentación, que identifica el recurso.
+- Agregar el paquete NuGet del SDK web de Application Insights al proyecto. Para verlo en Visual Studio, haga clic con el botón secundario en el proyecto y elija Administrar paquetes de NuGet.
+- Colocar la clave de instrumentación en ApplicationInsights.config.
 
 ![Iniciando](Images/T2_3.png)
 
-2. Ejecución del proyecto
+Ejecución del proyecto
 
 Ejecute la aplicación con F5 y pruébela. Abra varias páginas para generar telemetría.
 
@@ -79,15 +79,15 @@ Abra Búsqueda para investigar solicitudes individuales y sus eventos asociados.
 ![Iniciando](Images/T2_8.png)
 
 ###¿No hay datos?
-*Asegúrese de que está viendo lo correcto. Inicie sesión en el portal de Azure, haga clic en "Examinar" >, "Application Insights" y, a continuación, seleccione la aplicación.
-*Use la aplicación y abra varias páginas para generar telemetría.
-*Abra la hoja Buscar para ver los eventos individuales. A veces, los eventos tardan un poco en llegar a través de la canalización de métricas.
-*Espere unos segundos y haga clic en Actualizar.
+- Asegúrese de que está viendo lo correcto. Inicie sesión en el portal de Azure, haga clic en "Examinar" >, "Application Insights" y, a continuación, seleccione la aplicación.
+- Use la aplicación y abra varias páginas para generar telemetría.
+- Abra la hoja Buscar para ver los eventos individuales. A veces, los eventos tardan un poco en llegar a través de la canalización de métricas.
+- Espere unos segundos y haga clic en Actualizar.
 
 ###Tarea 3
 ####Implementar y publicar Contoso University
 
-1. Puede descargar el proyecto desde https://github.com/qjuanp/nc-azure-ai/tree/example-nc
+Puede descargar el proyecto desde https://github.com/qjuanp/nc-azure-ai/tree/example-nc
 
 Abra la aplicación con Visual Studio 2015.
 
@@ -98,7 +98,6 @@ Compile la aplicación y verifique que la compilación este correcta antes de real
 ![Application Insights](Images/T3_2.png)
 
 Publicar la aplicación en Azure
-
 Realice la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
 
 ![Application Insights](Images/T3_5.png)
@@ -112,10 +111,10 @@ Recuerde que debe iniciar sesión con la cuenta que tenga asociada para acceder a
 ![Application Insights](Images/T3_7.png)
 
 Defina para la publicación de su Web App
-*El **Service Plan** al que va a pertenecer la Web App (Plan Free por defecto)
-*El **Resource Group** que va a contener la Web App
-*La **Región de Azure** en donde se van a publicar la Web App
-*Crear una **nueva Base de Datos** para los datos de la aplicación ContosoUniversity
+- El **Service Plan** al que va a pertenecer la Web App (Plan Free por defecto)
+- El **Resource Group** que va a contener la Web App
+- La **Región de Azure** en donde se van a publicar la Web App
+- Crear una **nueva Base de Datos** para los datos de la aplicación ContosoUniversity
 
 ![Application Insights](Images/T3_8.png)
 
@@ -130,11 +129,11 @@ Y Publique la Web App
 ![Application Insights](Images/T3_11.png)
 
 Verifique las diferentes secciones de la aplicación e ingrese datos adicionales en cada una de ellas
-*Instructores
-*Departamentos
-*Clases
-*Estudiantes
-*Acerca de
+- Instructores
+- Departamentos
+- Clases
+- Estudiantes
+- Acerca de
 
 ![Application Insights](Images/T3_12.png)
  
@@ -143,26 +142,40 @@ Verifique las diferentes secciones de la aplicación e ingrese datos adicionales 
 
 La aplicación tiene algunos problemas de performance y errores difícilmente visibles, para lo cual haremos el seguimiento correspondiente utilizando Application Insights.
 En el portal Preview de Azure vamos a revisar Application Insights nos debe mostrar la aplicación de Contoso University que agregamos.
+
+![Application Insights](Images/T4_01.png)
  
-Ahora crearemos un nuevo Application Insight, el que asociaremos a nuestra aplicación.
+Ahora crearemos un nuevo recurso de **Application Insight**, el que asociaremos a nuestra aplicación.
  	
+![Application Insights](Images/T4_02.png)
 
+Desde Visual Studio 2015 vamos a integrar nuestra aplicación con Application Insights Desde el explorador de la solución hacemos clic derecho sobre el proyecto y Add Application Insights Telemetry (Agregar Telemetría).
 
-Ahora desde Visual Studio 2015 vamos a integrar nuestra aplicación con Application Insights Desde el explorador de la solución hacemos clic derecho sobre el proyecto y Add Application Insights Telemetry (Agregar Telemetría).
- 
+![Application Insights](Images/T4_03.png)
+
 Si lo solicita, es necesario reingresar las credenciales de acceso a su cuenta de azure.
- 
-Se abrirá la ventana desde donde seleccionaremos la opción que creamos. Y hacemos clic en agregar (Add)
-  
-Ya que se agregaron las librerías asociadas con Insights, debemos publicar nuevamente la aplicación para guardar los cambios realizados.
- 
 
-Lo que permitirá revisar la aplicación
+![Application Insights](Images/T4_04.png)
+
+Se abrirá la ventana desde donde seleccionaremos la opción que creamos. Y hacemos clic en agregar (Add)
+
+![Application Insights](Images/T4_05.png)
  
-Acá podemos revisar la información que arroja la telemetría a nivel general, por ejemplo revisemos cuales son las páginas que mostraron error al ingresar a ellas.
-Tarea 5
-Agregar información de excepciones a Application Insights
+Ya que se agregaron las librerías asociadas con Insights, debemos publicar nuevamente la aplicación para guardar los cambios realizados.
+
+![Application Insights](Images/T4_06.png)
+
+Lo que permitirá revisar la aplicación delde Azure Application Insights en donde podemos revisar la información que arroja la telemetría a nivel general, por ejemplo revisemos cuales son las páginas que mostraron error al ingresar a ellas.
+
+![Application Insights](Images/T4_07.png)
+
+
+###Tarea 5
+####Agregar información de excepciones a Application Insights
+
 Crearemos un filtro para integrarnos rápida y fácilmente con nuestro proyecto hecho en MVC5 para lo cual crearemos la clase ContosoHandleErrorAttribute que heredará de la clase HandleErrorAttribute del framework de Insight.
+
+```C#
 using System;
 using System.Web.Mvc;
 using Microsoft.ApplicationInsights;
@@ -188,21 +201,36 @@ namespace ContosoUniversity.Common
         }
     }
 }
+```
+
 Luego seleccionamos nuestro archivo Global.asax y registramos el filtro de manera global en el FilterConfig de nuestro código al final de la clase.
+
+```C#
 // ...
 public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 {
     filters.Add(new ContosoHandleErrorAttribute());
 }
 // ...
+```
+
 De nuevo publicamos la aplicación para que queden en el servidor los cambios.
+
+![Application Insights](Images/T5_01.png)
  
 Observemos cuales son las excepciones que presenta en el momento de navegar por el sitio.
- 
-Tarea 6
-Conteo de eventos
+
+![Application Insights](Images/T5_02.png)
+
+Es un esquema inicial para detectar el filtrado de información asociado con nuestro seguimiento de la aplicación.
+
+###Tarea 6
+####Conteo de eventos
+
 Podemos utilizar Application Insigths para medir eventos específicos dentro de nuestra aplicación. Algo como los nuevos estudiantes e instructores que se registran pueden verse con una métrica en el tablero de Application Insigths
 Contar cuantos estudiantes se registran en la aplicación En la clase Controllers\StudentController.cs agergar al método Crear (POST):
+
+```C#
 public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDate")]Student student)
 {
     // .. 
@@ -220,7 +248,11 @@ public ActionResult Create([Bind(Include = "LastName, FirstMidName, EnrollmentDa
         }
     //..
 }
+```
+
 Contar cuantos instructores se registran en la aplicación En la clase Controllers\InstructorController.cs agregar al método Crear (POST):
+
+```C#
 public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,OfficeAssignment")]Instructor instructor, string[] selectedCourses)
 {
     //..
@@ -238,15 +270,21 @@ public ActionResult Create([Bind(Include = "LastName,FirstMidName,HireDate,Offic
     }
     //..
 }
-¿Qué información nos arroja Application Insight sobre ContosoUniversity?
-¿Cuantos usuarios hemos podido crear en nuestra aplicación?
-Tarea 7
-Test de disponibilidad y capacidad de respuesta del web site
+```
+
+- ¿Qué información nos arroja Application Insight sobre ContosoUniversity?
+- ¿Cuantos usuarios hemos podido crear en nuestra aplicación?
+
+###Tarea 7
+####Test de disponibilidad y capacidad de respuesta del web site
+
 Después de haber implementado la aplicación web, configuraremos pruebas web para supervisar su disponibilidad y capacidad de respuesta. Application Insights enviará solicitudes web a intervalos regulares desde puntos de todo el mundo y puede alertarle si la aplicación responde lentamente o no responde en absoluto.
 Puede configurar pruebas web para cualquier punto de conexión HTTP o HTTPS que sea accesible desde la red pública de Internet.
+
 Existen dos tipos de prueba web:
-•	Prueba de ping de la dirección URL: una prueba sencilla que se puede crear en el portal de Azure.
-•	Prueba web de varios pasos: que se crea en Visual Studio Ultimate o Visual Studio Enterprise y se carga en el portal.
+- Prueba de ping de la dirección URL: una prueba sencilla que se puede crear en el portal de Azure.
+- Prueba web de varios pasos: que se crea en Visual Studio Ultimate o Visual Studio Enterprise y se carga en el portal.
+
 Ahora vamos a seleccionar el recurso con el que hemos trabajado para las tareas anteriores:
  
 Si no aparece el icono que nos permite manejar la disponibilidad es necesario agregarlo.
