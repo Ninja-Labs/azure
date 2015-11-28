@@ -27,11 +27,10 @@ Requisitos:
 - [Tarea 6:
 - [Tarea 7:
 
-Tarea 1
+###Tarea 1
 Revisar como adicionar Application Insights a su proyecto de Visual Studio
 Se puede adicionar Insights cuando se está creando un proyecto nuevo, abriendo Visual Studio agregando un nuevo proyecto web y se le habilita la opción de Application Insights.
- 
-
+![Iniciando](Images/T1_1.png)
 O Si se va a realizar desde un proyecto existente, desde el explorador de la solución (Solution Explorer) se hace clic derecho sobre el proyecto y seleccionamos la opción agregar Application Insights.
  
 
