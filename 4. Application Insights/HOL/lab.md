@@ -286,43 +286,59 @@ Existen dos tipos de prueba web:
 - Prueba web de varios pasos: que se crea en Visual Studio Ultimate o Visual Studio Enterprise y se carga en el portal.
 
 Ahora vamos a seleccionar el recurso con el que hemos trabajado para las tareas anteriores:
- 
+
+![Application Insights](Images/T7_01.png)
+
 Si no aparece el icono que nos permite manejar la disponibilidad es necesario agregarlo.
- 
+
+![Application Insights](Images/T7_02.png)
 
 Hacemos clic sobre la opción Add tiles
- 
+
+![Application Insights](Images/T7_03.png) 
 
 Lo que nos despliega un menú al lado derecho Tile Gallery.
+
+>![Application Insights](Images/T7_04.png)
  
 Seleccionamos la opción Availability arrastrándola al menú de nuestro recurso y hacemos clic en la opción Done sobre éste menú.
- 
 
-Configuración de la prueba Ping
+![Application Insights](Images/T7_05.png)
+
+####Configuración de la prueba Ping
 Hacemos clic sobre el icono que acabamos de implementar (Availability) y hacemos clic en la opción Add web test (Crear una prueba web)
- 
+
+![Application Insights](Images/T7_06.png)
 
 Llenamos la información para crear nuestra prueba: Nombre, tipo de test, la url (cargada por defecto), frecuencia, locaciones de carga, criterio, alertas.
 Aunque lo vamos a dejar como está cargado por defecto, es bueno revisar las opciones que nos presenta cada uno de los elementos.
 Hacemos clic en crear para que quede listo nuestro test.
+
+![Application Insights](Images/T7_07.png)
  
-Para tener en cuenta:
-•	La dirección URL debe ser visible desde la red pública de Internet. Puede incluir una cadena de consulta, así por ejemplo se puede ejercitar un poco la base de datos. Si la dirección URL se resuelve en una redirección, la seguiremos, con un máximo de 10 redirecciones.
-•	Analizar solicitudes dependientes: imágenes, scripts, archivos de estilo y otros recursos de la página se solicitan como parte de la prueba. La prueba da error si todos estos recursos no se pueden descargar correctamente dentro del tiempo de espera de la prueba entera.
-•	Habilitar reintentos: cuando la prueba da error, se reintenta tras un corto intervalo. Se notifica un error únicamente si los tres intentos sucesivos producen un error. Las sucesivas pruebas se realizan según la frecuencia habitual de la prueba. El reintento se suspende temporalmente hasta que uno se complete correctamente. Esta regla se aplica independientemente en cada ubicación de la prueba. (Se recomienda esta configuración. Como media, cerca del 80 % de los errores desaparecen al reintentar).
-•	Frecuencia de prueba: establece la frecuencia con que se ejecuta la prueba desde cada ubicación de prueba. Con una frecuencia de cinco minutos y cinco ubicaciones de prueba, el sitio se prueba cada minuto por término medio.
-•	Las ubicaciones de prueba son los lugares desde donde nuestros servidores envían solicitudes web a la dirección URL. Elija más de una de tal forma que pueda distinguir los problemas del sitio web a partir de los problemas de red. Puede seleccionar hasta 16 ubicaciones.
-Criterios de éxito:
-•	Tiempo de espera de prueba: reduzca este valor para recibir una alerta sobre las respuestas lentas. La prueba se considera un error si no se han recibido respuestas de su sitio dentro de este período. Si seleccionó Analizar solicitudes dependientes, todas las imágenes, archivos de estilo, scripts y otros recursos dependientes se deben haber recibido durante este período.
-•	Respuesta HTTP: el código de estado devuelto que se considera correcto. 200 es el código que indica que se ha devuelto una página web normal.
-•	Coincidencia de contenido: una cadena, como "Bienvenido". Realizaremos una prueba que tenga lugar en todas las respuestas. Debe ser una cadena sin formato, sin caracteres comodín. No se olvide que si el contenido cambia, es posible que tenga que actualizarla.
-•	De forma predeterminada, las alertas se le envían cuando hay errores en tres ubicaciones durante cinco minutos. Es probable que un error en una ubicación sea un problema de red y no un problema con su sitio. No obstante, puede cambiar el umbral a más o menos sensible, y también puede cambiar las personas a quienes se deben enviar los correos electrónicos.
+#####Para tener en cuenta:
+- **La dirección URL** debe ser visible desde la red pública de Internet. Puede incluir una cadena de consulta, así por ejemplo se puede ejercitar un poco la base de datos. Si la dirección URL se resuelve en una redirección, la seguiremos, con un máximo de 10 redirecciones.
+- **Analizar solicitudes dependientes**: imágenes, scripts, archivos de estilo y otros recursos de la página se solicitan como parte de la prueba. La prueba da error si todos estos recursos no se pueden descargar correctamente dentro del tiempo de espera de la prueba entera.
+- **Habilitar reintentos**: cuando la prueba da error, se reintenta tras un corto intervalo. Se notifica un error únicamente si los tres intentos sucesivos producen un error. Las sucesivas pruebas se realizan según la frecuencia habitual de la prueba. El reintento se suspende temporalmente hasta que uno se complete correctamente. Esta regla se aplica independientemente en cada ubicación de la prueba. (Se recomienda esta configuración. Como media, cerca del 80 % de los errores desaparecen al reintentar).
+- **Frecuencia de prueba**: establece la frecuencia con que se ejecuta la prueba desde cada ubicación de prueba. Con una frecuencia de cinco minutos y cinco ubicaciones de prueba, el sitio se prueba cada minuto por término medio.
+- **Las ubicaciones de prueba** son los lugares desde donde nuestros servidores envían solicitudes web a la dirección URL. Elija más de una de tal forma que pueda distinguir los problemas del sitio web a partir de los problemas de red. Puede seleccionar hasta 16 ubicaciones.
+
+#####Criterios de éxito:
+- Tiempo de espera de prueba: reduzca este valor para recibir una alerta sobre las respuestas lentas. La prueba se considera un error si no se han recibido respuestas de su sitio dentro de este período. Si seleccionó Analizar solicitudes dependientes, todas las imágenes, archivos de estilo, scripts y otros recursos dependientes se deben haber recibido durante este período.
+- Respuesta HTTP: el código de estado devuelto que se considera correcto. 200 es el código que indica que se ha devuelto una página web normal.
+- Coincidencia de contenido: una cadena, como "Bienvenido". Realizaremos una prueba que tenga lugar en todas las respuestas. Debe ser una cadena sin formato, sin caracteres comodín. No se olvide que si el contenido cambia, es posible que tenga que actualizarla.
+- De forma predeterminada, las alertas se le envían cuando hay errores en tres ubicaciones durante cinco minutos. Es probable que un error en una ubicación sea un problema de red y no un problema con su sitio. No obstante, puede cambiar el umbral a más o menos sensible, y también puede cambiar las personas a quienes se deben enviar los correos electrónicos.
+
 Al seleccionar el test que acabamos de crear podemos ver el avance del mismo.
+
+![Application Insights](Images/T7_08.png)
  
 Agregue más pruebas. Por ejemplo, además de probar la página principal, puede asegurarse de que la base de datos se está ejecutando probando la URL con una búsqueda.
 
 Después de uno o dos minutos, haga clic en Actualizar en la hoja de pruebas de disponibilidad o web. (No se actualiza automáticamente).
+
+![Application Insights](Images/T7_09.png)
  
 Al ubicarse sobre cualquiera de los puntos podrá ver la información relacionada.
  
-
+![Application Insights](Images/T7_10.png)
