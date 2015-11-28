@@ -342,3 +342,51 @@ Después de uno o dos minutos, haga clic en Actualizar en la hoja de pruebas de d
 Al ubicarse sobre cualquiera de los puntos podrá ver la información relacionada.
  
 ![Application Insights](Images/T7_10.png)
+
+###Tarea 8
+####Un repaso general de las características.
+
+Abramos nuestro ambiente de Azure Insights y seleccionemos el elemento que hemos venido trabajando asociado con Contoso University, luego hagamos clic en Settings para que se desplieguen las diferentes opciones.
+
+![Application Insights](Images/T8_01.png)
+
+Allí podemos ver las diferentes opciones agrupadas por las características generales.
+
+![Application Insights](Images/T8_011.png)
+
+- Quick Start: Nos ofrece una seríe de guías para un inicio rapido, a manera de referencia y autoaprendizaje.
+- Investigate (Investigar): Podemos ver el movimiento y los datos relacionados con la navegación, Las fallas, las escepciones, el uso y los eventos asociados con la aplicación a la que le estamos haciendo el seguimiento.
+- Properties (Propiedades): Se pueden revisar las propiedades, la disponibilidad, los test y las demás características de nuestro servicio Application Insight.
+- Resourse Management (Manejo de recursos): Nos permite manejar los usuarios, los roles y las etiquetas asociados a nuestro elemento Application Insight seleccionado.
+
+#####Agregando un Chart
+
+Aprovechemos que estamos ahí y hagamos clic sobre el Setting Browser (Navegación o páginas) y en la ventana que se despliega hagamos clic sobre **Add Chart**.
+
+![Application Insights](Images/T8_02.png)
+
+Modifiquemos algunas de las características del chart que estamos creando y veamos como se refleja esto dentro de nuestro sistema de charts.
+
+![Application Insights](Images/T8_03.png)
+
+
+###Vínculos
+
+Azure Application Insights es una gran herramienta para poder hacer seguimiento en tiempo real a nuestras aplicaciones, para mayor profundidad de este tema recomendamos la siguiente documentación:
+
+- [¿Qué es Application Insights?] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-overview/)
+- [Detección, evaluación de errores y diagnóstico con Application Insights] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-detect-triage-diagnose/)
+- [Análisis de uso con Application Insights] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-overview-usage/)
+- [Vistas de datos de Application Insights en Power BI] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-export-power-bi/)
+- [exportación a SQL desde Application Insights mediante Análisis de transmisiones] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-code-sample-export-sql-stream-analytics/)
+
+Entre otros varios al respecto.
+
+
+
+
+
+
+
+
+
