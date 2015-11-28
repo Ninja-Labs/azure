@@ -26,6 +26,7 @@ Requisitos:
 - [Tarea 5 - Agregar información de excepciones a Application Insights.] (#tarea-5)
 - [Tarea 6 - Conteo de eventos.] (#tarea-6)
 - [Tarea 7 - Test de disponibilidad y capacidad de respuesta del web site.] (#tarea-7)
+- [Tarea 8 - A manera de repaso.] (#tarea-8)
 
 ###Tarea 1
 ####Revisar como adicionar Application Insights a su proyecto de Visual Studio
@@ -344,7 +345,7 @@ Al ubicarse sobre cualquiera de los puntos podrá ver la información relacionada.
 ![Application Insights](Images/T7_10.png)
 
 ###Tarea 8
-####Un repaso general de las características.
+####A manera de repaso.
 
 Abramos nuestro ambiente de Azure Insights y seleccionemos el elemento que hemos venido trabajando asociado con Contoso University, luego hagamos clic en Settings para que se desplieguen las diferentes opciones.
 
@@ -374,11 +375,11 @@ Modifiquemos algunas de las características del chart que estamos creando y veam
 
 Azure Application Insights es una gran herramienta para poder hacer seguimiento en tiempo real a nuestras aplicaciones, para mayor profundidad de este tema recomendamos la siguiente documentación:
 
-- [¿Qué es Application Insights?] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-overview/)
-- [Detección, evaluación de errores y diagnóstico con Application Insights] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-detect-triage-diagnose/)
-- [Análisis de uso con Application Insights] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-overview-usage/)
-- [Vistas de datos de Application Insights en Power BI] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-export-power-bi/)
-- [exportación a SQL desde Application Insights mediante Análisis de transmisiones] (#https://azure.microsoft.com/es-es/documentation/articles/app-insights-code-sample-export-sql-stream-analytics/)
+- ¿Qué es Application Insights?: https://azure.microsoft.com/es-es/documentation/articles/app-insights-overview/
+- Detección, evaluación de errores y diagnóstico con Application Insights: https://azure.microsoft.com/es-es/documentation/articles/app-insights-detect-triage-diagnose/
+- Análisis de uso con Application Insights: https://azure.microsoft.com/es-es/documentation/articles/app-insights-overview-usage/
+- Vistas de datos de Application Insights en Power BI: https://azure.microsoft.com/es-es/documentation/articles/app-insights-export-power-bi/
+- exportación a SQL desde Application Insights mediante Análisis de transmisiones: https://azure.microsoft.com/es-es/documentation/articles/app-insights-code-sample-export-sql-stream-analytics/
 
 Entre otros varios al respecto.
 
