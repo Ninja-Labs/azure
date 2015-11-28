@@ -554,7 +554,7 @@ Este será el tema de esta parte del Ninja Lab
 1. Fin NHK	
 	
 <span id="Tarea7" />
-##Tarea 7 - Configuración de la cuenta y repositrorio en Visual Studio Online
+##Tarea 7 - Configuración de la cuenta y repositorio en Visual Studio Online
 
 1. Visitamos http://visualstudio.com
 1. Iniciamos sesión diligenciando los datos que se soliciten
