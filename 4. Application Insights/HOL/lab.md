@@ -19,46 +19,63 @@ Requisitos:
 •	Visual Studio Code (Opcional)
 
 ##Tareas
-- [Tarea 1 - Revisar como adicionar Application Insights a su proyecto de Visual Studio.
-- [Tarea 2 - Crear una aplicación web ASP.Net MVC con Application Insights.
-- [Tarea 3 - Implementar y publicar Contoso University.
-- [Tarea 4 - Crear una instancia de telemetría para asociarlo con la aplicación.
+- [Tarea 1 - Revisar como adicionar Application Insights a su proyecto de Visual Studio.](#tarea-1)
+- [Tarea 2 - Crear una aplicación web ASP.Net MVC con Application Insights.](#tarea-2)
+- [Tarea 3 - Implementar y publicar Contoso University.](#tarea-3)
+- [Tarea 4 - Crear una instancia de telemetría para asociarlo con la aplicación.](#tarea-4)
 - [Tarea 5 - 
 - [Tarea 6 - 
 - [Tarea 7 - 
 
 ###Tarea 1
-###Revisar como adicionar Application Insights a su proyecto de Visual Studio
+####Revisar como adicionar Application Insights a su proyecto de Visual Studio
 1. Se puede adicionar Insights cuando se está creando un proyecto nuevo, abriendo Visual Studio agregando un nuevo proyecto web y se le habilita la opción de Application Insights.
+
 ![Nuevo Proyecto](Images/T1_1.png)
+
 2. O Si se va a realizar desde un proyecto existente, desde el explorador de la solución (Solution Explorer) se hace clic derecho sobre el proyecto y seleccionamos la opción agregar Application Insights.
+
 ![Proyecto existente](Images/T1_2.png)
 
 ###Tarea 2
-###Crear una aplicación web ASP.Net MVC con Application Insights 
+####Crear una aplicación web ASP.Net MVC con Application Insights 
 1. Abrimos Visual Studio en donde agregaremos una nueva aplicación web seleccionar la opción de Application Insights.
+
 ![Proyecto](Images/T2_1.png)
+
 Al hacer clic en Ok seleccionamos la plantilla MVC con la autenticación para cuentas de usuario individuales y hacemos clic en ok para que se implementen los elementos básicos de nuestra plantilla.
+
 ![Iniciando](Images/T2_2.png)
->Lo que hicimos al Agregar Application Insights fue (que podría hacer manualmente en su lugar si lo prefiere):
+
+Lo que hicimos al Agregar Application Insights fue (que podría hacer manualmente en su lugar si lo prefiere):
 *Crear un recurso de Application Insights en el portal de Azure. Es donde verá los datos. Recupera la clave de instrumentación, que identifica el recurso.
 *Agregar el paquete NuGet del SDK web de Application Insights al proyecto. Para verlo en Visual Studio, haga clic con el botón secundario en el proyecto y elija Administrar paquetes de NuGet.
 *Colocar la clave de instrumentación en ApplicationInsights.config.
+
 ![Iniciando](Images/T2_3.png)
 
 2. Ejecución del proyecto
+
 Ejecute la aplicación con F5 y pruébela. Abra varias páginas para generar telemetría.
+
 ![Iniciando](Images/T2_4.png)
+
 En Visual Studio, aparecerá un recuento de los eventos que se han enviado.
 
 Al abrir el explorador de soluciones, haremos clic derecho sobre el proyecto para ver las opciones que se encuentran asociadas con Application Insights
+
 ![Iniciando](Images/T2_5.png)
+
 Abra el recurso de Application Insights, esto abrirá el portal de Azure.
+
 ![Iniciando](Images/T2_6.png)
 
 Haga clic sobre cualquiera de las gráficas para ver los detalles de la misma.
+
 ![Iniciando](Images/T2_7.png)
+
 Abra Búsqueda para investigar solicitudes individuales y sus eventos asociados.
+
 ![Iniciando](Images/T2_8.png)
 
 ###¿No hay datos?
@@ -68,43 +85,62 @@ Abra Búsqueda para investigar solicitudes individuales y sus eventos asociados.
 *Espere unos segundos y haga clic en Actualizar.
 
 ###Tarea 3
-Implementar y publicar Contoso University
-Diríjase al directorio "aplicaciones" de este repositorio y copie la aplicación ContosoUniversity en su directorio de trabajo.
-También lo pueden descargar desde https://github.com/qjuanp/nc-azure-ai/tree/example-nc
-Abra la aplicación desde Visual Studio 2015.
- 
-Compile la aplicación y verifique que la compilación este correcta antes de realizar el paso de publicación.
-   ***
-    ***
-Publicar la aplicación en Azure
-Realice la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
- 
-Cree un nuevo perfil de publicación para Web Apps
- 
-Recuerde que debe iniciar sesión con la cuenta que tenga asociada para acceder a su subscripción de Windows Azure
- 
-Defina para la publicación de su Web App
-•	El Service Plan al que va a pertenecer la Web App (Plan Free por defecto)
-•	El Resource Group que va a contener la Web App
-•	La Región de Azure en donde se van a publicar la Web App
-•	Crear una nueva Base de Datos para los datos de la aplicación ContosoUniversity
- 
+####Implementar y publicar Contoso University
 
+1. Puede descargar el proyecto desde https://github.com/qjuanp/nc-azure-ai/tree/example-nc
+
+Abra la aplicación con Visual Studio 2015.
+
+![Application Insights](Images/T3_1.png)
+
+Compile la aplicación y verifique que la compilación este correcta antes de realizar el paso de publicación.
+
+![Application Insights](Images/T3_2.png)
+
+Publicar la aplicación en Azure
+
+Realice la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
+
+![Application Insights](Images/T3_5.png)
+
+Cree un nuevo perfil de publicación para Web Apps
+
+![Application Insights](Images/T3_6.png)
+
+Recuerde que debe iniciar sesión con la cuenta que tenga asociada para acceder a su subscripción de Windows Azure
+
+![Application Insights](Images/T3_7.png)
+
+Defina para la publicación de su Web App
+*El **Service Plan** al que va a pertenecer la Web App (Plan Free por defecto)
+*El **Resource Group** que va a contener la Web App
+*La **Región de Azure** en donde se van a publicar la Web App
+*Crear una **nueva Base de Datos** para los datos de la aplicación ContosoUniversity
+
+![Application Insights](Images/T3_8.png)
+
+![Application Insights](Images/T3_9.png)
  
 Active la migración para que se puedan desplegar los datos de la base de datos de ContosoUniversity
- 
+
+![Application Insights](Images/T3_10.png)
+
 Y Publique la Web App
- 
+
+![Application Insights](Images/T3_11.png)
+
 Verifique las diferentes secciones de la aplicación e ingrese datos adicionales en cada una de ellas
-•	Instructores
-•	Departamentos
-•	Clases
-•	Estudiantes
-•	Acerca de
-•	etc...
+*Instructores
+*Departamentos
+*Clases
+*Estudiantes
+*Acerca de
+
+![Application Insights](Images/T3_12.png)
  
-Tarea 4
-Crear una instancia de telemetría para asociarlo con la aplicación.
+###Tarea 4
+####Crear una instancia de telemetría para asociarlo con la aplicación.
+
 La aplicación tiene algunos problemas de performance y errores difícilmente visibles, para lo cual haremos el seguimiento correspondiente utilizando Application Insights.
 En el portal Preview de Azure vamos a revisar Application Insights nos debe mostrar la aplicación de Contoso University que agregamos.
  
