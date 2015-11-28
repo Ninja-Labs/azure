@@ -452,7 +452,7 @@ Este será el tema de esta parte del Ninja Lab
 		}
 	} 
 	```
-1. Editamos el archivo **LinuxVirtualMachine.json** cambiando el nombre del Resource Group por "Ninja-ResourceGroupVS" de la siguiente forma
+1. Editamos el archivo **Scripts/Deploy-AzureResourceGroup.ps1** cambiando el nombre del Resource Group por "Ninja-ResourceGroupVS" de la siguiente forma
 
 	```.json
 	Param(
