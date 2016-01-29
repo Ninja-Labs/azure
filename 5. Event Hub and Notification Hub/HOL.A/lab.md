@@ -28,8 +28,8 @@ Windows.
 Una cuenta Azure activa.
 
 Si usted no tiene una cuenta, puede crear una cuenta de prueba gratuita
-en sólo un par de minutos. Para obtener más información, consulte *Azure
-Free Trial*.
+en sólo un par de minutos. Para obtener más información, consulte [_Azure
+Free Trial_](https://azure.microsoft.com/es-es/pricing/free-trial/).
 
 **Crear un Event Hub**
 ----------------------
