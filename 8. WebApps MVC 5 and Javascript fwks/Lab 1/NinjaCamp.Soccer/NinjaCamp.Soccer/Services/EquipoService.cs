@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Linq;
 namespace NinjaCamp.Soccer.Services
 {
     public class EquipoService
@@ -36,7 +36,7 @@ namespace NinjaCamp.Soccer.Services
         public async Task<Equipo> GetEquipo(string id)
         {
             var equipo = await _cliente.GetStringAsync(string.Format("{0}/Equipo/{1}", _serviceUri, id));
-            return JsonConvert.DeserializeObject<Equipo>(equipo);
+            return JsonConvert.DeserializeObject<IEnumerable<Equipo>>(equipo).FirstOrDefault();
         }
 
         public async Task<bool> UpdateEquipo(Equipo equipo)

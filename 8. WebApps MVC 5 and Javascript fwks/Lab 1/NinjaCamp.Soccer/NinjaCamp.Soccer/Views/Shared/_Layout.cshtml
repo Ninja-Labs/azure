@@ -1,7 +1,12 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="NinjaCamp">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--Librerias de configuración para AngularJs-->
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-route.js")"></script>
+    <script src="@Url.Content("~/AngularJs/App.js")"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
@@ -24,6 +29,8 @@
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                     <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Equipos", "Index", "Equipo")</li>
+                    <li>@Html.ActionLink("Jugadores", "Index", "Jugador")</li>
                 </ul>
             </div>
         </div>

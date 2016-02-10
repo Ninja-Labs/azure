@@ -1,6 +1,9 @@
-﻿using System;
+﻿using NinjaCamp.Soccer.Models;
+using NinjaCamp.Soccer.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,82 +11,35 @@ namespace NinjaCamp.Soccer.Controllers
 {
     public class EquipoController : Controller
     {
-        // GET: Equipo
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: Equipo/Details/5
-        public ActionResult Details(int id)
+        async public Task<JsonResult> GetEquipos()
         {
-            return View();
+            EquipoService service = new EquipoService();
+            return Json(await service.GetEquipos(), JsonRequestBehavior.AllowGet);
+        }
+        async public Task<JsonResult> GetEquipo(string Id)
+        {
+            EquipoService service = new EquipoService();
+            return Json(await service.GetEquipo(Id), JsonRequestBehavior.AllowGet);
+        }
+        async public Task<string> UpdateEquipo(Equipo entity)
+        {
+            EquipoService service = new EquipoService();
+            return await service.AddEquipo(entity) ? "registro guardado." : "Error guardando el registro.";
+        }
+        async public Task<string> AddEquipo(Equipo entity)
+        {
+            EquipoService service = new EquipoService();
+            return await service.AddEquipo(entity) ? "registro guardado." : "Error guardando el registro.";
+        }
+        async public Task<string> DeleteEquipo(string Id)
+        {
+            EquipoService service = new EquipoService();
+            return await service.DeleteEquipo(Id) ? "registro eliminado." : "Error eliminando el registro.";
         }
 
-        // GET: Equipo/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Equipo/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Equipo/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Equipo/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Equipo/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Equipo/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
