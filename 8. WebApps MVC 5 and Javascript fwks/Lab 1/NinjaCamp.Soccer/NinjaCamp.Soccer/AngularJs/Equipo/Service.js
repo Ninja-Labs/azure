@@ -1,11 +1,8 @@
 ﻿app.service("equiposervice", function ($http) {
-
-
     //GetAll
     this.GetEquipos = function () {
         return $http.get("Equipo/GetEquipos");
     };
-
     //GetEquipo
     this.GetEquipo = function (Id) {
         var response = $http({
@@ -15,10 +12,8 @@
                 Id: JSON.stringify(Id)
             }
         });
-        
         return response;
     }
-
     //UpdateEquipo
     this.UpdateEquipo = function (Equipo) {
         var response = $http({
@@ -29,7 +24,6 @@
         });
         return response;
     }
-
     //AddEquipo
     this.AddEquipo = function (Equipo) {
         var response = $http({

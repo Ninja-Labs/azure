@@ -15,6 +15,10 @@ namespace NinjaCamp.Soccer.Controllers
         {
             return View();
         }
+        public ActionResult CreateEdit()
+        {
+            return View();
+        }
         async public Task<JsonResult> GetEquipos()
         {
             EquipoService service = new EquipoService();

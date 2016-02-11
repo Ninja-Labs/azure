@@ -1,6 +1,4 @@
-﻿angular.module('equipo', ['equipo.directives']);
-app.controller("equipocontroller", function ($scope, equiposervice) {
-
+﻿app.controller("equipocontroller", function ($scope, equiposervice) {
     GetEquipos();
     $scope.showAddUpdate = false;
     function GetEquipos() {
@@ -11,16 +9,17 @@ app.controller("equipocontroller", function ($scope, equiposervice) {
             alert('Error GetEquipos');
         });
     }
-
-    
     $scope.editEquipo = function (Equipo) {
         var getData = equiposervice.GetEquipo(Equipo.Id);
         getData.then(function (response) {
-            
+            ClearFields();
             $scope.Equipo = response.data;
-            $scope.Id = response.Id;
-            $scope.Nombre = response.Nombre;
-            $scope.Apodo = response.Apodo;
+            $scope.Id = response.data.Id;
+            $scope.Nombre = response.data.Nombre;
+            $scope.Apodo = response.data.Apodo;
+            $scope.Presidente = response.data.Presidente;
+            $scope.Entrenador = response.data.Entrenador;
+            $scope.Estadio = response.data.Estadio;
             $scope.Action = "Update";
             $scope.showAddUpdate = true;
         },
@@ -34,7 +33,10 @@ app.controller("equipocontroller", function ($scope, equiposervice) {
 
         var Equipo = {
             Nombre: $scope.Nombre,
-            Apodo: $scope.Apodo
+            Apodo: $scope.Apodo,
+            Presidente: $scope.Presidente,
+            Entrenador: $scope.Entrenador,
+            Estadio: $scope.Estadio
         };
         var getAction = $scope.Action;
 
@@ -84,9 +86,12 @@ app.controller("equipocontroller", function ($scope, equiposervice) {
 
     //ClearFields
     function ClearFields() {
-        $scope.IdFMCliente = "";
+        $scope.Id = "";
         $scope.Nombre = "";
         $scope.Apodo = "";
+        $scope.Presidente = "";
+        $scope.Entrenador = "";
+        $scope.Estadio = "";
         $scope.showAddUpdate = false;
     }
 });

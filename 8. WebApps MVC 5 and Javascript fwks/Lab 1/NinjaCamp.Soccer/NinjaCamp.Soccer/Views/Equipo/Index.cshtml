@@ -1,77 +1,85 @@
-﻿<script src="@Url.Content("~/AngularJs/Equipo/Directives.js")"></script>
-<script src="@Url.Content("~/AngularJs/Equipo/Service.js")"></script>
-
+﻿<script src="@Url.Content("~/AngularJs/Equipo/Service.js")"></script>
 <script src="@Url.Content("~/AngularJs/Equipo/Controller.js")"></script>
 <div ng-app="equipo">
-
-<div ng-controller="equipocontroller">
- 
-    @*<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">*@
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   
-    <button class="btn btn-block btn-primary" ng-click="AddEquipoDiv()" style="width: 100px">
-        Add Equipo</button>
-    <br />
-    <div ng-hide="showAddUpdate" class="box">
-        <div class="box-header">
-            <h3 class="box-title">
-                Lista de Equipos</h3>
-            <div class="box-tools">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
+    <div ng-controller="equipocontroller">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <div ng-hide="showAddUpdate" class="box">
+            <div class="box-header">
+                <h3 class="box-title">
+                    Lista de Equipos
+                </h3>
+                <div class="col-xs-2">
+                    <button class="btn btn-block btn-primary" ng-click="AddEquipoDiv()">
+                        Agregar Equipo
+                    </button>
+                    <br />
+                </div>
             </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            <b>Id Equipo</b>
+                        </th>
+                        <th>
+                            <b>Nombre</b>
+                        </th>
+                        <th>
+                            <b>Apodo</b>
+                        </th>
+                        <th>
+                            <b>Presidente</b>
+                        </th>
+                        <th>
+                            <b>Entrenador</b>
+                        </th>
+                        <th>
+                            <b>Estadio</b>
+                        </th>
+                        <th style="width: 100px">
+                        </th>
+                        <th style="width: 100px">
+                        </th>
+                    </tr>
+                    <tr ng-repeat="Equipo in Equipos">
+                        <td>
+                            {{Equipo.Id}}
+                        </td>
+                        <td>
+                            {{Equipo.Nombre}}
+                        </td>
+                        <td>
+                            {{Equipo.Apodo}}
+                        </td>
+                        <td>
+                            {{Equipo.Presidente}}
+                        </td>
+                        <td>
+                            {{Equipo.Entrenador}}
+                        </td>
+                        <td>
+                            {{Equipo.Estadio}}
+                        </td>
+                        <td>
+                            <button class="btn btn-block btn-primary" ng-click="editEquipo(Equipo)">
+                                Editar
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-block btn-danger" ng-click="deleteEquipo(Equipo)">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- /.box-body -->
         </div>
-        <!-- /.box-header -->
-        <div class="box-body no-padding">
-            <table class="table">
-                <tr>
-                    <th>
-                        <b>Id Equipo</b>
-                    </th>
-                    <th>
-                        <b>Nombre</b>
-                    </th>
-                    <th>
-                        <b>Apodo</b>
-                    </th>
-                    <th style="width: 100px">
-                    </th>
-                    <th style="width: 100px">
-                    </th>
-                </tr>
-                <tr ng-repeat="Equipo in Equipos">
-                    <td>
-                        {{Equipo.Id}}
-                    </td>
-                    <td>
-                        {{Equipo.Nombre}}
-                    </td>
-                    <td>
-                        {{Equipo.Apodo}}
-                    </td>
-                    <td>
-                        <button class="btn btn-block btn-primary" ng-click="editEquipo(Equipo)">
-                            Edit Equipo</button>
-                    </td>
-                    <td>
-                        <button class="btn btn-block btn-danger" ng-click="deleteEquipo(Equipo)">
-                            Delete Equipo</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <!-- /.box-body -->
+
+        <div ng-include="'Equipo/CreateEdit'" ng-show="showAddUpdate"></div>
+
+        @*<addupdate-equipo ng-show="showAddUpdate"></addupdate-equipo>*@
     </div>
-    <div id="TestDiv" ng-include="templateUrl"></div>
-    <ng-include src="'../PartialViews/Equipo/AddUpdate.html'"></ng-include>
-    <addupdate-equipo ></addupdate-equipo>
-    <addupdate-equipo></addupdate-equipo>
-    @*<addupdate-equipo ng-show="showAddUpdate"></addupdate-equipo>*@
-</div>
 
 </div>
