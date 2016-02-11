@@ -11,92 +11,18 @@ namespace NinjaCamp.Soccer.Controllers
 {
     public class JugadorController : Controller
     {
-        // GET: Jugador
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: Jugador/Details/5
-        public ActionResult Details(int id)
+        public ActionResult CreateEdit()
         {
             return View();
         }
-
-        // GET: Jugador/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Jugador/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Jugador/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Jugador/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Jugador/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Jugador/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-
-
-
         async public Task<JsonResult> GetJugadores()
         {
             JugadorService service = new JugadorService();
-            return Json(await service.GetJugadors(), JsonRequestBehavior.AllowGet);
+            return Json(await service.GetJugadores(), JsonRequestBehavior.AllowGet);
         }
         async public Task<JsonResult> GetJugador(string Id)
         {
@@ -118,10 +44,6 @@ namespace NinjaCamp.Soccer.Controllers
             JugadorService service = new JugadorService();
             return await service.DeleteJugador(Id) ? "registro eliminado." : "Error eliminando el registro.";
         }
-
-
-
-
 
     }
 }

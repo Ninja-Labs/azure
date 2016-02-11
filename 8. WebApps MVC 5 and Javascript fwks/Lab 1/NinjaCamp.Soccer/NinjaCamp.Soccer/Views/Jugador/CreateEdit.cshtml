@@ -4,7 +4,7 @@
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{Action}} Equipo
+            {{Action}} Jugador
         </h3>
     </div>
     <div class="form-group">
@@ -22,6 +22,7 @@
                 <input type="text" class="form-control" placeholder="Nombre" ng-model="Nombre">
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-6">
                 <label>
@@ -31,30 +32,45 @@
             </div>
             <div class="col-md-6">
                 <label>
-                    Presidente
+                    Nacionalidad
                 </label>
-                <input type="text" class="form-control" placeholder="Presidente" ng-model="Presidente">
+                <input type="text" class="form-control" placeholder="Nacionalidad" ng-model="Nacionalidad">
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-6">
                 <label>
-                    Entrenador
+                    Estatura
                 </label>
-                <input type="text" class="form-control" placeholder="Entrenador" ng-model="Entrenador">
+                <input type="text" class="form-control" placeholder="Estatura" ng-model="Estatura">
             </div>
             <div class="col-md-6">
                 <label>
-                    Estadio
+                    Peso
                 </label>
-                <input type="text" class="form-control" placeholder="Estadio" ng-model="Estadio">
+                <input type="text" class="form-control" placeholder="Peso" ng-model="Peso">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label>
+                    Posicion
+                </label>
+                <input type="text" class="form-control" placeholder="Posicion" ng-model="Posicion">
+            </div>
+            <div class="col-md-6">
+                <label>
+                    IdEquipo
+                </label>
+                <input type="text" class="form-control" placeholder="IdEquipo" ng-model="IdEquipo">
             </div>
         </div>
         <div class="clearfix"></div>
     </div>
     <div class="box-footer">
-        <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateEquipo()" />
-        <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddEquipoDiv()" />
+        <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateJugador()" />
+        <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddJugadorDiv()" />
     </div>
 </div>

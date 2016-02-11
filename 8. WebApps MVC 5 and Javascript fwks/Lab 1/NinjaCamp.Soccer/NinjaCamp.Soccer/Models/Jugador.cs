@@ -1,46 +1,29 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace NinjaCamp.Soccer.Models
 {
-    /// <summary>
-    /// Entidad que permite transportar los datos correspondientes a un jugador.
-    /// </summary>
+ 
     public class Jugador
     {
-        /// <summary>
-        /// Obtiene o establece el identificador único del jugador.
-        /// </summary>
+        [JsonProperty("Id")]
         public int Id { get; set; }
-        /// <summary>
-        /// Obtiene o establece el nombre del jugador.
-        /// </summary>
+        [JsonProperty("Nombre")]
         public string Nombre { get; set; }
-        /// <summary>
-        /// Obtiene o establece el apodo del jugador.
-        /// </summary>
+        [JsonProperty("Apodo")]
         public string Apodo { get; set; }
-        /// <summary>
-        /// Obtiene o establece la nacionalidad del jugador.
-        /// </summary>
+        [JsonProperty("Nacionalidad")]
         public string Nacionalidad { get; set; }
-        /// <summary>
-        /// Obtiene o establece la estatura del jugador.
-        /// </summary>
-        public decimal Estatura { get; set; }
-        /// <summary>
-        /// Obtiene o establece el peso del jugador.
-        /// </summary>
+        [JsonProperty("Estatura")]
+        public double Estatura { get; set; }
+        [JsonProperty("Peso")]
         public int Peso { get; set; }
-        /// <summary>
-        /// Obtiene o establece la posición en la cancha del jugador (Delantero, Defensa, etc)
-        /// </summary>
+        [JsonProperty("Posicion")]
         public string Posicion { get; set; }
-        /// <summary>
-        /// Obtiene o establece el Id del equipo al cual pertenece el jugador.
-        /// </summary>
+        [JsonProperty("IdEquipo")]
         public int IdEquipo { get; set; }
     }
 }

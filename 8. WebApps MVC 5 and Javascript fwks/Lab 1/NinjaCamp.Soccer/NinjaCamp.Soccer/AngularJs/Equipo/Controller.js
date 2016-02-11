@@ -4,6 +4,7 @@
     function GetEquipos() {
         var getData = equiposervice.GetEquipos();
         getData.then(function (response) {
+            ClearFields();
             $scope.Equipos = response.data;
         }, function () {
             alert('Error GetEquipos');
@@ -12,7 +13,7 @@
     $scope.editEquipo = function (Equipo) {
         var getData = equiposervice.GetEquipo(Equipo.Id);
         getData.then(function (response) {
-            ClearFields();
+            debugger;
             $scope.Equipo = response.data;
             $scope.Id = response.data.Id;
             $scope.Nombre = response.data.Nombre;

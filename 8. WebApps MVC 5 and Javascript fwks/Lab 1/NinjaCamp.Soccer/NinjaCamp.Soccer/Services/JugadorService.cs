@@ -30,10 +30,10 @@ namespace NinjaCamp.Soccer.Services
             var data = await _cliente.SendAsync(request);
             return data.IsSuccessStatusCode;
         }
-        public async Task<IEnumerable<Jugador>> GetJugadors()
+        public async Task<IEnumerable<Jugador>> GetJugadores()
         {
-            var Jugadors = await _cliente.GetStringAsync(string.Format("{0}/Jugador", _serviceUri));
-            return JsonConvert.DeserializeObject<IEnumerable<Jugador>>(Jugadors);
+            var Jugadores = await _cliente.GetStringAsync(string.Format("{0}/Jugador", _serviceUri));
+            return JsonConvert.DeserializeObject<IEnumerable<Jugador>>(Jugadores);
         }
         public async Task<Jugador> GetJugador(string id)
         {
