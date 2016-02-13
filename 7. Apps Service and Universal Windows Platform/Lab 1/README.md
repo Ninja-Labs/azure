@@ -258,7 +258,7 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     
     (... Continuará...)
     
-###Parte 5: Preparando nuestro proyecto para MVVM
+###Parte 5: Preparando nuestro proyecto para MVVM y Navegación
 
 1. Para trabajar con MVVM instalaremos un paquete a través de Nuget
 	
@@ -286,5 +286,5 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     
 **INFORMACIÓN:** Para escoger los iconos correctos en la enumeración a través de codigo C# mira la [descripción de la enumeración Symbol](https://msdn.microsoft.com/EN-US/library/windows/apps/windows.ui.xaml.controls.symbol.aspx) en la documentación oficial
 
-###Parte 6: consumiendo nuestra API
+###Parte 6: Consumiendo nuestra API
 

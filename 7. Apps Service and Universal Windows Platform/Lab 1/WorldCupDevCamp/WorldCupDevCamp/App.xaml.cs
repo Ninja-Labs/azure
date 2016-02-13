@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WorldCupDevCamp.ViewModels;
 
 namespace WorldCupDevCamp
 {
@@ -33,6 +34,16 @@ namespace WorldCupDevCamp
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        public static Frame RootFrame { get; internal set; }
+
+        public static MainViewModel Main
+        {
+            get
+            {
+                return (MainViewModel)App.Current.Resources["Main"];
+            }
         }
 
         /// <summary>

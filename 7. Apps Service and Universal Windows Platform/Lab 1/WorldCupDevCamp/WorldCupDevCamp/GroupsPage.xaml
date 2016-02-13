@@ -8,12 +8,13 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Main}}">
 
-    <Grid Background="#FFF00505">
+    <Grid Background="White">
         <ListView ItemsSource="{Binding Teams}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="5" Width="50" Source="{Binding Flag}" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
