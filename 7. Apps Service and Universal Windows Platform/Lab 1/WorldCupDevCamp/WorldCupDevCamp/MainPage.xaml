@@ -16,7 +16,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MySplitView.(SplitView.DisplayMode)" Value="Inline"/>
-                        <Setter Target="MySplitView.(SplitView.IsPaneOpen)" Value="True"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

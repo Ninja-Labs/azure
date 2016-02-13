@@ -30,33 +30,6 @@ namespace WorldCupDevCamp.ViewModels
             set { Set(ref this.isSplitViewPaneOpen, value); }
         }
 
-        private MenuItemViewModel selectedMenuItem;
-
-        public MenuItemViewModel SelectedMenuItem
-        {
-            get { return this.selectedMenuItem; }
-            set
-            {
-                if (Set(ref this.selectedMenuItem, value))
-                {
-                    RaisePropertyChanged("SelectedPageType");
-                    this.IsSplitViewPaneOpen = false;
-                }
-            }
-        }
-
-        public Type SelectedPageType
-        {
-            get
-            {
-                return this.selectedMenuItem?.PageType;
-            }
-            set
-            {
-                this.SelectedMenuItem = this.MenuItems.FirstOrDefault(m => m.PageType == value);
-            }
-        }
-
         public ICommand ToggleSplitViewPaneCommand
         {
             get
