@@ -18,6 +18,7 @@ namespace WorldCupDevCamp.ViewModels
         public TeamViewModel()
         {
             apiService = new ApiService();
+            Group = "SIN GRUPO";
         }
         [JsonProperty("id")]
         public string Id { get; set; }

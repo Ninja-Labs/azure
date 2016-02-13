@@ -5,6 +5,7 @@ A continuación se describen los pasos correspondientes para crear un backend r�
 
 Posteriormente crearemos una app que consuma este backend en formato REST/Json usando HttpClient.
 
+**IMPORTANTE:** Este ejercicio es un laboratorio de inducción para los devcamps. Las practicas implementadas aquí con el MVVM no se encuentran implementadas completamente de forma adecuada para una aplicación de producción. Solo es un ejercicio demostrativo.
 
 </span>
 
@@ -288,3 +289,123 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
 
 ###Parte 6: Consumiendo nuestra API
 
+1. Realizaremos el consumo del API a través de HttpClient por lo cual debemos instalar el paquete a través de nuget
+	
+    ![App UWP](images/AgregarHttpClient.png)
+
+1. Agrega además el Json.NET
+	
+    ![App UWP](images/AgregarJsonNet.png)
+    
+1. Creamos el método consultar en ApiService con el siguiente código
+
+    ```
+    internal async Task<List<TeamViewModel>> GetTeamsAsync()
+    {
+        var serviceUrl = "http://worldcupdevcamp.azurewebsites.net/tables/teams";
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+            var response = await client.GetAsync(new Uri(serviceUrl));
+            string result = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<TeamViewModel>>(result);
+        }
+    }
+    ```
+            
+1. Creamos el método insertar en ApiService con el siguiente código
+
+    ```
+    internal async Task SaveTeamAsync(TeamViewModel team)
+    {
+        var serviceUrl = "http://worldcupdevcamp.azurewebsites.net/tables/teams";
+
+        team.Id = Guid.NewGuid().ToString();
+
+        using (var client = new HttpClient())
+        {
+            var bodyRequest = JsonConvert.SerializeObject(team);
+            client.DefaultRequestHeaders.Add("ZUMO-API-VERSION", "2.0.0");
+            var response = await client.PostAsync(serviceUrl, new StringContent(bodyRequest, System.Text.Encoding.UTF8, "application/json"));
+            string result = await response.Content.ReadAsStringAsync();
+        }
+    }
+    ```
+1. Debemos adecuar la view model TeamViewModel que en este ejercicio estamos usando como Modelo para que pueda serilizar correctamente. Por lo que debemos aplicar los siguientes cambios.
+    
+    ```
+    public class TeamViewModel : ViewModelBase
+    {
+        ApiService apiService;
+
+        public TeamViewModel()
+        {
+            apiService = new ApiService();
+        }
+        [JsonProperty("id")]
+        public string Id { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("flag")]
+        public string Flag { get; set; }
+
+        [JsonIgnore]
+        public string Group { get; set; }
+        [JsonIgnore]
+        public ICommand SaveCommand
+        { 
+            get
+            {
+                return new RelayCommand(Save);
+            }
+        }
+    ```
+    
+1. Implementamos el método Save con el siguiente código:
+
+    ```
+    private async void Save()
+    {
+        await apiService.SaveTeamAsync(this);
+        App.Main.LoadData();
+        App.RootFrame.Navigate(typeof(TeamsPage));
+    }
+    ```
+
+1. Además terminamos de implementar el método LoadData en el MainViewModel así:
+
+    ```
+    public class MainViewModel : ViewModelBase
+    {
+        ApiService apiService;
+
+        public MainViewModel()
+        {
+            apiService = new ApiService();
+            Teams = new ObservableCollection<TeamViewModel>();
+            NewTeam = new TeamViewModel();
+
+            //Teams.Add(new TeamViewModel() { Name = "Colombia", Flag= "http://rs575.pbsrc.com/albums/ss196/laurasgonzalez/ColombiaFlag.jpg~c200" });
+            LoadData();
+        }
+        public TeamViewModel NewTeam { get; set; }
+
+        public ObservableCollection<TeamViewModel> Teams { get; set; }
+
+        public async void LoadData()
+        {
+            this.Teams.Clear();
+            var teams = await apiService.GetTeamsAsync();
+
+            foreach (var item in teams)
+            {
+                this.Teams.Add(item);
+            }
+        }
+    }
+    ```
+1. Toma el código páginas de los siguientes enlaces:
+    
+    - [CreateTeamPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/CreateTeamPage.xaml)
+    - [GroupsPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/GroupsPage.xaml)
+    - [TeamsPage.xaml](https://github.com/Ninja-Labs/azure/blob/UWPLabNavmasteregacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/TeamsPage.xaml)

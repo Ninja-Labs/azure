@@ -7,9 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Main}}">
-
+    <Page.Resources>
+        <CollectionViewSource 
+            x:Name="teamsCollection" 
+            IsSourceGrouped="True"
+            Source="{Binding Teams, Converter={StaticResource ItemsToKeyedListConverter}}"/>
+    </Page.Resources>
     <Grid Background="White">
-        <ListView ItemsSource="{Binding Teams}">
+        <ListView ItemsSource="{Binding Source={StaticResource teamsCollection}}">
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Background="{StaticResource MenuBackgroundColor}">
+                                <TextBlock Foreground="White" Text="{Binding Key}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

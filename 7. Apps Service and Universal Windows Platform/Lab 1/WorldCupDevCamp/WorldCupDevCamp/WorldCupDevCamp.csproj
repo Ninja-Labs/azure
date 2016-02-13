@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ItemsToKeyedListConverter.cs" />
     <Compile Include="CreateTeamPage.xaml.cs">
       <DependentUpon>CreateTeamPage.xaml</DependentUpon>
     </Compile>
@@ -112,6 +113,7 @@
     <Compile Include="TeamsPage.xaml.cs">
       <DependentUpon>TeamsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\KeyedList.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
