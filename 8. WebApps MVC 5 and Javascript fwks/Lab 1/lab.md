@@ -12,6 +12,30 @@ Emocionante ¿No?
 </span>
 ##Comencemos:
 
+Query para creación de tablas
+```
+
+create table Jugador(
+	Id int Primary key identity(1,1),
+	Nombre nvarchar(200) null,
+	Apodo nvarchar(200) null,
+	Nacionalidad nvarchar(200) null,
+	Estatura decimal null,
+	Peso int null,
+	Posicion nvarchar(200) null,
+	IdEquipo int null
+)
+
+create table Equipo(
+	Id int Primary key identity(1,1),
+	Nombre nvarchar(200) null,
+	Apodo nvarchar(200) null,
+	Presidente nvarchar(200) null,
+	Entrenador nvarchar(200) null,
+	Estadio nvarchar(200) null,
+
+)
+```
 
 ###Paso 1: Creación de proyecto Asp.Net Mvc 
 
