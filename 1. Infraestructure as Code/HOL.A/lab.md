@@ -83,7 +83,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 1. Así que... hacemos caso vamos a http://aka.ms/devicelogin en el browser y allí ingresamos el código que aparecio por la consola, en este caso `FR6MCKRPA` y damos click en continuar
 
 	![grupo de recursos](img/HOL-17.png)
-1. Luego de ello iniciamos sesión en el browser, y despues de unos segundos en la consola aparecerá
+1. Luego de ello iniciamos sesión en el browser el cual confirmara que ya puedes cerrar la pagina, y despues de unos segundos en la consola aparecerá
 
 	```console
 	login command OK
@@ -146,7 +146,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd 
 	```  
 1. Presiona *(Ctrl + C)* 2 veces y luego ENTER para cancelar el comando, ya que te pide parámetros adicionales
-1. El primer parámetro adicional que necesitamos es la ubicación de la MV, como no sabemos lsa ubicaciones ingresamos el siguiente comando para obtenerlas
+1. El primer parámetro adicional que necesitamos es la ubicación de la MV, como no sabemos las ubicaciones ingresamos el siguiente comando para obtenerlas
 
 	```console
 	azure location list > Locations.csv
@@ -180,7 +180,7 @@ Los titulos estan en español y los screenshos en inglés de forma intencional p
 	```console
 	azure vm quick-create -g NinjaLabCMD -n ninja-vm-cmd -l EastUS -y Linux -u ninja-admin -p TUPASSWORD
 	```
-1. Ahora las cosas se ponen más interesantes, si seguiste los pasos la consola te estará pidiendo el parámetro `ImageURN` en el cual pones `Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060` y LISTO... HEY pero estos son **NinjaLabs** para que te vuelbas un duro, un maestro!! de dónde sale ese valor
+1. Ahora las cosas se ponen más interesantes, si seguiste los pasos la consola te estará pidiendo el parámetro `ImageURN` en el cual pones `Canonical:UbuntuServer:14.04.2-LTS:14.04.201507060` y LISTO... HEY pero estos son **NinjaLabs** para que te vuelvas un duro, un maestro!! de dónde sale ese valor
 1. Para obtener ese valor debemos seguir los siguientes pasos, ese varlor es basicamente el medio (imagen) de instalación que usaremos para instalar Ubuntu, si recuerdas la [Tarea 1](#Tarea1) El OS que seleccionamos era **Ubuntu Server 14.04 LTS** así que navegaremos por la consola de comandos para que con ese datos logremos obtener el `ImageURN`
 1. Con el siguiente comando obtendremos la lista de publishers que han publicado imagenes de MV en Azure, lo único 'raro' allí es la ubicación, pero ya aprendimos de donde se obtienen
 
