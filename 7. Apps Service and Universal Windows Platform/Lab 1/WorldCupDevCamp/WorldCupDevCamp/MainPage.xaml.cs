@@ -26,9 +26,10 @@ namespace WorldCupDevCamp
         public MainPage()
         {
             this.InitializeComponent();
-
             this.ViewModel = new ShellViewModel(this.NavigationContainer);
-            this.ViewModel.SelectedPageType = typeof(TeamsPage);
+            this.ViewModel.SelectedMenuItem = this.ViewModel.MenuItems.First();
+
+            this.NavigationContainer.Navigate(this.ViewModel.SelectedMenuItem.PageType);
         }
         
         public ShellViewModel ViewModel { get; private set; }
