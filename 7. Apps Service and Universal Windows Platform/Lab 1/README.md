@@ -406,6 +406,18 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     ```
 1. Toma el código páginas de los siguientes enlaces:
     
-    - [CreateTeamPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/CreateTeamPage.xaml)
-    - [GroupsPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/GroupsPage.xaml)
+    - [CreateTeamPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/CreateTeamPage.xaml)
+    - [GroupsPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/GroupsPage.xaml)
     - [TeamsPage.xaml](https://github.com/Ninja-Labs/azure/blob/UWPLabNavmasteregacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/TeamsPage.xaml)
+    
+1. Toma el código final de la MainViewModel
+    
+    - [MainViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MainViewModel.cs)
+    
+1. Implementa el convertidor para las listas agrupadas
+    
+    - [MainViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/Converters/ItemsToKeyedListConverter.cs)
+    
+1. Actualiza los recursos de App.xaml
+    
+    - [App.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/App.xaml)
