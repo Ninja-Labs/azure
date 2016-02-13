@@ -414,9 +414,9 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     
     - [MainViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MainViewModel.cs)
     
-1. Implementa el convertidor para las listas agrupadas
+1. Implementa el convertidor para las listas agrupadas con el nombre ItemsToKeyedListConverter en una carpeta con el nombre Converters
     
-    - [MainViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/Converters/ItemsToKeyedListConverter.cs)
+    - [ItemsToKeyedListConverter](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/Converters/ItemsToKeyedListConverter.cs)
     
 1. Actualiza los recursos de App.xaml
     
