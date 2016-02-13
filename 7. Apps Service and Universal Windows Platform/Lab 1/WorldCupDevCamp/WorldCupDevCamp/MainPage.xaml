@@ -32,7 +32,7 @@
 
         <SplitView Grid.Row="1" x:Name="MySplitView" 
                 DisplayMode="CompactOverlay"
-                IsPaneOpen="False" 
+                IsPaneOpen="{x:Bind ViewModel.IsSplitViewPaneOpen}" 
                 CompactPaneLength="50" 
                 OpenPaneLength="200">
             
@@ -47,7 +47,8 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewModels:MenuItemViewModel">
                             <StackPanel Orientation="Horizontal">
-                                <Button FontFamily="Segoe MDL2 Assets" 
+                                <Button 
+                                    FontFamily="Segoe MDL2 Assets" 
                                     Command="{x:Bind NavigateCommand}"
                                     Content="{x:Bind SymbolAsChar}"
                                     Width="50" Height="50" 

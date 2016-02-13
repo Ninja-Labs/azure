@@ -274,12 +274,17 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     
 1. Toma el código de las view models, el code behind de MainPage y el nuevo XAML de MainPage de los siguientes enlaces:
     
-    - [MainViewModel]()
-    - [MenuItemViewModel]()
-    - [ShellViewModel]()
-    - [TeamViewModel]()    
-    - [MainPage.xaml]()
-    - [MainPage.xaml.cs]()
+    - [MainViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MainViewModel.cs)
+    - [MenuItemViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MenuItemViewModel.cs)
+    - [ShellViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/ShellViewModel.cs)
+    - [TeamViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/TeamViewModel.cs)    
+    - [MainPage.xaml](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/MainPage.xaml)
+    - [MainPage.xaml.cs](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/MainPage.xaml.cs)
     
 
-    **ATENCIÓN:** Recuerda conservar tus namespaces tanto en C# como en XAML solo copia los contenidos de las clases y el XAML
+**ATENCIÓN:** Recuerda conservar tus namespaces tanto en C# como en XAML solo copia los contenidos de las clases y el XAML
+    
+**INFORMACIÓN:** Para escoger los iconos correctos en la enumeración a través de codigo C# mira la [descripción de la enumeración Symbol](https://msdn.microsoft.com/EN-US/library/windows/apps/windows.ui.xaml.controls.symbol.aspx) en la documentación oficial
+
+###Parte 6: consumiendo nuestra API
+
