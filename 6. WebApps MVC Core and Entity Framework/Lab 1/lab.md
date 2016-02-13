@@ -30,13 +30,13 @@ Para iniciar hablemos un poco del nuevo framework....
 1. Posteriormente agregaremos otro proyecto de tipo librería de clases a la carpeta "Common" esta vez lo llamaremos "NinjaLab.Azure.Dto" este proyecto nos permitirá agrupar las entidades DTO que más adelante explicaremos.
 1. Para finalizar con la creación de la estructura de nuestro proyecto vamos a agregar un proyecto a la carpeta "Apis" en este caso el proyecto será de tipo web, y está ubicado en "Visual C#" / "Web" / "Asp.Net Web Application"
 1. A este proyecto le daremos el siguiente nombre "NinjaLab.Azure.Apis" y usaremos la plantilla Asp.Net 4.5.2 Web Api, usaremos esta versión para mostrar algunas características que aun no están soportadas en Asp.Net MVC Core.
-![Plantilla WebApi](./Img/1-PlantillaWEbApi.jpg?raw=true "Plantilla WebApi")
+![Plantilla WebApi](./Img/1-PlantillaWEbApi.JPG?raw=true "Plantilla WebApi")
 1. Una vez creemos este proyecto se nos pedirán una serie de datos para alojar nuestras Apis en Microsoft Azure desde su creación, en el servicio de tipo PaaS llamado App Service del cual hablaremos un poco más adelante, para esto debemos estar logueados con la cuenta que tenemos asociada a Microsoft Azure y podemos dejar por defecto los datos que nos llena Visual Studio.
-![Datos Azure](./Img/2-DatosAzure.jpg?raw=true "Datos Azure")
+![Datos Azure](./Img/2-DatosAzure.JPG?raw=true "Datos Azure")
 1. Para finalizar con la creación del proyecto, hacemos click en el botón "Create"
 
 Hasta Acá Debes tener una solución como esta:
-![Estructua solucion](./Img/3-EstructuraSolucion.jpg?raw=true "Estructua solucion")
+![Estructua solucion](./Img/3-EstructuraSolucion.JPG?raw=true "Estructua solucion")
 
 ## Tarea 2 - Creando el modelo conceptual con EntityFramework Core
 
