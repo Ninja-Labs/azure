@@ -1,0 +1,14 @@
+﻿<Application
+    x:Class="WorldCupDevCamp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:WorldCupDevCamp.ViewModels"
+    xmlns:local="using:WorldCupDevCamp"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <viewModels:MainViewModel x:Key="Main"></viewModels:MainViewModel>
+        <SolidColorBrush x:Key="MenuBackgroundColor" Color="#FF1D7C01"/>
+    </Application.Resources>
+
+</Application>
