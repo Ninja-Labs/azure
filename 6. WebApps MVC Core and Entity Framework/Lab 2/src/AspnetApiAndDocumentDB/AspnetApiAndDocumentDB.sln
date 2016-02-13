@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7ED06513-9E8A-44D0-A367-A7E13A6D6F48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{454A7BEA-6A8F-4395-9AC2-B7D5554935C9}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AspnetApiAndDocumentDB", "src\AspnetApiAndDocumentDB\AspnetApiAndDocumentDB.xproj", "{CD598229-15FC-4A65-AD3D-9EF9465E7A44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD598229-15FC-4A65-AD3D-9EF9465E7A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD598229-15FC-4A65-AD3D-9EF9465E7A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD598229-15FC-4A65-AD3D-9EF9465E7A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD598229-15FC-4A65-AD3D-9EF9465E7A44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CD598229-15FC-4A65-AD3D-9EF9465E7A44} = {7ED06513-9E8A-44D0-A367-A7E13A6D6F48}
+	EndGlobalSection
+EndGlobal
