@@ -28,13 +28,9 @@ namespace WorldCupDevCamp
             this.InitializeComponent();
 
             this.ViewModel = new ShellViewModel(this.NavigationContainer);
+            this.ViewModel.SelectedPageType = typeof(TeamsPage);
         }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-        }
-
+        
         public ShellViewModel ViewModel { get; private set; }
     }
 }

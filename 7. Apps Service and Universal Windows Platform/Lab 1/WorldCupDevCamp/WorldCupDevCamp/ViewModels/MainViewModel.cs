@@ -17,7 +17,7 @@ namespace WorldCupDevCamp.ViewModels
         {
             apiService = new ApiService();
             Teams = new ObservableCollection<TeamViewModel>();
-
+            Teams.Add(new TeamViewModel() { Name = "Colombia" });
             LoadData();
         }
 
@@ -25,7 +25,7 @@ namespace WorldCupDevCamp.ViewModels
 
         private void LoadData()
         {
-            throw new NotImplementedException();
+
         }
     }
 }
