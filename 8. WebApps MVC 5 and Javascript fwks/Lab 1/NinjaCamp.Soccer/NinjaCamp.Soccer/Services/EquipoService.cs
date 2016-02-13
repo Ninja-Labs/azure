@@ -15,7 +15,7 @@ namespace NinjaCamp.Soccer.Services
         public EquipoService()
         {
             _cliente = new HttpClient();
-            _serviceUri = "http://ninjalabazureapis20160207100138.azurewebsites.net/Api/";
+            _serviceUri = "http://ninjacampapi20160213101731.azurewebsites.net/api";
         }
 
         public async Task<bool> AddEquipo(Equipo equipo)
@@ -36,7 +36,7 @@ namespace NinjaCamp.Soccer.Services
         public async Task<Equipo> GetEquipo(string id)
         {
             var equipo = await _cliente.GetStringAsync(string.Format("{0}/Equipo/{1}", _serviceUri, id));
-            return JsonConvert.DeserializeObject<IEnumerable<Equipo>>(equipo).FirstOrDefault();
+            return JsonConvert.DeserializeObject<Equipo>(equipo);
         }
 
         public async Task<bool> UpdateEquipo(Equipo equipo)

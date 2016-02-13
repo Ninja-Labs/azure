@@ -554,7 +554,6 @@ app.controller("equipocontroller", function ($scope, equiposervice) {
     }
 
     $scope.deleteEquipo = function (Equipo) {
-        var getData = equiposervice.DeleteEquipo(Equipo.Id);
         getData.then(function (msg) {
             GetEquipos();
             alert(msg.data);
@@ -708,7 +707,6 @@ app.controller("jugadorcontroller", function ($scope, jugadorservice) {
     }
 
     $scope.AddJugadorDiv = function () {
-        $scope.templateUrl = 'PartialViews/Jugador/AddUpdate.html';
         ClearFields();
         $scope.Action = "Add";
         $scope.showAddUpdate = true;
@@ -818,73 +816,9 @@ estas carpetas fueron creadas cuando creamos los controladores respectivos.
 creado con AngularJs de Equipo
     ![grupo de recursos](images/32.png)
     
-Acá va el codigo Views-->Equipo-->CreateEdit.cshtml
-
-```
-@{
-    Layout = null;
-}
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            {{Action}} Equipo
-        </h3>
-    </div>
-    <div class="form-group">
-        <div class="form-group">
-            <div class="col-md-6">
-                <label>
-                    Id
-                </label> 
-                <input type="text" class="form-control" disabled="disabled" ng-model="Id" />
-            </div>
-            <div class="col-md-6">
-                <label>
-                    Nombre
-                </label>
-                <input type="text" class="form-control" placeholder="Nombre" ng-model="Nombre">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-6">
-                <label>
-                    Apodo
-                </label>
-                <input type="text" class="form-control" placeholder="Apodo" ng-model="Apodo">
-            </div>
-            <div class="col-md-6">
-                <label>
-                    Presidente
-                </label>
-                <input type="text" class="form-control" placeholder="Presidente" ng-model="Presidente">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6">
-                <label>
-                    Entrenador
-                </label>
-                <input type="text" class="form-control" placeholder="Entrenador" ng-model="Entrenador">
-            </div>
-            <div class="col-md-6">
-                <label>
-                    Estadio
-                </label>
-                <input type="text" class="form-control" placeholder="Estadio" ng-model="Estadio">
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="box-footer">
-        <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateEquipo()" />
-        <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddEquipoDiv()" />
-    </div>
-</div>
-
-```
-
-1. De igual forma en el Index 
+NOTA: Omitir la creación de CreateEdit.cshtml
+    
+1. Hora de agregar el codigo respectivo para la vista de Equipo 
     ![grupo de recursos](images/33.png)
 
 Acá va el codigo Views-->Equipo-->Index.cshtml
@@ -904,7 +838,7 @@ Acá va el codigo Views-->Equipo-->Index.cshtml
                     <button class="btn btn-block btn-primary" ng-click="AddEquipoDiv()">
                         Agregar Equipo
                     </button>
-                    <br /> 
+                    <br />
                 </div>
             </div>
             <div class="box-body">
@@ -966,100 +900,83 @@ Acá va el codigo Views-->Equipo-->Index.cshtml
                 </table>
             </div>
         </div>
-        <div ng-include="'Equipo/CreateEdit'" ng-show="showAddUpdate"></div>
+        <div ng-show="showAddUpdate">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{Action}} Equipo
+                    </h3>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Id
+                            </label>
+                            <input type="text" class="form-control" disabled="disabled" ng-model="Id" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Nombre
+                            </label>
+                            <input type="text" class="form-control" placeholder="Nombre" ng-model="Nombre">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Apodo
+                            </label>
+                            <input type="text" class="form-control" placeholder="Apodo" ng-model="Apodo">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Presidente
+                            </label>
+                            <input type="text" class="form-control" placeholder="Presidente" ng-model="Presidente">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Entrenador
+                            </label>
+                            <input type="text" class="form-control" placeholder="Entrenador" ng-model="Entrenador">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Estadio
+                            </label>
+                            <input type="text" class="form-control" placeholder="Estadio" ng-model="Estadio">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="box-footer">
+                    <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateEquipo()" />
+                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddEquipoDiv()" />
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+
 
 ```
 
 
 1. Agregamos el código necesario para que la vista se comunique con el controlador
 creado con AngularJs de Jugador
+
     ![grupo de recursos](images/34.png)
 
-Acá va el codigo Views-->Jugador-->CreateEdit.cshtml
+NOTA: Omitir la creación de CreateEdit.cshtml
+    
+1. Hora de agregar el codigo respectivo para la vista de Jugador 
 
-```
-@{
-    Layout = null;
-}
-<div class="box box-primary">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            {{Action}} Jugador
-        </h3>
-    </div>
-    <div class="form-group">
-        <div class="form-group">
-            <div class="col-md-6"> 
-                <label>
-                    Id
-                </label>
-                <input type="text" class="form-control" disabled="disabled" ng-model="Id" />
-            </div>
-            <div class="col-md-6">
-                <label>
-                    Nombre
-                </label>
-                <input type="text" class="form-control" placeholder="Nombre" ng-model="Nombre">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6">
-                <label>
-                    Apodo
-                </label>
-                <input type="text" class="form-control" placeholder="Apodo" ng-model="Apodo">
-            </div>
-            <div class="col-md-6">
-                <label>
-                    Nacionalidad
-                </label>
-                <input type="text" class="form-control" placeholder="Nacionalidad" ng-model="Nacionalidad">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6">
-                <label>
-                    Estatura
-                </label>
-                <input type="text" class="form-control" placeholder="Estatura" ng-model="Estatura">
-            </div>
-            <div class="col-md-6">
-                <label>
-                    Peso
-                </label>
-                <input type="text" class="form-control" placeholder="Peso" ng-model="Peso">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-6">
-                <label>
-                    Posicion
-                </label>
-                <input type="text" class="form-control" placeholder="Posicion" ng-model="Posicion">
-            </div>
-            <div class="col-md-6">
-                <label>
-                    IdEquipo
-                </label>
-                <input type="text" class="form-control" placeholder="IdEquipo" ng-model="IdEquipo">
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="box-footer">
-        <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateJugador()" />
-        <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddJugadorDiv()" />
-    </div>
-</div>
-
-```
-
-1. De igual forma en el Index 
     ![grupo de recursos](images/35.png)
 
 Acá va el codigo Views-->Jugador-->Index.cshtml
@@ -1077,7 +994,7 @@ Acá va el codigo Views-->Jugador-->Index.cshtml
                 </h3>
                 <div class="col-xs-2">
                     <button class="btn btn-block btn-primary" ng-click="AddJugadorDiv()">
-                        Agregar Jugador 
+                        Agregar Jugador
                     </button>
                     <br />
                 </div>
@@ -1153,17 +1070,103 @@ Acá va el codigo Views-->Jugador-->Index.cshtml
                 </table>
             </div>
         </div>
-        <div ng-include="'Jugador/CreateEdit'" ng-show="showAddUpdate"></div>
+        <div ng-show="showAddUpdate">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{Action}} Jugador
+                    </h3>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Id
+                            </label>
+                            <input type="text" class="form-control" disabled="disabled" ng-model="Id" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Nombre
+                            </label>
+                            <input type="text" class="form-control" placeholder="Nombre" ng-model="Nombre">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Apodo
+                            </label>
+                            <input type="text" class="form-control" placeholder="Apodo" ng-model="Apodo">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Nacionalidad
+                            </label>
+                            <input type="text" class="form-control" placeholder="Nacionalidad" ng-model="Nacionalidad">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Estatura
+                            </label>
+                            <input type="text" class="form-control" placeholder="Estatura" ng-model="Estatura">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Peso
+                            </label>
+                            <input type="text" class="form-control" placeholder="Peso" ng-model="Peso">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Posicion
+                            </label>
+                            <input type="text" class="form-control" placeholder="Posicion" ng-model="Posicion">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                IdEquipo
+                            </label>
+                            <input type="text" class="form-control" placeholder="IdEquipo" ng-model="IdEquipo">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="box-footer">
+                    <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateJugador()" />
+                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddJugadorDiv()" />
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+
 
 ```
     
 ###Paso 8: Publicación y registro de telemetria     
 
-1. 
+1. Es ahora de que pruebes tu aplicación corriendo localmente y también publiquemos el aplicativo en azure.
+1. Haz click derecho sobre el proyecto y selecciona Publicar.
+1. Se visualizará una pantalla de publicación que contiene todos los datos de vinculación ya realizados anteriormente.
+1. Solo tendremos que dar click en Publicar y esperar...
+  
     ![grupo de recursos](images/36.png)
     
-    ![grupo de recursos](images/37.png)
+1. Ahora vamos al portal de azure y nos dirijimos a
+Todos los recursos--> NinjaCamp.Soccer(nombre asignado al servicio de insight)
+1. Si puedes observar inicialmente se observan datos de nuestro aplicativo con respecto a las solicitudes reealizadas, errores de solicitud, etc.
     
     ![grupo de recursos](images/38.png)
+    
+1. Ahora aplicaremos código para realizar el seguimiento requerido en el lado del cliente.
+    
+    ![grupo de recursos](images/39.png)

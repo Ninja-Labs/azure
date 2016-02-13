@@ -13,7 +13,6 @@
     $scope.editEquipo = function (Equipo) {
         var getData = equiposervice.GetEquipo(Equipo.Id);
         getData.then(function (response) {
-            debugger;
             $scope.Equipo = response.data;
             $scope.Id = response.data.Id;
             $scope.Nombre = response.data.Nombre;
@@ -63,7 +62,6 @@
     }
 
     $scope.AddEquipoDiv = function () {
-        $scope.templateUrl = 'PartialViews/Equipo/AddUpdate.html';
         ClearFields();
         $scope.Action = "Add";
         $scope.showAddUpdate = true;

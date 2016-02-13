@@ -9,17 +9,17 @@ namespace NinjaCamp.Soccer.Models
 
     public class Equipo
     {
-        [JsonProperty("Id")]
+        [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
         public int Id { get; set; }
-        [JsonProperty("Nombre")]
+        [JsonProperty("Nombre", NullValueHandling = NullValueHandling.Ignore)]
         public string Nombre { get; set; }
-        [JsonProperty("Apodo")]
+        [JsonProperty("Apodo", NullValueHandling = NullValueHandling.Ignore)]
         public string Apodo { get; set; }
-        [JsonProperty("Presidente")]
+        [JsonProperty("Presidente", NullValueHandling = NullValueHandling.Ignore)]
         public string Presidente { get; set; }
-        [JsonProperty("Entrenador")]
+        [JsonProperty("Entrenador", NullValueHandling = NullValueHandling.Ignore)]
         public string Entrenador { get; set; }
-        [JsonProperty("Estadio")]
+        [JsonProperty("Estadio", NullValueHandling = NullValueHandling.Ignore)]
         public string Estadio { get; set; }
     }
 }

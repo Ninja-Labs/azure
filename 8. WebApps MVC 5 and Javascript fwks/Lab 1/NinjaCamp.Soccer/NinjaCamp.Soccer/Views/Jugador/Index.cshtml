@@ -86,6 +86,81 @@
                 </table>
             </div>
         </div>
-        <div ng-include="'Jugador/CreateEdit'" ng-show="showAddUpdate"></div>
+        <div ng-show="showAddUpdate">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{Action}} Jugador
+                    </h3>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Id
+                            </label>
+                            <input type="text" class="form-control" disabled="disabled" ng-model="Id" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Nombre
+                            </label>
+                            <input type="text" class="form-control" placeholder="Nombre" ng-model="Nombre">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Apodo
+                            </label>
+                            <input type="text" class="form-control" placeholder="Apodo" ng-model="Apodo">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Nacionalidad
+                            </label>
+                            <input type="text" class="form-control" placeholder="Nacionalidad" ng-model="Nacionalidad">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Estatura
+                            </label>
+                            <input type="text" class="form-control" placeholder="Estatura" ng-model="Estatura">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Peso
+                            </label>
+                            <input type="text" class="form-control" placeholder="Peso" ng-model="Peso">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>
+                                Posicion
+                            </label>
+                            <input type="text" class="form-control" placeholder="Posicion" ng-model="Posicion">
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                IdEquipo
+                            </label>
+                            <input type="text" class="form-control" placeholder="IdEquipo" ng-model="IdEquipo">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="box-footer">
+                    <input type="button" class="btn btn-primary" value="Guardar" ng-click="AddUpdateJugador()" />
+                    <input type="button" class="btn btn-primary" value="Cancelar" ng-click="CancelAddJugadorDiv()" />
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

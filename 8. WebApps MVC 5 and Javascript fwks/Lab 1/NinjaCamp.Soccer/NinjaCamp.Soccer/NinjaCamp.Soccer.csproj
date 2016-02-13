@@ -216,8 +216,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Equipo\Index.cshtml" />
-    <Content Include="Views\Equipo\CreateEdit.cshtml" />
-    <Content Include="Views\Jugador\CreateEdit.cshtml" />
     <Content Include="Views\Jugador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

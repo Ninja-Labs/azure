@@ -9,21 +9,21 @@ namespace NinjaCamp.Soccer.Models
  
     public class Jugador
     {
-        [JsonProperty("Id")]
+        [JsonProperty("Id", NullValueHandling = NullValueHandling.Ignore)]
         public int Id { get; set; }
-        [JsonProperty("Nombre")]
+        [JsonProperty("Nombre", NullValueHandling = NullValueHandling.Ignore)]
         public string Nombre { get; set; }
-        [JsonProperty("Apodo")]
+        [JsonProperty("Apodo", NullValueHandling = NullValueHandling.Ignore)]
         public string Apodo { get; set; }
-        [JsonProperty("Nacionalidad")]
+        [JsonProperty("Nacionalidad", NullValueHandling = NullValueHandling.Ignore)]
         public string Nacionalidad { get; set; }
-        [JsonProperty("Estatura")]
+        [JsonProperty("Estatura", NullValueHandling = NullValueHandling.Ignore)]
         public double Estatura { get; set; }
-        [JsonProperty("Peso")]
+        [JsonProperty("Peso", NullValueHandling = NullValueHandling.Ignore)]
         public int Peso { get; set; }
-        [JsonProperty("Posicion")]
+        [JsonProperty("Posicion", NullValueHandling = NullValueHandling.Ignore)]
         public string Posicion { get; set; }
-        [JsonProperty("IdEquipo")]
+        [JsonProperty("IdEquipo", NullValueHandling = NullValueHandling.Ignore)]
         public int IdEquipo { get; set; }
     }
 }
