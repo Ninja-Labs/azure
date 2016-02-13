@@ -12,11 +12,6 @@ namespace WorldCupDevCamp.ViewModels
 {
     public class MenuItemViewModel : ViewModelBase
     {
-        public MenuItemViewModel(Frame rootFrame)
-        {
-            this.RootFrame = rootFrame;
-        }
-
         public string Title { get; set; }
         public Symbol Icon { get; set; }
 
@@ -40,9 +35,7 @@ namespace WorldCupDevCamp.ViewModels
 
         private void Navigate()
         {
-            this.RootFrame.Navigate(this.PageType);
+            App.RootFrame.Navigate(this.PageType);
         }
-
-        public Frame RootFrame { get; private set; }
     }
 }

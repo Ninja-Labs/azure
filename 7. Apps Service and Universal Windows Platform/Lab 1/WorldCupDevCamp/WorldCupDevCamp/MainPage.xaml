@@ -32,6 +32,10 @@
                     Content="&#xE700;"
                     Width="50" Height="50" Background="Transparent" 
                     Foreground="White"/>
+
+            <TextBlock 
+                VerticalAlignment="Center"
+                Text="World Cup" Foreground="White"></TextBlock>
         </StackPanel>
 
         <SplitView Grid.Row="1" x:Name="MySplitView" 

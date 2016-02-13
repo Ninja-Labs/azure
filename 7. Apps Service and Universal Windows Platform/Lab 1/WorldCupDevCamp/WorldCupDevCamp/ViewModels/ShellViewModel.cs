@@ -13,13 +13,11 @@ namespace WorldCupDevCamp.ViewModels
 {
     public class ShellViewModel : ViewModelBase
     {
-        public ShellViewModel(Frame rootFrame)
+        public ShellViewModel()
         {
-            this.RootFrame = rootFrame;
-
-            MenuItems.Add(new MenuItemViewModel(rootFrame) { Icon = Symbol.People, Title = "Equipos", PageType = typeof(TeamsPage) });
-            MenuItems.Add(new MenuItemViewModel(rootFrame) { Icon = Symbol.Add, Title = "Crear Equipo", PageType = typeof(CreateTeamPage) });
-            MenuItems.Add(new MenuItemViewModel(rootFrame) { Icon = Symbol.ReportHacked, Title = "Grupos", PageType = typeof(GroupsPage) });
+            MenuItems.Add(new MenuItemViewModel() { Icon = Symbol.People, Title = "Equipos", PageType = typeof(TeamsPage) });
+            MenuItems.Add(new MenuItemViewModel() { Icon = Symbol.Add, Title = "Crear Equipo", PageType = typeof(CreateTeamPage) });
+            MenuItems.Add(new MenuItemViewModel() { Icon = Symbol.ReportHacked, Title = "Grupos", PageType = typeof(GroupsPage) });
         }
 
         public ObservableCollection<MenuItemViewModel> MenuItems { get; set; } = new ObservableCollection<MenuItemViewModel>();        
@@ -66,7 +64,5 @@ namespace WorldCupDevCamp.ViewModels
                 return new RelayCommand(() => this.IsSplitViewPaneOpen = !this.IsSplitViewPaneOpen);
             }
         }
-
-        public Frame RootFrame { get; private set; }
     }
 }
