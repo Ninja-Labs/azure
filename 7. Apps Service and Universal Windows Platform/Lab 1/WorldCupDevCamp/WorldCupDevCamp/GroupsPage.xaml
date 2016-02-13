@@ -13,14 +13,22 @@
             IsSourceGrouped="True"
             Source="{Binding Teams, Converter={StaticResource ItemsToKeyedListConverter}}"/>
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Accept" Command="{Binding AssignGroupsCommand}" Label="appbarbutton"/>
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid Background="White">
         <ListView ItemsSource="{Binding Source={StaticResource teamsCollection}}">
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
-                            <Grid Background="{StaticResource MenuBackgroundColor}">
-                                <TextBlock Foreground="White" Text="{Binding Key}"/>
+                            <Grid>
+                                <TextBlock Foreground="Black" Text="{Binding Key}"/>
                             </Grid>
                         </DataTemplate>
                     </GroupStyle.HeaderTemplate>
