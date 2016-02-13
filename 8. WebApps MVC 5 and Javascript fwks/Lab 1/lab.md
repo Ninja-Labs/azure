@@ -36,6 +36,14 @@ create table Equipo(
 
 )
 ```
+Linea de código para remover el formato por defecto xml del api
+
+```
+
+  var appXmlType = config.Formatters
+                .XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
+```
 
 ###Paso 1: Creación de proyecto Asp.Net Mvc 
 
