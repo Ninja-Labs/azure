@@ -29,6 +29,8 @@ namespace WorldCupDevCamp
             this.ViewModel = new ShellViewModel(this.NavigationContainer);
             this.ViewModel.SelectedMenuItem = this.ViewModel.MenuItems.First();
             this.NavigationContainer.Navigate(this.ViewModel.SelectedMenuItem.PageType);
+
+            App.RootFrame = this.NavigationContainer;
         }
         
         public ShellViewModel ViewModel { get; private set; }
