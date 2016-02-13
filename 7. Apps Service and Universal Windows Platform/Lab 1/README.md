@@ -189,8 +189,6 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
         
     La condición descrita en este código indica que el menú debe estar colapsado por defecto, pero cuando la pantalla tenga minimo 500 píxeles efectivos, debe estar en línea y abierto.       
         
-###Parte 4: Ensamblando la navegación básica
-
 1. Vamos a darle un mejor diseño a nuestra página. Extrayendo el botón de menú fuera del panel lateral. Además en el contenido del SplitView reemplazaremos el contenido exitente por un frame que nos permitirá navegar entre páginas. El código debe lucir así:
 	
     ```
@@ -251,15 +249,12 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     </Grid>
     
     ```
-
+    
 1. El preliminar en Windows Mobile se ve así:
 
-    ![App UWP](images/PreviaEnWindowsPhone.png)
+    ![App UWP](images/PreviaEnWindowsPhone.png) 
     
-    
-    (... Continuará...)
-    
-###Parte 5: Preparando nuestro proyecto para MVVM y Navegación
+###Parte 4: Ensamblando la base para MVVM y el patrón de navegación
 
 1. Para trabajar con MVVM instalaremos un paquete a través de Nuget
 	
@@ -276,8 +271,8 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
 1. Toma el código de las view models, el code behind de MainPage y el nuevo XAML de MainPage de los siguientes enlaces:
     
     - [MainViewModel](https://github.com/Ninja-Labs/azure/blob/UWPLabNavegacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MainViewModel.cs)
-    - [MenuItemViewModel](https://github.com/Ninja-Labs/azure/blob/UWPLabNavegacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MenuItemViewModel.cs)
-    - [ShellViewModel](https://github.com/Ninja-Labs/azure/blob/UWPLabNavegacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/ShellViewModel.cs)
+    - [MenuItemViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/MenuItemViewModel.cs)
+    - [ShellViewModel](https://github.com/Ninja-Labs/azure/blob/master/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/ShellViewModel.cs)
     - [TeamViewModel](https://github.com/Ninja-Labs/azure/blob/UWPLabNavegacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/ViewModels/TeamViewModel.cs)    
     - [MainPage.xaml](https://github.com/Ninja-Labs/azure/blob/UWPLabNavegacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/MainPage.xaml)
     - [MainPage.xaml.cs](https://github.com/Ninja-Labs/azure/blob/UWPLabNavegacionCompleta/7.%20Apps%20Service%20and%20Universal%20Windows%20Platform/Lab%201/WorldCupDevCamp/WorldCupDevCamp/MainPage.xaml.cs)
@@ -287,7 +282,7 @@ Posteriormente crearemos una app que consuma este backend en formato REST/Json u
     
 **INFORMACIÓN:** Para escoger los iconos correctos en la enumeración a través de codigo C# mira la [descripción de la enumeración Symbol](https://msdn.microsoft.com/EN-US/library/windows/apps/windows.ui.xaml.controls.symbol.aspx) en la documentación oficial
 
-###Parte 6: Consumiendo nuestra API
+###Parte 5: Consumiendo nuestra API
 
 1. Realizaremos el consumo del API a través de HttpClient por lo cual debemos instalar el paquete a través de nuget
 	
