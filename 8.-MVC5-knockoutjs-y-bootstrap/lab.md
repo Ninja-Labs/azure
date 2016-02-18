@@ -42,15 +42,15 @@ Se puede encontrar más información y profundizar en el tema en diferentes siti
 ####Crear una aplicación web ASP.Net MVC
 Para nuestro laboratorio utilizaremos Visual Studio 2015 (VS) y utilizando el framework 4.6
 
-1.Abrimos Visual Studio y seleccionamos la opción Crear Nuevo Proyecto y seleccionamos la opcion Web para ver las plantillas correspondientes, seleccionamos ASP.NET Web Applicacion (aplicaciones web de Asp.Net).
+- Abrimos Visual Studio y seleccionamos la opción Crear Nuevo Proyecto y seleccionamos la opcion Web para ver las plantillas correspondientes, seleccionamos ASP.NET Web Applicacion (aplicaciones web de Asp.Net).
 
 ![MVC](img/T01_01.png)
 
-1.En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web AAPI (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
+- En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web AAPI (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
 
 ![MVC](img/T01_02.png)
 
-1.Se abrirá nuestro ambiente de desarrollo en el que veremos las carpetas y archivos que cargó la plantilla por defecto, debería verse así:
+- Se abrirá nuestro ambiente de desarrollo en el que veremos las carpetas y archivos que cargó la plantilla por defecto, debería verse así:
 
 ![MVC](img/T01_03.png)
 
