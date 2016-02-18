@@ -29,30 +29,30 @@ Para esto, integraremos Application Insights a una aplicación a la cual le hemo
 
 ###Tarea 1
 ####Descargar la aplicación ContosoUniversity
-Diríjase al directorio "aplicaciones" de este repositorio y copie la aplicación [ContosoUniversity](./aplicaciones/ContosoUniversity/) en su directorio de trabajo.
+1.Diríjase al directorio "aplicaciones" de este repositorio y copie la aplicación [ContosoUniversity](./aplicaciones/ContosoUniversity/) en su directorio de trabajo.
 
 > Tambien lo pueden descargar desde https://github.com/qjuanp/nc-azure-ai/tree/example-nc
 
-Abra la aplicación desde Visual Studio 2015.
+1.Abra la aplicación desde Visual Studio 2015.
 
 ![ContosoUniversity](img/steps/01.png)
 
-Compile la aplicación y verifique que la compilación este correcta antes de realizar el paso de publicación.
+1.Compile la aplicación y verifique que la compilación este correcta antes de realizar el paso de publicación.
 
 ![Restauración de Nugets](img/steps/02.png)
 
 ![Compilación correcta](img/steps/03.png)
 
 ####Publicar la aplicación en Azure
-Realice la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
+1.Realice la publicación de la aplicación ContosoUniversity a su cuenta en Azure desde Visual Studio 2015
 
 ![Click derecho -> Publicar](img/steps/04.png)
 
-Cree un nuevo perfil de publicación para Web Apps
+1.Cree un nuevo perfil de publicación para Web Apps
 
 ![Publicar WebApp](img/steps/05.png)
 
-Recuerde que debe iniciar sesión con la cuenta que tenga asociada para acceder a su subscripción de Windows Azure
+1.Recuerde que debe iniciar sesión con la cuenta que tenga asociada para acceder a su subscripción de Windows Azure
 
 ![Iniciar sesión en Azure](img/steps/06.png)
 
@@ -64,7 +64,7 @@ Defina para la publicación de su Web App
 
 ![Configuracuón de la publicación del Web App](img/steps/07.png)
 
-Active la migración para que se puedan desplegar los datos de la base de datos de ContosoUniversity
+1.Active la migración para que se puedan desplegar los datos de la base de datos de ContosoUniversity
 
 ![Activación de migración](img/steps/08.png)
 
@@ -72,7 +72,7 @@ Y Publique la Web App
 
 ![Publicar!](img/steps/09.png)
 
-Verifique las diferentes secciones de la aplicación e ingrese datos adicionales en cada una de ellas
+1.Verifique las diferentes secciones de la aplicación e ingrese datos adicionales en cada una de ellas
 - Instructores
 - Departamentos
 - Clases
@@ -88,30 +88,30 @@ La aplicación tiene algunos problemas de performance y errores difícilmente vi
 
 ###Tarea 2
 ####Integrar Application Insights
-Primero, vamos a crear nuestro Application Insight desde el [Portal de Azure](https://portal.azure.com)
+Vamos a crear nuestro Application Insight desde el [Portal de Azure](https://portal.azure.com)
 
-Primero ubique la sección de servicios de Application Insights 
+1.Primero ubique la sección de servicios de Application Insights 
 
 ![Sección de Application Insights en el portal de Azure](img/steps/11.png)
 
-Cree un nuevo Application Insights
+1.Cree un nuevo Application Insights
 
 ![Crear Application Insights desde el portal de Azure](img/steps/12.png)
 
-Defina los parámetros necesarios para el Application Insights
+1.Defina los parámetros necesarios para el Application Insights
 
 ![Parámetros para Application Insights](img/steps/13.png)
 
 Ahora desde Visual Studio 2015 vamos a integrar nuestra aplicación con Application Insights
-Desde el proyecto principal, click derecho -> Add Application Insights Telemetry...
+1.Desde el proyecto principal, click derecho -> Add Application Insights Telemetry...
 
 ![Click derecho -> Add Application Insights Telemetry...](img/steps/14.png)
 
-Después de seleccionar la cuenta y la subscripción en la que se encuentra definido nuestro Application Insight, seleccionamos el que habíamos creado previamente, y le damos agregar.
+1.Después de seleccionar la cuenta y la subscripción en la que se encuentra definido nuestro Application Insight, seleccionamos el que habíamos creado previamente, y le damos agregar.
 
 ![Seleccionar Aplication Insights](img/steps/15.png)
 
-Después de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde habíamos detectado en la [Tarea 1](#tarea-1) los errores y problemas de performance para comenzar a recopilar datos con Application Insigths.
+1.Después de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde habíamos detectado en la [Tarea 1](#tarea-1) los errores y problemas de performance para comenzar a recopilar datos con Application Insigths.
 
 ![Application Insights](img/steps/16.png)
 
@@ -121,7 +121,7 @@ Después de publicar de nuevo la aplicación, vamos a navegar de nuevo por donde
 
 ###Tarea 3
 ####Agregar información de excepciones a Application Insights
-Para integrarlo fácilmente a MVC5 creamos el siguiente filtro en nuestro código
+1.Para integrarlo fácilmente a MVC5 creamos el siguiente filtro en nuestro código
 
 ```C#
 using System;
@@ -162,18 +162,18 @@ public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 // ...
 ```
 
-Y publicamos de nuevo nuestra aplicación
+1.Y publicamos de nuevo nuestra aplicación
 
 #####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
 ¿Cuáles son las excepciones que se están presentando?
 
 ###Tarea 4
 ####Registrar información de Trazas en Application Insights
-Para este paso necesitaremos instalar el siguiente paquete [Application Insights TraceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.TraceListener/1.0.0)
+1.Para este paso necesitaremos instalar el siguiente paquete [Application Insights TraceListener](https://www.nuget.org/packages/Microsoft.ApplicationInsights.TraceListener/1.0.0)
 
 `PM> Install-Package Microsoft.ApplicationInsights.TraceListener -Version 1.0.0`
 
-Luego... simplemente desplegar.
+1.Luego... simplemente desplegar.
 
 #####**¿Qué información nos arroja Application Insight sobre ContosoUniversity?**
 ¿Cuales información se está registrando en las trazas?
