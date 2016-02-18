@@ -9,13 +9,13 @@ AL final tendremos una aplicación modular que te permita cargar los datos de ma
 Para esto es necesario contar con:
 - Visual Studio 2015 cualquiera de sus versiones, puedes descargar la versión gratuita [Visual Studio Community aquí](https://www.visualstudio.com/downloads/download-visual-studio-vs).
 - Una cuenta de Azure (Azure Pass)
-- Haber hecho el ejercicio para la creación de una Base de datos en DocumentDB [aquí](http://julito) o en este [otro link](http://DocumentDB_Miguel)
+- Haber hecho el ejercicio para la creación de una [Base de datos en DocumentDB aquí](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md) o en este [otro link](http://DocumentDB_Miguel)
 
 ##Tareas
 - [Tarea 1 - MVC 5 WebApps.](#tarea-1)
 - [Tarea 2 - Crear una aplicación web ASP.Net MVC.](#tarea-2)
 - [Tarea 3 - Instalando las Librerías requeridas para nuestro ejemplo.](#tarea-3)
-- [Tarea 4 - Nuestro Model (Modelo).](#tarea-4)
+- [Tarea 4 - Construyendo Nuestro Model (Modelo).](#tarea-4)
 - [Tarea 5 - Nuestro Controller (Controlador).] (#tarea-5)
 - [Tarea 6 - Nuestra View (Vista).] (#tarea-6)
 - [Tarea 7 - Router / Bundles / Global.asax.] (#tarea-7)
@@ -117,11 +117,16 @@ Hacemos clic sobre Install (instalar), si aparecen ventanas emergentes hacemos c
 
 Con el procedimiento anterior, ya estamos preparados para construir nuestra aplicación.
 
+###Tarea 4
+####Construyendo Nuestro Model (Modelo)
 
+Nos basaremos en el ejercicio realizado con [DocumentDB anterior](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md) del cual tomaremos el código y lo integrarémos a nuestra aplicación.
 
+- Lo que haremos es crear la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
 
+![MVC](img/T04_01.png)
 
-
+- Trabajaremos con 'C#'
 
 
 
