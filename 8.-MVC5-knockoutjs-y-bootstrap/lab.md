@@ -29,19 +29,28 @@ Para esto es necesario contar con:
 ###Tarea 1
 ####MVC 5 WebApps
 Modelo Vista Controlador es un paradigma de programación que distribuye la carga del código con base en los 3 componentes que la integran, un resumen podría ser el de la siguiente grafica:
+
 ![MVC](img/MVCBasic.png)
+
 Otra manera de verlo sería agregando un componente Usuario al paradigma de MVC.
-![MVC](img/MVCBasic.png)
+
+![MVC](img/MVCBasic1.png)
 Se puede encontrar más información y profundizar en el tema en diferentes sitios en internet así como en publicaciones, al final dejaremos un listado de vínculos que podrían ser de interés para ésto.
 
 ###Tarea 2
 ####Crear una aplicación web ASP.Net MVC
 Para nuestro laboratorio utilizaremos Visual Studio 2015 (VS) y utilizando el framework 4.6
+
 1. Abrimos Visual Studio y seleccionamos la opción Crear Nuevo Proyecto y seleccionamos la opcion Web para ver las plantillas correspondientes, seleccionamos ASP.NET Web Applicacion (aplicaciones web de Asp.Net).
+
 ![MVC](img/T01_01.png)
+
 1. En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web AAPI (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
+
 ![MVC](img/T01_02.png)
+
 1. Se abrirá nuestro ambiente de desarrollo en el que veremos las carpetas y archivos que cargó la plantilla por defecto, debería verse así:
+
 ![MVC](img/T01_03.png)
 
 
