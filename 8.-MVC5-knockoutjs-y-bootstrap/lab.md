@@ -46,13 +46,104 @@ Para nuestro laboratorio utilizaremos Visual Studio 2015 (VS) y utilizando el fr
 
 ![MVC](img/T01_01.png)
 
-- En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web AAPI (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
+- En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web API (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
 
 ![MVC](img/T01_02.png)
 
 - Se abrirá nuestro ambiente de desarrollo en el que veremos las carpetas y archivos que cargó la plantilla por defecto, debería verse así:
 
 ![MVC](img/T01_03.png)
+
+###Tarea 3
+####Instalando las Librerías requeridas para nuestro ejemplo
+Para nuestro proyecto requerimos instalar o actualizar las libresrías que necesitaremos y son:
+-- DocumentDB
+-- NewtonSoft
+-- jQuery
+-- Knockoutjs
+-- Bootstrap
+
+- Aunque hay diferentes formas de cargar las librerías que requerimos, en este proyecto vacio vamos a cargarlas utilizando NuGet Packages (Paquetes NuGet), para esto hacemos clic derecho sobre <strong>References</strong> y hacemos clic sobre la opción Manage Nuget Packages.
+
+![MVC](img/T03_01.png)
+
+- Para las ultimas versiones de VS se abrirá la ventana que permitirá seleccionar si lo que queremos es buscar (Browse), ver los paquetes instalados (Installed), o que paquetes pueden ser actualizados (Updates). Seleccionaremos la opción Browse.
+
+![MVC](img/T03_02.png)
+
+- En la caja de texto de búsqueda escribiremos DocumentDB para buscar la librería correspondiente, escribiremos Microsoft.Azure.DocumentDB y al resultado seleccionaremos la opción Microsoft.Azure.DocumentDB y dejaremos la ultima versión estable que aparezca en el listado de la derecha.
+
+![MVC](img/T03_03.png)
+
+- Hacemos clic en Install (Instalar) y los aceptamos (clic en OK y Aceptar) en las ventanas emergentes que aparezcan.
+
+Al revisar en las referencias podemos ver que ha quedado instalada la referencia de Azure Document Client.
+
+![MVC](img/T03_04.png)
+
+- Ahora realizaremos el mismo procedimiento para instalar los paquetes correspondientes de Newtonsoft, esto nos permitirá trabajar con formatos json dentro de nuestro sistema, requerido para comunicarnos con DocumentDB. 
+
+Es necesario aclarar que Newtonsoft ya esta instalado dentro de la aplicación, sin embargo el procedimiento nos permitirá descargar la última versión estable del paquete. Hacemos clic sobre la opción update (Actualizar).
+
+![MVC](img/T03_05.png)
+
+Si aparecen ventanas emergentes hacemos clic en OK o aceptar.
+
+- Ahora instalaremos jQuery realizando el mismo procedimiento que hemos realizado hasta ahora escribiendo jQuery en el cuadro de texto de búsqueda del NuGet package.
+
+Hacemos clic sobre Install (instalar), si aparecen ventanas emergentes hacemos clic en OK o aceptar.
+
+![MVC](img/T03_06.png)
+
+- Debe aparecer una nueva carpeta Scripts con los archivos javascript corresponsdientes a jquery dentro de la nueva carpeta.
+
+![MVC](img/T03_07.png)
+
+- El siguiente paso es instalar knockoutjs, para esto realizaremos el procesimiento de buscarlo en el NuGet packages e instalamos de la misma forma que hemos instalado los paquetes anteriores.
+
+![MVC](img/T03_08.png)
+
+- Aparecen los archivos correspondientes dentro de la carpeta Scripts de nuestro proyecto.
+
+![MVC](img/T03_09.png)
+
+- Ahora finalizaremos instalando el paquete de Bootstrap que utilizaremos en las tareas finales de nuestro laboratorio, el procedimiento es el mismo que con los elementos anteriores dentro del manejador de paquetes NuGet.
+
+![MVC](img/T03_10.png)
+
+- Acá el resultado es especial ya que tendremos una carpeta Content que tendrá los estilos asociados con Bootstrap, una carpeta Fonts que trae unas fuentes especiales que nos permitiran implementar grifos o imágenes como si fueran fuentes de tezto y también tenemos los archivos javascript asociados a Bootstrap para poder implementar funcionalidades de diseño.
+
+![MVC](img/T03_11.png)
+
+Con el procedimiento anterior, ya estamos preparados para construir nuestra aplicación.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
