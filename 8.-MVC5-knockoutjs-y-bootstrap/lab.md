@@ -21,9 +21,8 @@ Para esto es necesario contar con:
 - [Tarea 7 - Creando los Archivos de enrutado (condicional).] (#tarea-7)
 - [Tarea 8 - Knockoutjs conectándonos con el controller.] (#tarea-8)
 - [Tarea 9 - Mostrando datos en nuestra vista.] (#tarea-9)
-- [Tarea 10 - Desde Cero sobre HTML.] (#tarea-10)
-- [Tarea 11 - Bootstrap para nuestra UI Html.] (#tarea-11)
-- [Tarea 12 - Vínculos de interés.] (#tarea-12)
+- [Tarea 10 - Desde Cero sobre HTML Bootstrap para nuestra UI.] (#tarea-10)
+- [Tarea 11 - Vínculos de interés.] (#tarea-11)
 
 ###Tarea 1
 ####MVC 5 WebApps
@@ -313,7 +312,7 @@ namespace MVC_HOL.Models
 ```
 Éste último método es de tipo asíncrono por eso es necesario plantear que es una tarea y al mismo tiempo agregarle las palabras reservadas async y await, así como la referencia using System.Threading.Tasks.
 
-#####El código completo de la clase MovieRepository.cs quedaría de la siguiente manera:
+######El código completo de la clase MovieRepository.cs quedaría de la siguiente manera:
 ```
 using System;
 using System.Collections.Generic;
@@ -428,7 +427,7 @@ namespace MVC_HOL.Models
 }
 ```
 
-#####Recordemos que es necesario reemplazar la información de las variables EndpointUrl y AuthorizationKey por los valores que obtenemos de nuestra cuenta de Azure DocumentDB
+######Recordemos que es necesario reemplazar la información de las variables EndpointUrl y AuthorizationKey por los valores que obtenemos de nuestra cuenta de Azure DocumentDB
 
 ###Tarea 5
 ####Nuestro Controller (Controlador)
@@ -503,7 +502,7 @@ En donde <strong>MoviesController : ApiController</strong> nos indica que esta c
 ```
 Éste último método es de tipo asíncrono por eso es necesario plantear que es una tarea y al mismo tiempo agregarle las palabras reservadas async y await, así como la referencia using System.Threading.Tasks.
 
-#####El código completo quedaría de la siguiente manera:
+######El código completo quedaría de la siguiente manera:
 ```
 using System;
 using System.Collections.Generic;
@@ -598,7 +597,7 @@ Al hacer clic sobre Add (Agregar) ocurren varias cosas con nuestro proyecto, ent
 
 ![MVC](img/T06_06.png)
 
-#####Si existen estas clases, podemos realizar lo siguiente:
+######Si existen estas clases, podemos realizar lo siguiente:
 
 - Si hemos cerrado el navegador volvamos a abrirlo presionando la tecla F5, en la barra de direcciones agregemos API/Movies lo que nos mostrará la información que trae de la base de datos por defecto es la lista de todos los registros en formato Json, si no hay registros debe mostrar una página con un par de corchetes cuadrados.
 En el caso de este ejemplo que ya hay registros preguardados en la base de datos muestra lo siguiente:
@@ -609,10 +608,10 @@ En el caso de este ejemplo que ya hay registros preguardados en la base de datos
 
 ![MVC](img/T06_08.png)
 
-#####Si no existen estas clases, es necesario crearlas
+######Si no existen estas clases, es necesario crearlas
 
 ###Tarea 7
-#### Creando los Archivos de enrutado (condicional)
+####Creando los Archivos de enrutado (condicional)
 
 Como se mencionó en la tarea anterior, si no existen las clases RouteConfig.cs y/o WebApiConfig.cs dentro de la carpeta App_Start, es necesario crearlos, si existen estas clases podemos pasar a la tarea 8 si lo desean.
 
@@ -919,36 +918,71 @@ var ViewModel = function () {
 ko.applyBindings(new ViewModel());
 ```
 
-#####Ahora vamos a integrar todo lo anterior a nuestra vista Index dentro del Home.
+######Ahora vamos a integrar todo lo anterior a nuestra vista Index dentro del Home.
 
 ###Tarea 9
-######Mostrando datos en nuestra vista
+####Mostrando datos en nuestra vista
 
+- Abrimos nuestro archivo Index.cshtml que se encuentra dentro de Views->Home
 
+![MVC](img/T09_01.png)
 
+Empezamos a construir el diseño de nuestra vista aprovechando que ya tenemos por defecto incorporado el bootstrap, sinembargo es necesario agregar que es un diseño base y se trabajará utilizando etiquetas Div, se recomienda trabajar siempre con alguien que maneje diseño para tener una vista complementaria del proyecto.
+A manera de ejercicio, esté código se presentará como imágen para que se deba agregar manualmente.
 
+![MVC](img/T09_02.png)
 
+- Agregamos una etiqueta div que tendra una clase css 'row' (viene de los estilos del bootstrap) indicándole que va a integrar todo lo que este contenido como una fila.
+- Dentro agregamos una etiqueta div a la cual le diremos que utilizará 4 columnas del esquema de 12 columnas que maneja Bootstrap con la clase 'col-md-4'.
+- Dentro agregaremos una etiqueta div que utilizará una clase panel en donde mostrará la estructura de panel que viene por defecto (default). asignándo los colores y los estilos correspondientes.
+- Dentro de esta última, agregaremos 2 etiquetas div, la primera tendrá una clase panel-heading (encabezado del panel), la segunda la clase panel-body (cuerpo del panel)
+- Dentro del div del encabezado del panel agregaremos una etiqueta h2 con la clase panel-title y agregaremos el texto correspondiente al titulo del panel.
+- Dentro de la etiqueta div del cuerpo del panel agregaremos una lista de tipo ul con la clase list-unstyled lo que le quitará los puntos asociados a la lista.
+- Dentro de la lista 'ul' se puede observar el elemento data-bind="foreach:movies" esto quiere decir que esta haciendo una lectura asociada con el knockoutjs trayendo la lista 'movies' (observableArray) y leyendo sus registros a través de un ciclo foreach.
+- Las etiquetas de lista 'li' muestran los detalles de cada dato que se lea, en donde agregamos etiquetas 'span' para mostrar el texto correspondiente al 'id', 'name' y 'year' dentro de la propiedad 'data-bind' mostrándolo como texto 'data-bind="text: id"'. Este llamado lo hace utilizando la fuinción getAllMovies que se ejecuta en nuestro 'movies.js'.
+- se agrega una etiqueta anchor 'a' que tiene como texto detalles a la que más adelante le daremos funcionalidad.
+- Al finalizar agregaremos las referencias a los archivos javascript que necesitaremos para que todo se ejecute, en orden debe ir jQuery, seguido de knockout y por último el archivo de script que creamos en la tarea 8.
 
+###### Al ejecutarlo con la tecla F5, si tenemos información dentro de la base de datos debería poderse ver el listado.
 
+![MVC](img/T09_04.png)
 
+Detenemos la ejecución y continuamos agregando un panel que contendrá el formulario que permitirá agregar nuevos registros a nuestra base de datos.
 
+![MVC](img/T09_03.png)
 
+- Agregamos un panel con etiquetas div similar al procedimiento anterior.
+- Metemos este nuevo panel dentro de la etiqueta row que será el contenedor principal.
+- Dentro de la etiqueta div del cuerpo del panel (clase panel-body) agregamos la etiqueta 'form' que contendrá nuestro formulario para guardar la información, le asignamos la clase 'form-horizontal' y le agregamos la propiedad data-bind asociada con la función addMovie cuando se envía el formulario 'data-bind="submit: addMovie"' 
+- Dentro de esta agregamos una etiqueta div con la clase 'form-group' y que estará asociando los elementos al objeto 'newMovie' de nuestro javascript 'data-bind="with: newMovie'.
+- Agregamos ahora los controles 'label' e 'input', a éstos últimos le asociamos el valor al que deberán estar asociados en la construcción de nuesto objeto newMovie. 'data-bind="value:id"', 'data-bind="value:name"', 'data-bind="value:description"', 'data-bind="value:genre"' y 'data-bind="value:year"'
+- Finalmente se agrega el botón de tipo 'submit' que enviará la información al javascript para que éste ejecute el procedimiento correspondiente 'button type="submit" class="btn btn-default'.
 
+###### Al ejecutarlo con la tecla F5, si tenemos información dentro de la base de datos debería poderse ver el listado.
 
+![MVC](img/T09_05.png)
 
+Agregamos datos al formulario, y estos deben aparecer en nuestro listado.
 
+![MVC](img/T09_06.png)
 
+Detenemos la ejecución y continuamos agregando un panel que contendrá el formulario que permitirá ver el detalle de la película seleccionada.
 
+![MVC](img/T09_07.png)
 
+- Primero modificamos el boton detalle que habíamos agregado en el listado de la película que deberá quedar de la siguiente manera:``` <small><a href="#" data-bind="click: $parent.getMovieDetail">Detalles</a></small>``` en donde ejecutará la fincion 'getMovieDetail' al hacer clic en el hipervínculo 'data-bind="click: $parent.getMovieDetail"'.
+- Se agregará una orden de knockoutjs ```<!-- ko if:detail() --><!-- /ko -->``` para que nos muestre el panel de detalles solo si hay información, esto evitará que nos arroje un error al ejecutar el llamado de detalles sin datos.
+- Dentro agregaremos el código para crear el panel correspondiente al detalle de la película que hemos seleccionado.
+- Metemos este nuevo codigo dentro de la etiqueta row que será el contenedor principal.
+- Agregamos una tabla que nos permitirá mostrar la información de manera organizada y que utiliza la clase 'table' del bootstrap. los data-bind que contienen la información se pueden asociar directamente en las etiquetas de celda 'td', estos data-bind estaran asociados con la ejecución del detalle 'detail()' trayendo los valores correspondientes del objeto que llamamos 'text: detail().name', 'text: detail().description', 'text: detail().year', 'text: detail().genre'.
 
+###### Al ejecutarlo con la tecla F5, inicialmente no se verá nada, pero al hacer clic sobre el vínculo detalle de cualquier película aparecerá el panel.
 
+![MVC](img/T09_08.png)
 
+######Ya tenemos nuestro proyecto funcionando, ahora podemos ver que ajustes podemos hacerle a nuestro diseño para que sea más agradable.
 
-
-
-
-
-
-
+###Tarea 10
+####Desde Cero sobre HTML Bootstrap para nuestra UI
 
 
