@@ -9,7 +9,7 @@ AL final tendremos una aplicación modular que te permita cargar los datos de ma
 Para esto es necesario contar con:
 - Visual Studio 2015 cualquiera de sus versiones, puedes descargar la versión gratuita [Visual Studio Community aquí](https://www.visualstudio.com/downloads/download-visual-studio-vs).
 - Una cuenta de Azure (Azure Pass)
-- Haber hecho el ejercicio para la creación de una [Base de datos en DocumentDB aquí](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md) o en este [otro link](http://DocumentDB_Miguel)
+- Haber hecho el ejercicio para la creación de una [Base de datos en DocumentDB aquí](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md) o en este [otro link](https://channel9.msdn.com/Series/Ninja-Tips/31-NinjaTips-Desarrollo-DocumentDB-1-Vistazo-general)
 
 ##Tareas
 - [Tarea 1 - MVC 5 WebApps.](#tarea-1)
@@ -21,8 +21,8 @@ Para esto es necesario contar con:
 - [Tarea 7 - Creando los Archivos de enrutado (condicional).] (#tarea-7)
 - [Tarea 8 - Knockoutjs conectándonos con el controller.] (#tarea-8)
 - [Tarea 9 - Mostrando datos en nuestra vista.] (#tarea-9)
-- [Tarea 10 - Desde Cero sobre HTML Bootstrap para nuestra UI.] (#tarea-10)
-- [Tarea 11 - Vínculos de interés.] (#tarea-11)
+- [Tarea 10 - Desde Cero un nuevo diseño Bootstrap para nuestra UI (Repaso general).] (#tarea-10)
+- [Vínculos - Vínculos de interés.] (#vinculos)
 
 ###Tarea 1
 ####MVC 5 WebApps
@@ -987,6 +987,102 @@ Detenemos la ejecución y continuamos agregando un panel que contendrá el formu
 ######Ya tenemos nuestro proyecto funcionando, ahora podemos ver que ajustes podemos hacerle a nuestro diseño para que sea más agradable.
 
 ###Tarea 10
-####Desde Cero sobre HTML Bootstrap para nuestra UI
+####Desde Cero un nuevo diseño Bootstrap para nuestra UI (Repaso general)
+
+Como punto final vamos a crear un espacio completamente independiente, una página HTML que traerá la información y que tendrá un diseño diferente al anterior, con una ventana Modal que mostrará los detalles de las películas.
+
+- Crearemos una nueva vista, para esto abriremos nuestro HomeController y le agregaremos el siguiente código:
+```
+	public ActionResult MiVista()
+    {
+        return View();
+    }
+``` 
+
+- Repitiendo el proceso de la tarea 6 agregaremos una nueva vista asociada al método mi vista que acabamos de crear: clic derecho del mouse sobre el método MiVista y clic sobre la opción Add View (Agregar Vista), dejamos lo seleccionado por defecto, asegurándonos que el Template sea Empty (without model) o vacio sin modelo.
+- Al quedar creada nuestra nueva vista se verá reflejada en la carpeta Home:
+
+![MVC](img/T10_01.png)
+
+- Agregamos nuestro código para listar la información.
+
+![MVC](img/T10_02.png)
+
+Acá debemos tener en cuenta los siguientes aspectos:
+
+- No estamos utilizando listas de tipo 'ul' sino un div contenedor que utiliza la clase de bootstrap 'list-group info'.
+- La etiqueta anchor 'a' va a contener toda la información, tiene la clase 'list-group-item' y tiene dos atributos especiales 'data-toggle="modal"' y 'data target="#detalle"' que nos indican que va a abrir una etiqueta modal cuyo control contenedor tiene el 'id="detalle"'.
+- Agregamos un glifo que va a mostrarnos una imagen al lado izquierdo de cada elemento '<span class="glyphicon glyphicon-film"></span>'.
+
+Ahora agregamos nuestro panel que contendrá el formulario para guardar nuevos datos.
+
+![MVC](img/T10_03.png)
+
+- Este no tiene mayores variaciones en comparación con el ejercicio de la tarea 9 a escepcion de la clase en el div contenedor 'class="col-lg-4 col-md-4 col-sm-4"' esto es para que pueda distribuirse en los diferentes anchos de pantalla utilizando responsive design.
+- Dentro de este agregamos el mensaje de error que deberá aparecer en el caso que exista algun error.
+
+Agregamos nuestras etiquetas para obtener una ventana modal para mostrar el detalle:
+
+![MVC](img/T10_04.png)
+
+- Este div contenedor deberá tener las siguientes propiedades: 'id=detalle' para que pueda ser llamado desde el clic sobre el elemento de la lista y la clase 'modal fade embed-responsive-item' lo que le dará un comportamiento modal con un fade que oscurecerá el resto de la página.
+- Lo otro a tener encuenta es que el header del modal tendrá un botón que mostrará una 'x' y que esta asociado con el cerrar el modal. ```<button class="close" aria-hidden="True" data-dismiss="modal">&times;</button> ```
+- El modal header también mostrará el título de la película con un titulo de tipo 'h3' ```<h3 class="modal-title" data-bind="text: detail().name"></h3>```
+- En el 'footer' del modal agregamos un boton que permitirá cerrar la ventana, al igual que el elemento que colocamos en la parte superior derecha de la ventana modal.
+
+Para finalizar, agregamos los llamados a los javascript necesarios para que se ejecuten las acciones.
+
+```
+<script src="~/Scripts/jquery-2.2.0.min.js"></script>
+<script src="~/Scripts/knockout-3.4.0.js"></script>
+<script src="~/Scripts/movie/movies.js"></script>
+```
+
+Lo que hemos construido deberá verse similar a:
+
+[MVC](img/T10_05.png)
+
+Al hacer clic sobre alguno de los elementos de la lista aparecerá nuestra ventana modal con los detalles de la misma.
+
+[MVC](img/T10_06.png)
+
+######La siguiente imagen muestra el código completo:
+
+[MVC](img/T10_07.png)
+
+###Vínculos
+####Vínculos de interés
+
+Para compementar aquí les dejo vario vínculos que pueden ayudarles a profundizar en los temas aquí tratados:
+
+- [Sitio de knockoutjs](http://knockoutjs.com/)
+- [Tutoriales practicos de knockoutjs](http://learn.knockoutjs.com/)
+- [Angularjs otra librería similar a knockout](http://learn.knockoutjs.com/)
+- [Sitio de Bootstrap](http://getbootstrap.com/)
+- [Iniciando con bootstrap](http://getbootstrap.com/getting-started/)
+- [ASP.Net MVC](http://www.asp.net/mvc)
+- [Microsoft Virtual Academy Cursos de MVC](https://mva.microsoft.com/search/SearchResults.aspx?q=MVC#!q=MVC&lang=1033)
+- [Document DB GuitHub Previo](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md)
+- [Curso de DocumentDB](https://channel9.msdn.com/Series/Ninja-Tips/31-NinjaTips-Desarrollo-DocumentDB-1-Vistazo-general)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
