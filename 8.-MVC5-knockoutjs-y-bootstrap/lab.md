@@ -122,13 +122,315 @@ Con el procedimiento anterior, ya estamos preparados para construir nuestra apli
 
 Nos basaremos en el ejercicio realizado con [DocumentDB anterior](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md) del cual tomaremos el código y lo integrarémos a nuestra aplicación.
 
+- Lo que haremos es crear la clase <strong>Movie</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
+
+![MVC](img/T04_01.png)
+
+- A esta clase deberá quedar de la siguiente manera:
+```
+using System;
+using Newtonsoft.Json;
+
+namespace MVC_HOL.Models
+{
+    public class Movie
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        [JsonProperty(PropertyName = "year")]
+        public int Year { get; set; }
+
+        [JsonProperty(PropertyName = "genre")]
+        public string Genre { get; set; }
+    }
+}
+```
+
+- El valor ```[JsonProperty(PropertyName = "id")]``` viene de Newtonsoft.Json y es el valor que le daremos al nombre de ese campo dentro del formato Json que se construirá de nuestro modelo. 
+
+- Ahora crearemos la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
+
+![MVC](img/T04_01.png)
+
+- Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>Movie</strong> y hacemos clic en Add (Agregar)
+
+![MVC](img/T04_04.png)
+
 - Lo que haremos es crear la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
 
 ![MVC](img/T04_01.png)
 
-- Trabajaremos con 'C#'
+- Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>MovieRepository</strong> y hacemos clic en Add (Agregar)
 
+![MVC](img/T04_02.png)!
 
+- Al final nuestra carpeta Models deberá quedar con estos dos archivos:
+
+![MVC](img/T04_05.png)
+
+- A nuestra clase MovieRepository le agregamos la referencia <strong>using System.Collections.Generic;</strong>, <strong>using System.Linq;</strong>, <strong>using System.Threading.Tasks;</strong> para trabajar un método asíncrono, <strong>using Microsoft.Azure.Documents;</strong>, <strong>using Microsoft.Azure.Documents.Client;</strong>, <strong>using Microsoft.Azure.Documents.Linq;</strong> para poder llamar a las clases correspondientes de conexión a DocumentDB.
+
+- Luego le agregaremos las variables de conexión, así como el llamado al cliente correspondiente, el código debe quedar de la siguiente manera:
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents.Linq;
+
+namespace MVC_HOL.Models
+{
+    public class MovieRepository
+    {
+        private const string EndpointUrl = "https://suendpoint.documents.azure.com:443/";//la direccion del endpoint de su conexión
+        private const string AuthorizationKey = "Su_AuthorizationKey==";
+        private const string CollectionId = "movies";
+        private const string DatabaseId = "azurecampdb";
+
+        private static DocumentClient client;
+
+        private static DocumentClient Client
+        {
+            get
+            {
+                if (client == null)
+                    client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
+
+                return client;
+            }
+        }
+		
+		//código para database
+		...
+		
+		
+		//codigo para collection
+		...
+    }
+}
+```
+
+- En este punto empezaremos a construir la conexión con el acceso a datos agregando el código que nos permitirá conectarnos con el repositorio de datos:
+```
+	private static Database database;
+    private static Database Database
+    {
+        get
+        {
+            if (database == null)
+                database = GetOrCreateDatabase(DatabaseId);
+
+            return database;
+        }
+    }
+```
+- Ahora nos conectámos con la colección dentro de la base de datos:
+```
+	private static DocumentCollection collection;
+    private static DocumentCollection Collection
+    {
+        get
+        {
+            if (collection == null)
+            {
+                collection = GetOrCreateCollection(Database.SelfLink, CollectionId);
+            }
+
+            return collection;
+        }
+    }
+
+```
+- Agregamos los métodos que comprueban si existe la base de datos, si no existe la crea, así mimso el método que crea o verifica si existe la colección.
+```
+	public static Database GetOrCreateDatabase(string databaseId)
+    {
+        var db = Client.CreateDatabaseQuery()
+                        .Where(d => d.Id == databaseId)
+                        .AsEnumerable()
+                        .FirstOrDefault();
+
+        if (db == null)
+            db = client.CreateDatabaseAsync(new Database { Id = databaseId }).Result;
+
+        return db;
+    }
+
+	public static DocumentCollection GetOrCreateCollection(string databaseLink, string collectionId)
+    {
+        var col = Client.CreateDocumentCollectionQuery(databaseLink)
+                          .Where(c => c.Id == collectionId)
+                          .AsEnumerable()
+                          .FirstOrDefault();
+
+        if (col == null)
+        {
+            col = client.CreateDocumentCollectionAsync(databaseLink,
+                new DocumentCollection { Id = collectionId },
+                new RequestOptions { OfferType = "S1" }).Result;
+        }
+
+        return col;
+    }
+```
+- Ahora agregaremos el método que trae todos los datos asociados con nuestra clase Movie 
+```
+	public static IEnumerable<Movie> GetAllMovies()
+    {
+        var movies = Client.CreateDocumentQuery<Movie>(Collection.SelfLink).AsEnumerable();
+        return movies;
+    }
+```
+- Continuamos con el método que nos trae un único dato de la base de datos utilizando el Id del objeto que llamamos:
+```
+	public static Movie GetMovieById(string id)
+    {
+        var movie = Client.CreateDocumentQuery<Movie>(Collection.SelfLink)
+            .Where(d => d.Id == id)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+        return movie;
+    }
+```
+- Por último le agregamos el método que permitirá agregar un nuevo registro a la base de datos:
+```
+	public static async Task<Movie> CreateMovie(Movie entity)
+    {
+        Document doc = await Client.CreateDocumentAsync(Collection.SelfLink, entity);
+        Movie movie = (Movie)(dynamic)doc;
+
+        return movie;
+    }
+```
+#####El código completo de la clase MovieRepository.cs quedaría de la siguiente manera:
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents.Linq;
+
+namespace MVC_HOL.Models
+{
+    public class MovieRepository
+    {
+        private const string EndpointUrl = "https://suendpoint.documents.azure.com:443/";//la direccion del endpoint de su conexión
+        private const string AuthorizationKey = "Su_AuthorizationKey==";
+        private const string CollectionId = "movies";
+        private const string DatabaseId = "azurecampdb";
+
+        private static DocumentClient client;
+
+        private static DocumentClient Client
+        {
+            get
+            {
+                if (client == null)
+                    client = new DocumentClient(new Uri(EndpointUrl), AuthorizationKey);
+
+                return client;
+            }
+        }
+
+        private static Database database;
+        private static Database Database
+        {
+            get
+            {
+                if (database == null)
+                    database = GetOrCreateDatabase(DatabaseId);
+
+                return database;
+            }
+        }
+
+        public static Database GetOrCreateDatabase(string databaseId)
+        {
+            var db = Client.CreateDatabaseQuery()
+                            .Where(d => d.Id == databaseId)
+                            .AsEnumerable()
+                            .FirstOrDefault();
+
+            if (db == null)
+                db = client.CreateDatabaseAsync(new Database { Id = databaseId }).Result;
+
+            return db;
+        }
+
+        private static DocumentCollection collection;
+        private static DocumentCollection Collection
+        {
+            get
+            {
+                if (collection == null)
+                {
+                    collection = GetOrCreateCollection(Database.SelfLink, CollectionId);
+                }
+
+                return collection;
+            }
+        }
+
+        public static DocumentCollection GetOrCreateCollection(string databaseLink, string collectionId)
+        {
+            var col = Client.CreateDocumentCollectionQuery(databaseLink)
+                              .Where(c => c.Id == collectionId)
+                              .AsEnumerable()
+                              .FirstOrDefault();
+
+            if (col == null)
+            {
+                col = client.CreateDocumentCollectionAsync(databaseLink,
+                    new DocumentCollection { Id = collectionId },
+                    new RequestOptions { OfferType = "S1" }).Result;
+            }
+
+            return col;
+        }
+
+        public static IEnumerable<Movie> GetAllMovies()
+        {
+            var movies = Client.CreateDocumentQuery<Movie>(Collection.SelfLink).AsEnumerable();
+            return movies;
+        }
+
+        public static Movie GetMovieById(string id)
+        {
+            var movie = Client.CreateDocumentQuery<Movie>(Collection.SelfLink)
+                .Where(d => d.Id == id)
+                .AsEnumerable()
+                .FirstOrDefault();
+
+            return movie;
+        }
+
+        public static async Task<Movie> CreateMovie(Movie entity)
+        {
+            Document doc = await Client.CreateDocumentAsync(Collection.SelfLink, entity);
+            Movie movie = (Movie)(dynamic)doc;
+
+            return movie;
+        }
+    }
+}
+```
+
+#####Recordemos que es necesario reemplazar la información de las variables EndpointUrl y AuthorizationKey por los valores que obtenemos de nuestra cuenta de Azure DocumentDB
+
+###Tarea 5
+####Nuestro Controller (Controlador)
 
 
 
