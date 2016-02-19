@@ -175,7 +175,7 @@ namespace MVC_HOL.Models
 
 ![MVC](img/T04_05.png)
 
-- A nuestra clase MovieRepository le agregamos la referencia <strong>using System.Collections.Generic;</strong>, <strong>using System.Linq;</strong>, <strong>using System.Threading.Tasks;</strong> para trabajar un método asíncrono, <strong>using Microsoft.Azure.Documents;</strong>, <strong>using Microsoft.Azure.Documents.Client;</strong>, <strong>using Microsoft.Azure.Documents.Linq;</strong> para poder llamar a las clases correspondientes de conexión a DocumentDB.
+- A nuestra clase MovieRepository le agregamos la referencia <strong>using System.Collections.Generic</strong>, <strong>using System.Linq</strong>, <strong>using System.Threading.Tasks</strong> para trabajar un método asíncrono, <strong>using Microsoft.Azure.Documents</strong>, <strong>using Microsoft.Azure.Documents.Client</strong>, <strong>using Microsoft.Azure.Documents.Linq</strong> estás últimas para poder llamar a las clases correspondientes de conexión a DocumentDB.
 
 - Luego le agregaremos las variables de conexión, así como el llamado al cliente correspondiente, el código debe quedar de la siguiente manera:
 ```
