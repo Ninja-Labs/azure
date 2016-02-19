@@ -611,7 +611,7 @@ En el caso de este ejemplo que ya hay registros preguardados en la base de datos
 
 #####Si no existen estas clases, es necesario crearlas
 
-###TTarea 7
+###Tarea 7
 #### Creando los Archivos de enrutado (condicional)
 
 Como se mencionó en la tarea anterior, si no existen las clases RouteConfig.cs y/o WebApiConfig.cs dentro de la carpeta App_Start, es necesario crearlos, si existen estas clases podemos pasar a la tarea 8 si lo desean.
