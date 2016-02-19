@@ -40,46 +40,46 @@ Se puede encontrar más información y profundizar en el tema en diferentes siti
 ####Crear una aplicación web ASP.Net MVC
 Para nuestro laboratorio utilizaremos Visual Studio 2015 (VS) y utilizando el framework 4.6
 
-- Abrimos Visual Studio y seleccionamos la opción Crear Nuevo Proyecto y seleccionamos la opcion Web para ver las plantillas correspondientes, seleccionamos ASP.NET Web Applicacion (aplicaciones web de Asp.Net).
+1. Abrimos Visual Studio y seleccionamos la opción Crear Nuevo Proyecto y seleccionamos la opcion Web para ver las plantillas correspondientes, seleccionamos ASP.NET Web Applicacion (aplicaciones web de Asp.Net).
 
 ![MVC](img/T01_01.png)
 
-- En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web API (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
+2. En la ventana que se abre seleccionamos la opción Empty (vacia) y dejamos sin seleccional la casilla Host in the cloud (Host en la nube). También seleccionaremos los folders y librerías que necesitamos para iniciar, en este caso MVC y Web API (como se ve en la grafica de abajo) que requeriremos para nuestro trabajo y hacemos clic en OK.
 
 ![MVC](img/T01_02.png)
 
-- Se abrirá nuestro ambiente de desarrollo en el que veremos las carpetas y archivos que cargó la plantilla por defecto, debería verse así:
+3. Se abrirá nuestro ambiente de desarrollo en el que veremos las carpetas y archivos que cargó la plantilla por defecto, debería verse así:
 
 ![MVC](img/T01_03.png)
 
 ###Tarea 3
 ####Instalando las Librerías requeridas para nuestro ejemplo
-Para nuestro proyecto requerimos instalar o actualizar las libresrías que necesitaremos y son:
--- DocumentDB
--- NewtonSoft
--- jQuery
--- Knockoutjs
--- Bootstrap
+1. Para nuestro proyecto requerimos instalar o actualizar las libresrías que necesitaremos y son:
+- DocumentDB
+- NewtonSoft
+- jQuery
+- Knockoutjs
+- Bootstrap
 
-- Aunque hay diferentes formas de cargar las librerías que requerimos, en este proyecto vacio vamos a cargarlas utilizando NuGet Packages (Paquetes NuGet), para esto hacemos clic derecho sobre <strong>References</strong> y hacemos clic sobre la opción Manage Nuget Packages.
+2. Aunque hay diferentes formas de cargar las librerías que requerimos, en este proyecto vacio vamos a cargarlas utilizando NuGet Packages (Paquetes NuGet), para esto hacemos clic derecho sobre <strong>References</strong> y hacemos clic sobre la opción Manage Nuget Packages.
 
 ![MVC](img/T03_01.png)
 
-- Para las ultimas versiones de VS se abrirá la ventana que permitirá seleccionar si lo que queremos es buscar (Browse), ver los paquetes instalados (Installed), o que paquetes pueden ser actualizados (Updates). Seleccionaremos la opción Browse.
+3. Para las ultimas versiones de VS se abrirá la ventana que permitirá seleccionar si lo que queremos es buscar (Browse), ver los paquetes instalados (Installed), o que paquetes pueden ser actualizados (Updates). Seleccionaremos la opción Browse.
 
 ![MVC](img/T03_02.png)
 
-- En la caja de texto de búsqueda escribiremos DocumentDB para buscar la librería correspondiente, escribiremos Microsoft.Azure.DocumentDB y al resultado seleccionaremos la opción Microsoft.Azure.DocumentDB y dejaremos la ultima versión estable que aparezca en el listado de la derecha.
+4. En la caja de texto de búsqueda escribiremos DocumentDB para buscar la librería correspondiente, escribiremos Microsoft.Azure.DocumentDB y al resultado seleccionaremos la opción Microsoft.Azure.DocumentDB y dejaremos la ultima versión estable que aparezca en el listado de la derecha.
 
 ![MVC](img/T03_03.png)
 
-- Hacemos clic en Install (Instalar) y los aceptamos (clic en OK y Aceptar) en las ventanas emergentes que aparezcan.
+5. Hacemos clic en Install (Instalar) y los aceptamos (clic en OK y Aceptar) en las ventanas emergentes que aparezcan.
 
 Al revisar en las referencias podemos ver que ha quedado instalada la referencia de Azure Document Client.
 
 ![MVC](img/T03_04.png)
 
-- Ahora realizaremos el mismo procedimiento para instalar los paquetes correspondientes de Newtonsoft, esto nos permitirá trabajar con formatos json dentro de nuestro sistema, requerido para comunicarnos con DocumentDB. 
+6. Ahora realizaremos el mismo procedimiento para instalar los paquetes correspondientes de Newtonsoft, esto nos permitirá trabajar con formatos json dentro de nuestro sistema, requerido para comunicarnos con DocumentDB. 
 
 Es necesario aclarar que Newtonsoft ya esta instalado dentro de la aplicación, sin embargo el procedimiento nos permitirá descargar la última versión estable del paquete. Hacemos clic sobre la opción update (Actualizar).
 
@@ -87,29 +87,29 @@ Es necesario aclarar que Newtonsoft ya esta instalado dentro de la aplicación, 
 
 Si aparecen ventanas emergentes hacemos clic en OK o aceptar.
 
-- Ahora instalaremos jQuery realizando el mismo procedimiento que hemos realizado hasta ahora escribiendo jQuery en el cuadro de texto de búsqueda del NuGet package.
+7. Ahora instalaremos jQuery realizando el mismo procedimiento que hemos realizado hasta ahora escribiendo jQuery en el cuadro de texto de búsqueda del NuGet package.
 
 Hacemos clic sobre Install (instalar), si aparecen ventanas emergentes hacemos clic en OK o aceptar.
 
 ![MVC](img/T03_06.png)
 
-- Debe aparecer una nueva carpeta Scripts con los archivos javascript corresponsdientes a jquery dentro de la nueva carpeta.
+8. Debe aparecer una nueva carpeta Scripts con los archivos javascript corresponsdientes a jquery dentro de la nueva carpeta.
 
 ![MVC](img/T03_07.png)
 
-- El siguiente paso es instalar knockoutjs, para esto realizaremos el procesimiento de buscarlo en el NuGet packages e instalamos de la misma forma que hemos instalado los paquetes anteriores.
+9. El siguiente paso es instalar knockoutjs, para esto realizaremos el procesimiento de buscarlo en el NuGet packages e instalamos de la misma forma que hemos instalado los paquetes anteriores.
 
 ![MVC](img/T03_08.png)
 
-- Aparecen los archivos correspondientes dentro de la carpeta Scripts de nuestro proyecto.
+10. Aparecen los archivos correspondientes dentro de la carpeta Scripts de nuestro proyecto.
 
 ![MVC](img/T03_09.png)
 
-- Ahora finalizaremos instalando el paquete de Bootstrap que utilizaremos en las tareas finales de nuestro laboratorio, el procedimiento es el mismo que con los elementos anteriores dentro del manejador de paquetes NuGet.
+11. Ahora finalizaremos instalando el paquete de Bootstrap que utilizaremos en las tareas finales de nuestro laboratorio, el procedimiento es el mismo que con los elementos anteriores dentro del manejador de paquetes NuGet.
 
 ![MVC](img/T03_10.png)
 
-- Acá el resultado es especial ya que tendremos una carpeta Content que tendrá los estilos asociados con Bootstrap, una carpeta Fonts que trae unas fuentes especiales que nos permitiran implementar grifos o imágenes como si fueran fuentes de tezto y también tenemos los archivos javascript asociados a Bootstrap para poder implementar funcionalidades de diseño.
+12. Acá el resultado es especial ya que tendremos una carpeta Content que tendrá los estilos asociados con Bootstrap, una carpeta Fonts que trae unas fuentes especiales que nos permitiran implementar grifos o imágenes como si fueran fuentes de tezto y también tenemos los archivos javascript asociados a Bootstrap para poder implementar funcionalidades de diseño.
 
 ![MVC](img/T03_11.png)
 
@@ -120,11 +120,11 @@ Con el procedimiento anterior, ya estamos preparados para construir nuestra apli
 
 Nos basaremos en el ejercicio realizado con [DocumentDB anterior](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md) del cual tomaremos el código y lo integrarémos a nuestra aplicación.
 
-- Lo que haremos es crear la clase <strong>Movie</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
+1. Lo que haremos es crear la clase <strong>Movie</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
 
 ![MVC](img/T04_01.png)
 
-- A esta clase deberá quedar de la siguiente manera:
+2. A esta clase deberá quedar de la siguiente manera:
 ```
 using System;
 using Newtonsoft.Json;
@@ -151,31 +151,31 @@ namespace MVC_HOL.Models
 }
 ```
 
-- El valor ```[JsonProperty(PropertyName = "id")]``` viene de Newtonsoft.Json y es el valor que le daremos al nombre de ese campo dentro del formato Json que se construirá de nuestro modelo. 
+3. El valor ```[JsonProperty(PropertyName = "id")]``` viene de Newtonsoft.Json y es el valor que le daremos al nombre de ese campo dentro del formato Json que se construirá de nuestro modelo. 
 
-- Ahora crearemos la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
+4. Ahora crearemos la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
 
 ![MVC](img/T04_01.png)
 
-- Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>Movie</strong> y hacemos clic en Add (Agregar)
+5. Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>Movie</strong> y hacemos clic en Add (Agregar)
 
 ![MVC](img/T04_04.png)
 
-- Lo que haremos es crear la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
+6. Lo que haremos es crear la clase <strong>MovieRepository</strong> dentro de nuestra carpeta Models, haciendo clic derecho sobre la carpeta y seleccionando la opción Add->New Item... (Agregar->Nuevo elemento)
 
 ![MVC](img/T04_01.png)
 
-- Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>MovieRepository</strong> y hacemos clic en Add (Agregar)
+7. Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>MovieRepository</strong> y hacemos clic en Add (Agregar)
 
 ![MVC](img/T04_02.png)
 
-- Al final nuestra carpeta Models deberá quedar con estos dos archivos:
+8. Al final nuestra carpeta Models deberá quedar con estos dos archivos:
 
 ![MVC](img/T04_05.png)
 
-- A nuestra clase MovieRepository le agregamos la referencia <strong>using System.Collections.Generic</strong>, <strong>using System.Linq</strong>, <strong>using System.Threading.Tasks</strong> para trabajar un método asíncrono, <strong>using Microsoft.Azure.Documents</strong>, <strong>using Microsoft.Azure.Documents.Client</strong>, <strong>using Microsoft.Azure.Documents.Linq</strong> estás últimas para poder llamar a las clases correspondientes de conexión a DocumentDB.
+9. A nuestra clase MovieRepository le agregamos la referencia <strong>using System.Collections.Generic</strong>, <strong>using System.Linq</strong>, <strong>using System.Threading.Tasks</strong> para trabajar un método asíncrono, <strong>using Microsoft.Azure.Documents</strong>, <strong>using Microsoft.Azure.Documents.Client</strong>, <strong>using Microsoft.Azure.Documents.Linq</strong> estás últimas para poder llamar a las clases correspondientes de conexión a DocumentDB.
 
-- Luego le agregaremos las variables de conexión, así como el llamado al cliente correspondiente, el código debe quedar de la siguiente manera:
+10. Luego le agregaremos las variables de conexión, así como el llamado al cliente correspondiente, el código debe quedar de la siguiente manera:
 ```
 using System;
 using System.Collections.Generic;
@@ -217,7 +217,7 @@ namespace MVC_HOL.Models
 }
 ```
 
-- En este punto empezaremos a construir la conexión con el acceso a datos agregando el código que nos permitirá conectarnos con el repositorio de datos:
+11. En este punto empezaremos a construir la conexión con el acceso a datos agregando el código que nos permitirá conectarnos con el repositorio de datos:
 ```
 	private static Database database;
     private static Database Database
@@ -231,7 +231,7 @@ namespace MVC_HOL.Models
         }
     }
 ```
-- Ahora nos conectámos con la colección dentro de la base de datos:
+12. Ahora nos conectámos con la colección dentro de la base de datos:
 ```
 	private static DocumentCollection collection;
     private static DocumentCollection Collection
@@ -248,7 +248,7 @@ namespace MVC_HOL.Models
     }
 
 ```
-- Agregamos los métodos que comprueban si existe la base de datos, si no existe la crea, así mimso el método que crea o verifica si existe la colección.
+13. Agregamos los métodos que comprueban si existe la base de datos, si no existe la crea, así mimso el método que crea o verifica si existe la colección.
 ```
 	public static Database GetOrCreateDatabase(string databaseId)
     {
@@ -280,7 +280,7 @@ namespace MVC_HOL.Models
         return col;
     }
 ```
-- Ahora agregaremos el método que trae todos los datos asociados con nuestra clase Movie 
+14. Ahora agregaremos el método que trae todos los datos asociados con nuestra clase Movie 
 ```
 	public static IEnumerable<Movie> GetAllMovies()
     {
@@ -288,7 +288,7 @@ namespace MVC_HOL.Models
         return movies;
     }
 ```
-- Continuamos con el método que nos trae un único dato de la base de datos utilizando el Id del objeto que llamamos:
+15. Continuamos con el método que nos trae un único dato de la base de datos utilizando el Id del objeto que llamamos:
 ```
 	public static Movie GetMovieById(string id)
     {
@@ -300,7 +300,7 @@ namespace MVC_HOL.Models
         return movie;
     }
 ```
-- Por último le agregamos el método que permitirá agregar un nuevo registro a la base de datos:
+16. Por último le agregamos el método que permitirá agregar un nuevo registro a la base de datos:
 ```
 	public static async Task<Movie> CreateMovie(Movie entity)
     {
@@ -434,25 +434,25 @@ namespace MVC_HOL.Models
 
 #####Tarea 5.1 Web API Controller
 
-- Vamos a crear nuestra clase Controladora haciendo clic derecho sobre la carpeta Controllers->Add->Controller (Agregar Controller)
+1. Vamos a crear nuestra clase Controladora haciendo clic derecho sobre la carpeta Controllers->Add->Controller (Agregar Controller)
 
 ![MVC](img/T05_01.png)
 
-- En este punto podemos crear un controlador, ya sea para manejo del codigo o un tipo de servicio Web API, para este ejercicio seleccionaremos la opción de Web API Controller Empty (Vacio):
+2. En este punto podemos crear un controlador, ya sea para manejo del codigo o un tipo de servicio Web API, para este ejercicio seleccionaremos la opción de Web API Controller Empty (Vacio):
 
 ![MVC](img/T05_02.png)
 
-- Lo llamaremos MoviesController
+3. Lo llamaremos MoviesController
 
 ![MVC](img/T05_03.png)
 
-- Nuestra carpeta Controllers se verá con la clase que acabamos de crear.
+4. Nuestra carpeta Controllers se verá con la clase que acabamos de crear.
 
 ![MVC](img/T05_04.png)
 
-- Con esto ya tenemos la base para empezar a construir un esquema que se conecte con la base de datos y con Knockoutjs podemos trabajar la interface de usuario.
+Con esto ya tenemos la base para empezar a construir un esquema que se conecte con la base de datos y con Knockoutjs podemos trabajar la interface de usuario.
 
-- Ahora agregaremos el código necesario a nuestro controlador iniciando con el siguiente código de base:
+5. Ahora agregaremos el código necesario a nuestro controlador iniciando con el siguiente código de base:
 ```
 using System;
 using System.Collections.Generic;
@@ -542,27 +542,27 @@ namespace MVC_HOL.Controllers
 ```
 
 #####Tarea 5.2 HomeController
-- Vamos a crear un controlador para asociarlo con una vista haciendo clic derecho sobre la carpeta Controllers->Add->Controller (Agregar Controller)
+1. Vamos a crear un controlador para asociarlo con una vista haciendo clic derecho sobre la carpeta Controllers->Add->Controller (Agregar Controller)
 
 ![MVC](img/T05_01.png)
 
-- Para crear este controlador seleccionaremos la primera opción que es crear un controlador vacio (Controller Empty):
+2. Para crear este controlador seleccionaremos la primera opción que es crear un controlador vacio (Controller Empty):
 
 ![MVC](img/T05_05.png)
 
-- Lo llamaremos HomeController.
+3. Lo llamaremos HomeController.
 
 ![MVC](img/T05_06.png)
 
-- Nuestra carpeta Controllers ahora se verá de esta manera:
+4. Nuestra carpeta Controllers ahora se verá de esta manera:
 
 ![MVC](img/T05_07.png)
 
-- El resultado es una clase cuyo código debera verse de la siguiente manera:
+5. El resultado es una clase cuyo código debera verse de la siguiente manera:
 
 ![MVC](img/T05_08.png)
 
-- Si observamos nuestra carpeta Views en el explorador de la solución podemos ver que se ha agregado la carpeta Home que estará asociada con el controlador HomeController.
+6. Si observamos nuestra carpeta Views en el explorador de la solución podemos ver que se ha agregado la carpeta Home que estará asociada con el controlador HomeController.
 
 ![MVC](img/T06_01.png)
 
@@ -571,15 +571,15 @@ namespace MVC_HOL.Controllers
 ###Tarea 6
 ####Nuestra View (Vista)
 
-- Teniendo abierta la clase HomeController (Tarea 5.2), hacemos clic derecho sobre el método Index y seleccionamos la opción Add View (Agregar Vista)
+1. Teniendo abierta la clase HomeController (Tarea 5.2), hacemos clic derecho sobre el método Index y seleccionamos la opción Add View (Agregar Vista)
 
 ![MVC](img/T06_02.png)
 
-- En la ventana que se abre debemos dejar el nombre Index, así como seleccionada la opción Empty (without model) ya que no vamos a traer los datos de ningún modelo específico sino que esto lo haremos más adelante a través de javascript.
+2. En la ventana que se abre debemos dejar el nombre Index, así como seleccionada la opción Empty (without model) ya que no vamos a traer los datos de ningún modelo específico sino que esto lo haremos más adelante a través de javascript.
 
 ![MVC](img/T06_03.png)
 
-Al hacer clic sobre Add (Agregar) ocurren varias cosas con nuestro proyecto, entre otras:
+3. Al hacer clic sobre Add (Agregar) ocurren varias cosas con nuestro proyecto, entre otras:
 
 - Se genera un archivo de tipo Razor en la carpeta Home dentro de Views llamado Index.cshtml
 - Se genera un archivo de tipo Razor en la carpeta Shared dentro de Views llamado _Layour.cshtml que será la página maestra base del proyecto.
@@ -589,22 +589,22 @@ Al hacer clic sobre Add (Agregar) ocurren varias cosas con nuestro proyecto, ent
 
 ![MVC](img/T06_04.png)
 
-- Presionamos la tecla F5 para que se abra el proyecto en el explorador web, lo que nos mostrará la página Index con diseño predefinido, este diseño viene del archivo _Layout.cshtml
+4. Presionamos la tecla F5 para que se abra el proyecto en el explorador web, lo que nos mostrará la página Index con diseño predefinido, este diseño viene del archivo _Layout.cshtml
 
 ![MVC](img/T06_05.png)
 
-- Toma por defecto la página Index de Home por que esta predefinida dentro del clase de configuración RouteConfig.cs que esta dentro de la carpeta App_Start, al igual que la ruta del ApiController esta en la clase WebApiConfig.cs dentro de la misma carpeta.
+5. Toma por defecto la página Index de Home por que esta predefinida dentro del clase de configuración RouteConfig.cs que esta dentro de la carpeta App_Start, al igual que la ruta del ApiController esta en la clase WebApiConfig.cs dentro de la misma carpeta.
 
 ![MVC](img/T06_06.png)
 
 ######Si existen estas clases, podemos realizar lo siguiente:
 
-- Si hemos cerrado el navegador volvamos a abrirlo presionando la tecla F5, en la barra de direcciones agregemos API/Movies lo que nos mostrará la información que trae de la base de datos por defecto es la lista de todos los registros en formato Json, si no hay registros debe mostrar una página con un par de corchetes cuadrados.
+6. Si hemos cerrado el navegador volvamos a abrirlo presionando la tecla F5, en la barra de direcciones agregemos API/Movies lo que nos mostrará la información que trae de la base de datos por defecto es la lista de todos los registros en formato Json, si no hay registros debe mostrar una página con un par de corchetes cuadrados.
 En el caso de este ejemplo que ya hay registros preguardados en la base de datos muestra lo siguiente:
 
 ![MVC](img/T06_07.png)
 
-- Cerremos el navegador y si es necesario detengamos la ejecución de la aplicación haciendo clic en el boton detener de Visual Studio.
+7. Cerremos el navegador y si es necesario detengamos la ejecución de la aplicación haciendo clic en el boton detener de Visual Studio.
 
 ![MVC](img/T06_08.png)
 
@@ -615,13 +615,13 @@ En el caso de este ejemplo que ya hay registros preguardados en la base de datos
 
 Como se mencionó en la tarea anterior, si no existen las clases RouteConfig.cs y/o WebApiConfig.cs dentro de la carpeta App_Start, es necesario crearlos, si existen estas clases podemos pasar a la tarea 8 si lo desean.
 
-- Lo primero que haremos en esta tarea es crear la clase RouteConfig.cs dentro de la carpeta App_Start de la misma manera en que se crearon las clases dentro de la carpeta Models, haciendo clic derecho sobre  la carpeta App_Start, seleccionando la opción Add->New Item y escogiendo la opción Code de la ventana que se abre y la plantilla Class.
+1. Lo primero que haremos en esta tarea es crear la clase RouteConfig.cs dentro de la carpeta App_Start de la misma manera en que se crearon las clases dentro de la carpeta Models, haciendo clic derecho sobre  la carpeta App_Start, seleccionando la opción Add->New Item y escogiendo la opción Code de la ventana que se abre y la plantilla Class.
 
-![MVC](img/T07_01.png)
+1.1 ![MVC](img/T07_01.png)
 
-![MVC](img/T07_02.png)
+1.2 ![MVC](img/T07_02.png)
 
-- La clase RouteConfig debe quedar de la siguiente manera, en donde contendrá el mapeado de las rutas que trabajará internamente "{controller}/{action}/{id} (parámetro opcional)" y por defecto tendrá la siguiente ruta controller = "Home", action = "Index", id = UrlParameter.Optional, por esa razón toma al Index del Home por defecto.
+2. La clase RouteConfig debe quedar de la siguiente manera, en donde contendrá el mapeado de las rutas que trabajará internamente "{controller}/{action}/{id} (parámetro opcional)" y por defecto tendrá la siguiente ruta controller = "Home", action = "Index", id = UrlParameter.Optional, por esa razón toma al Index del Home por defecto.
 ```
 using System;
 using System.Collections.Generic;
@@ -648,13 +648,13 @@ namespace MVC_HOL
 }
 ```
 
-- Lo siguiente es crear la clase WebApiConfig.cs dentro de la carpeta App_Start de la misma manera en que se crearon las clases dentro de la carpeta Models, haciendo clic derecho sobre  la carpeta App_Start, seleccionando la opción Add->New Item y escogiendo la opción Code de la ventana que se abre y la plantilla Class.
+3. Lo siguiente es crear la clase WebApiConfig.cs dentro de la carpeta App_Start de la misma manera en que se crearon las clases dentro de la carpeta Models, haciendo clic derecho sobre  la carpeta App_Start, seleccionando la opción Add->New Item y escogiendo la opción Code de la ventana que se abre y la plantilla Class.
 
-![MVC](img/T07_01.png)
+3.1. ![MVC](img/T07_01.png)
 
-![MVC](img/T07_03.png)
+3.2. ![MVC](img/T07_03.png)
 
-- La clase WebApiConfig debe quedar de la siguiente manera, en donde contendrá el mapeado de las rutas que trabajará internamente "api/{controller}/{id} (parámetro opcional)" y en este caso no hay valor por defecto.
+4. La clase WebApiConfig debe quedar de la siguiente manera, en donde contendrá el mapeado de las rutas que trabajará internamente "api/{controller}/{id} (parámetro opcional)" y en este caso no hay valor por defecto.
 ```
 using System;
 using System.Collections.Generic;
@@ -682,16 +682,16 @@ namespace MVC_HOL
 }
 ```
 
-- Para que queden activas es necesario abrir la clase Global.asax y realizar la configuración cuando la aplicación inicia: método Application_Start.
+5. Para que queden activas es necesario abrir la clase Global.asax y realizar la configuración cuando la aplicación inicia: método Application_Start.
 
 ![MVC](img/T07_04.png)
 
-- Deberá agregarse dos lineas de código:
+6. Deberá agregarse dos lineas de código:
 ```
 	GlobalConfiguration.Configure(WebApiConfig.Register);
     RouteConfig.RegisterRoutes(RouteTable.Routes);
 ```
-El código completo de Global.asax debería verse similar a:
+######El código completo de Global.asax debería verse similar a:
 ```
 using System;
 using System.Web;
@@ -713,37 +713,37 @@ namespace MVC_HOL
     }
 }
 ```
-- Compilamos la solución haciendo clic en la pestaña Build y luego en Build Solution:
+7. Compilamos la solución haciendo clic en la pestaña Build y luego en Build Solution:
 ![MVC](img/T07_05.png)
 
-Ejecutamos utilizando la tecla F5 y realizamos los ultimos dos pasos de la Tarea 6.
+8. Ejecutamos utilizando la tecla F5 y realizamos los ultimos dos pasos de la Tarea 6.
 
 ###Tarea 8
 ####Knockoutjs conectándonos con el Apicontroller
 
 El ideal es trabajar al mismo tiempo esta parte y la vista (Tarea 9), sinembargo por orden vamos a trabajar todo el código javascript primero y después veremos el resultado en las siguientes tareas.
 
-- Vamos a crear nuestro archivo javascript con el que conectaremos al ApiController utilizando knockoutjs, para esto hacemos clic derecho del mouse sobre la carpeta Scripts y seleccionamos Add->New Folder (Agregar nuevo folder) y le daremos el nombre de <strong>movie</strong> (o el nombre que sea significativo dentro del proyecto).
+1. Vamos a crear nuestro archivo javascript con el que conectaremos al ApiController utilizando knockoutjs, para esto hacemos clic derecho del mouse sobre la carpeta Scripts y seleccionamos Add->New Folder (Agregar nuevo folder) y le daremos el nombre de <strong>movie</strong> (o el nombre que sea significativo dentro del proyecto).
 
-![MVC](img/T08_01.png)
+1.1. ![MVC](img/T08_01.png)
 
-![MVC](img/T08_02.png)
+1.2. ![MVC](img/T08_02.png)
 
-- En esta carpeta movie haremos clic derecho del ratón y seleccionamos Add->New Item y en la ventana que se abre seleccionaremos la opción Web y la plantilla JavaScript File (Archivo JavaScript), lo llamaremos movies.js.
+2. En esta carpeta movie haremos clic derecho del ratón y seleccionamos Add->New Item y en la ventana que se abre seleccionaremos la opción Web y la plantilla JavaScript File (Archivo JavaScript), lo llamaremos movies.js.
 
-![MVC](img/T08_03.png)
+2.1. ![MVC](img/T08_03.png)
 
-![MVC](img/T08_04.png)
+2.2. ![MVC](img/T08_04.png)
 
-Con esto ya tendremos nuestro javascript para trabajar con los datos.
+3. Con esto ya tendremos nuestro javascript para trabajar con los datos.
 
 ![MVC](img/T08_05.png)
 
-- Abrimos nuestro archivo movies.js (si no esta abierto) e iniciamos la construcción de nuestro código y empezamos. 
+4. Abrimos nuestro archivo movies.js (si no esta abierto) e iniciamos la construcción de nuestro código y empezamos. 
 
-- knockout es un esquema que trabaja con un patón del tipo Modelo Vista y Vista del Modelo o Model View ViewModel (MVVM).
+ knockout es un esquema que trabaja con un patón del tipo Modelo Vista y Vista del Modelo o Model View ViewModel (MVVM).
 
-- Lo primero que construimos en nuestro javascript será la función en donde implementaremos el código, para este ejercicio la llamaremos ViewModel, al final haremos el llamado utilizando el objeto <strong>ko</strong> que maneja knockoutjs para hacer el llamado de nuestro ViewModel. El código resultante iniciaria de la siguiente forma:
+5. Lo primero que construimos en nuestro javascript será la función en donde implementaremos el código, para este ejercicio la llamaremos ViewModel, al final haremos el llamado utilizando el objeto <strong>ko</strong> que maneja knockoutjs para hacer el llamado de nuestro ViewModel. El código resultante iniciaria de la siguiente forma:
 ```
 var ViewModel = function () {
     
@@ -752,7 +752,7 @@ var ViewModel = function () {
 ko.applyBindings(new ViewModel());
 ```
 
-- Dentro de nuestra función ViewModel agregamos un llamado a la información con la que trabajaremos var selft=this y crearemos dos variables una para el listado de las películas, otra para imprimir un error si lo hay y la última para traer la información de una película que seleccionemos (detalle de la película):
+6. Dentro de nuestra función ViewModel agregamos un llamado a la información con la que trabajaremos var selft=this y crearemos dos variables una para el listado de las películas, otra para imprimir un error si lo hay y la última para traer la información de una película que seleccionemos (detalle de la película):
 
 ```
 	var self = this;
@@ -764,7 +764,7 @@ ko.applyBindings(new ViewModel());
 ko.observableArray tiene la estructura dentro de la librería del knockout para traer una lista de datos.
 ko.observable trae información (un texto, un número, etc),.
 
-- Ahora vamos a crear un objeto que lo utilizaremos en el momento en que tengamos que crear una película.
+7. Ahora vamos a crear un objeto que lo utilizaremos en el momento en que tengamos que crear una película.
 ```
 	self.newMovie = {
         id: ko.observable(),
@@ -775,13 +775,13 @@ ko.observable trae información (un texto, un número, etc),.
     }
 ```
 
-- Continuamos agregando una variable que contendrá la ruta de la Api con la que nos comunicaremos:
+8. Continuamos agregando una variable que contendrá la ruta de la Api con la que nos comunicaremos:
 ```
 	var moviesUri = "/api/movies/";
 ```
 Recordemos que ésta Api la creamos en tareas anteriores (Revisar Tarea 6 y Tarea 7)
 
-- Agregamos la función de jQuery que nos permite información que integra código de lado cliente y servidor (Asynchronous JavaScript and XML - AJAX).
+9. Agregamos la función de jQuery que nos permite información que integra código de lado cliente y servidor (Asynchronous JavaScript and XML - AJAX).
 ```
 	function ajaxHelper(uri, method, data) {
         self.error(""); // Clear error message
@@ -798,7 +798,7 @@ Recordemos que ésta Api la creamos en tareas anteriores (Revisar Tarea 6 y Tare
 
 ```
 
-- En este punto ya tenemos la base para hacer el llamado correspondiente a nuestro código, por eso ahora se agregará la función <strong>getAllMovies</strong> que traé el listado de las películas, la que se conecta con el ApiController 'ajaxHelper(moviesUri, "GET")' y carga la información en la variable movies 'self.movies(data)'
+10. En este punto ya tenemos la base para hacer el llamado correspondiente a nuestro código, por eso ahora se agregará la función <strong>getAllMovies</strong> que traé el listado de las películas, la que se conecta con el ApiController 'ajaxHelper(moviesUri, "GET")' y carga la información en la variable movies 'self.movies(data)'
 ```
 	function getAllMovies() {
         ajaxHelper(moviesUri, "GET").done(function (data) {
@@ -810,7 +810,7 @@ Se esta comunicando a través del GET del ApiController en su método GetAllMovi
 
 ![MVC](img/T08_06.png)
 
-- Ahora incluiremos la funcion getMovieDetail que nos traé un registro específico pasándole la dirección del ApiController y el Id del registro requerido 'ajaxHelper(moviesUri + item.id, "GET")' y los datos quedaran asociados a la variable details 'self.detail(data)'.
+11. Ahora incluiremos la funcion getMovieDetail que nos traé un registro específico pasándole la dirección del ApiController y el Id del registro requerido 'ajaxHelper(moviesUri + item.id, "GET")' y los datos quedaran asociados a la variable details 'self.detail(data)'.
 ```
 self.getMovieDetail = function (item) {
         ajaxHelper(moviesUri + item.id, "GET").done(function (data) {
@@ -822,7 +822,7 @@ Se esta comunicando a través del GET del ApiController en su método GetMoviesB
 
 ![MVC](img/T08_07.png)
 
-- Para complementar, construimos la funcion addMovie la que nos permite guardar registros asociándola al objeto que creamos anteriormente llamado newMovie, en donde le pasamos los valores del objeto creando el objeto movie.
+12. Para complementar, construimos la funcion addMovie la que nos permite guardar registros asociándola al objeto que creamos anteriormente llamado newMovie, en donde le pasamos los valores del objeto creando el objeto movie.
 pasamos el parámetro de dirección y el objeto movie utilizando un método de tipo POST 'ajaxHelper(moviesUri, "POST", movie)' para pasar la información al ApiController 'self.movies.push(item)'.
 ```
 	self.addMovie = function (formElement) {
@@ -843,12 +843,12 @@ A través del POST se comunica con el método PostMovie dentro del ApiController
 
 ![MVC](img/T08_08.png)
 
-- Cerrando la fucnion ViewModel le decimos que ejecute por defecto el método que trae todo el listado de las películas 'getAllMovies'
+13. Cerrando la fucnion ViewModel le decimos que ejecute por defecto el método que trae todo el listado de las películas 'getAllMovies'
 ```
 getAllMovies();
 
 ```
-El código completo se debería ver así:
+######El código completo se debería ver así:
 
 ```
 var ViewModel = function () {
@@ -923,12 +923,14 @@ ko.applyBindings(new ViewModel());
 ###Tarea 9
 ####Mostrando datos en nuestra vista
 
-- Abrimos nuestro archivo Index.cshtml que se encuentra dentro de Views->Home
+1. Abrimos nuestro archivo Index.cshtml que se encuentra dentro de Views->Home
 
 ![MVC](img/T09_01.png)
 
 Empezamos a construir el diseño de nuestra vista aprovechando que ya tenemos por defecto incorporado el bootstrap, sinembargo es necesario agregar que es un diseño base y se trabajará utilizando etiquetas Div, se recomienda trabajar siempre con alguien que maneje diseño para tener una vista complementaria del proyecto.
 A manera de ejercicio, esté código se presentará como imágen para que se deba agregar manualmente.
+
+2.
 
 ![MVC](img/T09_02.png)
 
@@ -944,11 +946,13 @@ A manera de ejercicio, esté código se presentará como imágen para que se deb
 - Al finalizar agregaremos las referencias a los archivos javascript que necesitaremos para que todo se ejecute, en orden debe ir jQuery, seguido de knockout y por último el archivo de script que creamos en la tarea 8. estos llamados siempre deberan quedar al final del código tanto por estándares como para la correcta funcionalidad del código.
 
 ###### Al ejecutarlo con la tecla F5, si tenemos información dentro de la base de datos debería poderse ver el listado.
-
+3.
+ 
 ![MVC](img/T09_04.png)
 
 Detenemos la ejecución y continuamos agregando un panel que contendrá el formulario que permitirá agregar nuevos registros a nuestra base de datos.
 
+4.
 ![MVC](img/T09_03.png)
 
 - Agregamos un panel con etiquetas div similar al procedimiento anterior.
@@ -958,6 +962,7 @@ Detenemos la ejecución y continuamos agregando un panel que contendrá el formu
 - Agregamos ahora los controles 'label' e 'input', a éstos últimos le asociamos el valor al que deberán estar asociados en la construcción de nuesto objeto newMovie. 'data-bind="value:id"', 'data-bind="value:name"', 'data-bind="value:description"', 'data-bind="value:genre"' y 'data-bind="value:year"'
 - Finalmente se agrega el botón de tipo 'submit' que enviará la información al javascript para que éste ejecute el procedimiento correspondiente 'button type="submit" class="btn btn-default'.
 
+5.
 ###### Al ejecutarlo con la tecla F5, si tenemos información dentro de la base de datos debería poderse ver el listado.
 
 ![MVC](img/T09_05.png)
@@ -966,7 +971,7 @@ Agregamos datos al formulario, y estos deben aparecer en nuestro listado.
 
 ![MVC](img/T09_06.png)
 
-Detenemos la ejecución y continuamos agregando un panel que contendrá el formulario que permitirá ver el detalle de la película seleccionada.
+6. Detenemos la ejecución y continuamos agregando un panel que contendrá el formulario que permitirá ver el detalle de la película seleccionada.
 
 ![MVC](img/T09_07.png)
 
@@ -991,7 +996,7 @@ Detenemos la ejecución y continuamos agregando un panel que contendrá el formu
 
 Como punto final vamos a crear un espacio completamente independiente, una página HTML que traerá la información y que tendrá un diseño diferente al anterior, con una ventana Modal que mostrará los detalles de las películas.
 
-- Crearemos una nueva vista, para esto abriremos nuestro HomeController y le agregaremos el siguiente código:
+1. Crearemos una nueva vista, para esto abriremos nuestro HomeController y le agregaremos el siguiente código:
 ```
 	public ActionResult MiVista()
     {
@@ -999,12 +1004,12 @@ Como punto final vamos a crear un espacio completamente independiente, una pági
     }
 ``` 
 
-- Repitiendo el proceso de la tarea 6 agregaremos una nueva vista asociada al método mi vista que acabamos de crear: clic derecho del mouse sobre el método MiVista y clic sobre la opción Add View (Agregar Vista), dejamos lo seleccionado por defecto, asegurándonos que el Template sea Empty (without model) o vacio sin modelo.
-- Al quedar creada nuestra nueva vista se verá reflejada en la carpeta Home:
+2. Repitiendo el proceso de la tarea 6 agregaremos una nueva vista asociada al método mi vista que acabamos de crear: clic derecho del mouse sobre el método MiVista y clic sobre la opción Add View (Agregar Vista), dejamos lo seleccionado por defecto, asegurándonos que el Template sea Empty (without model) o vacio sin modelo.
+3. Al quedar creada nuestra nueva vista se verá reflejada en la carpeta Home:
 
 ![MVC](img/T10_01.png)
 
-- Agregamos nuestro código para listar la información.
+4. Agregamos nuestro código para listar la información.
 
 ![MVC](img/T10_02.png)
 
@@ -1014,14 +1019,14 @@ Acá debemos tener en cuenta los siguientes aspectos:
 - La etiqueta anchor 'a' va a contener toda la información, tiene la clase 'list-group-item' y tiene dos atributos especiales 'data-toggle="modal"' y 'data target="#detalle"' que nos indican que va a abrir una etiqueta modal cuyo control contenedor tiene el 'id="detalle"'.
 - Agregamos un glifo que va a mostrarnos una imagen al lado izquierdo de cada elemento '<span class="glyphicon glyphicon-film"></span>'.
 
-Ahora agregamos nuestro panel que contendrá el formulario para guardar nuevos datos.
+5. Ahora agregamos nuestro panel que contendrá el formulario para guardar nuevos datos.
 
 ![MVC](img/T10_03.png)
 
 - Este no tiene mayores variaciones en comparación con el ejercicio de la tarea 9 a escepcion de la clase en el div contenedor 'class="col-lg-4 col-md-4 col-sm-4"' esto es para que pueda distribuirse en los diferentes anchos de pantalla utilizando responsive design.
 - Dentro de este agregamos el mensaje de error que deberá aparecer en el caso que exista algun error.
 
-Agregamos nuestras etiquetas para obtener una ventana modal para mostrar el detalle:
+6. Agregamos nuestras etiquetas para obtener una ventana modal para mostrar el detalle:
 
 ![MVC](img/T10_04.png)
 
@@ -1030,7 +1035,7 @@ Agregamos nuestras etiquetas para obtener una ventana modal para mostrar el deta
 - El modal header también mostrará el título de la película con un titulo de tipo 'h3' ```<h3 class="modal-title" data-bind="text: detail().name"></h3>```
 - En el 'footer' del modal agregamos un boton que permitirá cerrar la ventana, al igual que el elemento que colocamos en la parte superior derecha de la ventana modal.
 
-Para finalizar, agregamos los llamados a los javascript necesarios para que se ejecuten las acciones.
+7. Para finalizar, agregamos los llamados a los javascript necesarios para que se ejecuten las acciones.
 
 ```
 <script src="~/Scripts/jquery-2.2.0.min.js"></script>
@@ -1038,11 +1043,11 @@ Para finalizar, agregamos los llamados a los javascript necesarios para que se e
 <script src="~/Scripts/movie/movies.js"></script>
 ```
 
-Lo que hemos construido deberá verse similar a:
+8. Lo que hemos construido deberá verse similar a:
 
 ![MVC](img/T10_05.png)
 
-Al hacer clic sobre alguno de los elementos de la lista aparecerá nuestra ventana modal con los detalles de la misma.
+9. Al hacer clic sobre alguno de los elementos de la lista aparecerá nuestra ventana modal con los detalles de la misma.
 
 ![MVC](img/T10_06.png)
 
@@ -1065,7 +1070,9 @@ Para compementar aquí les dejo vario vínculos que pueden ayudarles a profundiz
 - [Document DB GuitHub Previo](https://github.com/Ninja-Labs/azure/blob/master/6.%20WebApps%20MVC%20Core%20and%20Entity%20Framework/Lab%202/lab.md)
 - [Curso de DocumentDB](https://channel9.msdn.com/Series/Ninja-Tips/31-NinjaTips-Desarrollo-DocumentDB-1-Vistazo-general)
 
+###### Muchos éxitos y sigan disfrutando el código!!!
 
+######HOL by @Manquip
 
 
 
