@@ -18,7 +18,7 @@ Para esto es necesario contar con:
 - [Tarea 4 - Construyendo Nuestro Model (Modelo).](#tarea-4)
 - [Tarea 5 - Nuestro Controller (Controlador).] (#tarea-5)
 - [Tarea 6 - Nuestra View (Vista).] (#tarea-6)
-- [Tarea 7 - (condicional) Creando los Archivos de enrutado.] (#tarea-7)
+- [Tarea 7 - Creando los Archivos de enrutado (condicional).] (#tarea-7)
 - [Tarea 8 - Knockoutjs conectándonos con el controller.] (#tarea-8)
 - [Tarea 9 - Mostrando datos en nuestra vista.] (#tarea-9)
 - [Tarea 10 - Desde Cero sobre HTML.] (#tarea-10)
@@ -612,7 +612,7 @@ En el caso de este ejemplo que ya hay registros preguardados en la base de datos
 #####Si no existen estas clases, es necesario crearlas
 
 ###TTarea 7
-####(condicional) Creando los Archivos de enrutado
+#### Creando los Archivos de enrutado (condicional)
 
 Como se mencionó en la tarea anterior, si no existen las clases RouteConfig.cs y/o WebApiConfig.cs dentro de la carpeta App_Start, es necesario crearlos, si existen estas clases podemos pasar a la tarea 8 si lo desean.
 
