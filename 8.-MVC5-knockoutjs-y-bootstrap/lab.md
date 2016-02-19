@@ -720,9 +720,211 @@ namespace MVC_HOL
 Ejecutamos utilizando la tecla F5 y realizamos los ultimos dos pasos de la Tarea 6.
 
 ###Tarea 8
-####Knockoutjs conectándonos con el controller
+####Knockoutjs conectándonos con el Apicontroller
 
- 
+El ideal es trabajar al mismo tiempo esta parte y la vista (Tarea 9), sinembargo por orden vamos a trabajar todo el código javascript primero y después veremos el resultado en las siguientes tareas.
+
+- Vamos a crear nuestro archivo javascript con el que conectaremos al ApiController utilizando knockoutjs, para esto hacemos clic derecho del mouse sobre la carpeta Scripts y seleccionamos Add->New Folder (Agregar nuevo folder) y le daremos el nombre de <strong>movie</strong> (o el nombre que sea significativo dentro del proyecto).
+
+![MVC](img/T08_01.png)
+
+![MVC](img/T08_02.png)
+
+- En esta carpeta movie haremos clic derecho del ratón y seleccionamos Add->New Item y en la ventana que se abre seleccionaremos la opción Web y la plantilla JavaScript File (Archivo JavaScript), lo llamaremos movies.js.
+
+![MVC](img/T08_03.png)
+
+![MVC](img/T08_04.png)
+
+Con esto ya tendremos nuestro javascript para trabajar con los datos.
+
+![MVC](img/T08_05.png)
+
+- Abrimos nuestro archivo movies.js (si no esta abierto) e iniciamos la construcción de nuestro código y empezamos. 
+
+- knockout es un esquema que trabaja con un patón del tipo Modelo Vista y Vista del Modelo o Model View ViewModel (MVVM).
+
+- Lo primero que construimos en nuestro javascript será la función en donde implementaremos el código, para este ejercicio la llamaremos ViewModel, al final haremos el llamado utilizando el objeto <strong>ko</strong> que maneja knockoutjs para hacer el llamado de nuestro ViewModel. El código resultante iniciaria de la siguiente forma:
+```
+var ViewModel = function () {
+    
+};
+
+ko.applyBindings(new ViewModel());
+```
+
+- Dentro de nuestra función ViewModel agregamos un llamado a la información con la que trabajaremos var selft=this y crearemos dos variables una para el listado de las películas, otra para imprimir un error si lo hay y la última para traer la información de una película que seleccionemos (detalle de la película):
+
+```
+	var self = this;
+    self.movies = ko.observableArray();
+    self.error = ko.observable();
+	self.detail = ko.observable();
+```
+
+ko.observableArray tiene la estructura dentro de la librería del knockout para traer una lista de datos.
+ko.observable trae información (un texto, un número, etc),.
+
+- Ahora vamos a crear un objeto que lo utilizaremos en el momento en que tengamos que crear una película.
+```
+	self.newMovie = {
+        id: ko.observable(),
+        name: ko.observable(),
+        description: ko.observable(),
+        year: ko.observable(),
+        genre: ko.observable()
+    }
+```
+
+- Continuamos agregando una variable que contendrá la ruta de la Api con la que nos comunicaremos:
+```
+	var moviesUri = "/api/movies/";
+```
+Recordemos que ésta Api la creamos en tareas anteriores (Revisar Tarea 6 y Tarea 7)
+
+- Agregamos la función de jQuery que nos permite información que integra código de lado cliente y servidor (Asynchronous JavaScript and XML - AJAX).
+```
+	function ajaxHelper(uri, method, data) {
+        self.error(""); // Clear error message
+        return $.ajax({
+            type: method,
+            url: uri,
+            dataType: "json",
+            contentType: "application/json",
+            data: data ? JSON.stringify(data) : null
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            self.error(errorThrown);
+        });
+    }
+
+```
+
+- En este punto ya tenemos la base para hacer el llamado correspondiente a nuestro código, por eso ahora se agregará la función <strong>getAllMovies</strong> que traé el listado de las películas, la que se conecta con el ApiController 'ajaxHelper(moviesUri, "GET")' y carga la información en la variable movies 'self.movies(data)'
+```
+	function getAllMovies() {
+        ajaxHelper(moviesUri, "GET").done(function (data) {
+            self.movies(data);
+        });
+    }	
+```
+Se esta comunicando a través del GET con la API en su método GetAllMovies, en donde trae el listado de las películas, convirtiéndolo en un formato legible para el javascript.
+
+![MVC](img/T08_06.png)
+
+- Ahora incluiremos la funcion getMovieDetail que nos traé un registro específico pasándole la dirección del ApiController y el Id del registro requerido 'ajaxHelper(moviesUri + item.id, "GET")' y los datos quedaran asociados a la variable details 'self.detail(data)'.
+```
+self.getMovieDetail = function (item) {
+        ajaxHelper(moviesUri + item.id, "GET").done(function (data) {
+            self.detail(data);
+        });
+    }
+```
+Se esta comunicando a través del GET con la API en su método GetMoviesById, en donde trae el un unico objeto de tipo Movie.
+
+![MVC](img/T08_07.png)
+
+- Para complementar, construimos la funcion addMovie la que nos permite guardar registros asociándola al objeto que creamos anteriormente llamado newMovie, en donde le pasamos los valores del objeto creando el objeto movie.
+pasamos el parámetro de dirección y el objeto movie utilizando un método de tipo POST 'ajaxHelper(moviesUri, "POST", movie)' para pasar la información al ApiController 'self.movies.push(item)'.
+```
+	self.addMovie = function (formElement) {
+        var movie = {
+            id: self.newMovie.id(),
+            name: self.newMovie.name(),
+            genre: self.newMovie.genre(),
+            description: self.newMovie.description(),
+            year: self.newMovie.year()
+        };
+
+        ajaxHelper(moviesUri, "POST", movie).done(function (item) {
+            self.movies.push(item);
+        });
+    };
+```
+A través del POST se comunica con el método PostMovie dentro del ApiController.
+
+![MVC](img/T08_08.png)
+
+- Cerrando la fucnion ViewModel le decimos que ejecute por defecto el método que trae todo el listado de las películas 'getAllMovies'
+```
+getAllMovies();
+
+```
+El código completo se debería ver así:
+
+```
+var ViewModel = function () {
+    var self = this;
+    self.movies = ko.observableArray();
+    self.error = ko.observable();
+    self.detail = ko.observable();
+
+    //Objeto de tipo Movie
+    self.newMovie = {
+        id: ko.observable(),
+        name: ko.observable(),
+        description: ko.observable(),
+        year: ko.observable(),
+        genre: ko.observable()
+    }
+
+    var moviesUri = "/api/movies/";
+
+    //jQuery Ajax
+    function ajaxHelper(uri, method, data) {
+        self.error(""); // Clear error message
+        return $.ajax({
+            type: method,
+            url: uri,
+            dataType: "json",
+            contentType: "application/json",
+            data: data ? JSON.stringify(data) : null
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            self.error(errorThrown);
+        });
+    }
+
+    //Trae todos los registros
+    function getAllMovies() {
+        ajaxHelper(moviesUri, "GET").done(function (data) {
+            self.movies(data);
+        });
+    }
+
+    //Traé un único registro
+    self.getMovieDetail = function (item) {
+        ajaxHelper(moviesUri + item.id, "GET").done(function (data) {
+            self.detail(data);
+        });
+    }
+
+    //Agrega un nuevo registro
+    self.addMovie = function (formElement) {
+        var movie = {
+            id: self.newMovie.id(),
+            name: self.newMovie.name(),
+            genre: self.newMovie.genre(),
+            description: self.newMovie.description(),
+            year: self.newMovie.year()
+        };
+
+        ajaxHelper(moviesUri, "POST", movie).done(function (item) {
+            self.movies.push(item);
+        });
+    };
+
+    //Carga los datos al iniciar.
+    getAllMovies();
+};
+
+ko.applyBindings(new ViewModel());
+
+
+######Ahora vamos a integrar todo lo anterior a nuestra vista Index dentro del Home.
+
+###Tarea 9
+####Mostrando datos en nuestra vista
+
+
 
 
 
