@@ -941,7 +941,7 @@ A manera de ejercicio, esté código se presentará como imágen para que se deb
 - Dentro de la lista 'ul' se puede observar el elemento data-bind="foreach:movies" esto quiere decir que esta haciendo una lectura asociada con el knockoutjs trayendo la lista 'movies' (observableArray) y leyendo sus registros a través de un ciclo foreach.
 - Las etiquetas de lista 'li' muestran los detalles de cada dato que se lea, en donde agregamos etiquetas 'span' para mostrar el texto correspondiente al 'id', 'name' y 'year' dentro de la propiedad 'data-bind' mostrándolo como texto 'data-bind="text: id"'. Este llamado lo hace utilizando la fuinción getAllMovies que se ejecuta en nuestro 'movies.js'.
 - se agrega una etiqueta anchor 'a' que tiene como texto detalles a la que más adelante le daremos funcionalidad.
-- Al finalizar agregaremos las referencias a los archivos javascript que necesitaremos para que todo se ejecute, en orden debe ir jQuery, seguido de knockout y por último el archivo de script que creamos en la tarea 8.
+- Al finalizar agregaremos las referencias a los archivos javascript que necesitaremos para que todo se ejecute, en orden debe ir jQuery, seguido de knockout y por último el archivo de script que creamos en la tarea 8. estos llamados siempre deberan quedar al final del código tanto por estándares como para la correcta funcionalidad del código.
 
 ###### Al ejecutarlo con la tecla F5, si tenemos información dentro de la base de datos debería poderse ver el listado.
 
@@ -979,6 +979,10 @@ Detenemos la ejecución y continuamos agregando un panel que contendrá el formu
 ###### Al ejecutarlo con la tecla F5, inicialmente no se verá nada, pero al hacer clic sobre el vínculo detalle de cualquier película aparecerá el panel.
 
 ![MVC](img/T09_08.png)
+
+######El código completo es el siguiente, se agregó un mensaje de error para que si se presenta alguno podamos ver la información del error asociada.
+
+![MVC](img/T09_09.png)
 
 ######Ya tenemos nuestro proyecto funcionando, ahora podemos ver que ajustes podemos hacerle a nuestro diseño para que sea más agradable.
 
