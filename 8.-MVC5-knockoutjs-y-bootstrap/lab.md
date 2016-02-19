@@ -18,13 +18,12 @@ Para esto es necesario contar con:
 - [Tarea 4 - Construyendo Nuestro Model (Modelo).](#tarea-4)
 - [Tarea 5 - Nuestro Controller (Controlador).] (#tarea-5)
 - [Tarea 6 - Nuestra View (Vista).] (#tarea-6)
-- [Tarea 7 - Router / Bundles / Global.asax.] (#tarea-7)
-- [Tarea 8 - ApiController.] (#tarea-8)
-- [Tarea 9 - Knockoutjs conectándonos con el controller.] (#tarea-9)
-- [Tarea 10 - Mostrando datos en nuestra vista.] (#tarea-10)
-- [Tarea 11 - Desde Cero sobre HTML.] (#tarea-11)
-- [Tarea 12 - Bootstrap para nuestra UI.] (#tarea-12)
-- [Tarea 13 - Vínculos de interés.] (#tarea-13)
+- [Tarea 7 - (condicional) Creando los Archivos de enrutado.] (#tarea-7)
+- [Tarea 8 - Knockoutjs conectándonos con el controller.] (#tarea-8)
+- [Tarea 9 - Mostrando datos en nuestra vista.] (#tarea-9)
+- [Tarea 10 - Desde Cero sobre HTML.] (#tarea-10)
+- [Tarea 11 - Bootstrap para nuestra UI Html.] (#tarea-11)
+- [Tarea 12 - Vínculos de interés.] (#tarea-12)
 
 ###Tarea 1
 ####MVC 5 WebApps
@@ -564,10 +563,188 @@ namespace MVC_HOL.Controllers
 
 ![MVC](img/T05_08.png)
 
-Esta será la base para continuar con la siguiente tarea.
+- Si observamos nuestra carpeta Views en el explorador de la solución podemos ver que se ha agregado la carpeta Home que estará asociada con el controlador HomeController.
+
+![MVC](img/T06_01.png)
+
+######Esta será la base para continuar con la siguiente tarea.
 
 ###Tarea 6
 ####Nuestra View (Vista)
+
+- Teniendo abierta la clase HomeController (Tarea 5.2), hacemos clic derecho sobre el método Index y seleccionamos la opción Add View (Agregar Vista)
+
+![MVC](img/T06_02.png)
+
+- En la ventana que se abre debemos dejar el nombre Index, así como seleccionada la opción Empty (without model) ya que no vamos a traer los datos de ningún modelo específico sino que esto lo haremos más adelante a través de javascript.
+
+![MVC](img/T06_03.png)
+
+Al hacer clic sobre Add (Agregar) ocurren varias cosas con nuestro proyecto, entre otras:
+
+- Se genera un archivo de tipo Razor en la carpeta Home dentro de Views llamado Index.cshtml
+- Se genera un archivo de tipo Razor en la carpeta Shared dentro de Views llamado _Layour.cshtml que será la página maestra base del proyecto.
+- Si no hubieramos implementado jQuery ni Bootstrap, se hubieran agregado automáticamente estos paquetes.
+- Dentro de Content se agregó una nueva hoja de estilos llamada Site.css
+- Dentro de la carpeta Scripts se agregó la libreria de javascript Modernizr.
+
+![MVC](img/T06_04.png)
+
+- Presionamos la tecla F5 para que se abra el proyecto en el explorador web, lo que nos mostrará la página Index con diseño predefinido, este diseño viene del archivo _Layout.cshtml
+
+![MVC](img/T06_05.png)
+
+- Toma por defecto la página Index de Home por que esta predefinida dentro del clase de configuración RouteConfig.cs que esta dentro de la carpeta App_Start, al igual que la ruta del ApiController esta en la clase WebApiConfig.cs dentro de la misma carpeta.
+
+![MVC](img/T06_06.png)
+
+#####Si existen estas clases, podemos realizar lo siguiente:
+
+- Si hemos cerrado el navegador volvamos a abrirlo presionando la tecla F5, en la barra de direcciones agregemos API/Movies lo que nos mostrará la información que trae de la base de datos por defecto es la lista de todos los registros en formato Json, si no hay registros debe mostrar una página con un par de corchetes cuadrados.
+En el caso de este ejemplo que ya hay registros preguardados en la base de datos muestra lo siguiente:
+
+![MVC](img/T06_07.png)
+
+- Cerremos el navegador y si es necesario detengamos la ejecución de la aplicación haciendo clic en el boton detener de Visual Studio.
+
+![MVC](img/T06_08.png)
+
+#####Si no existen estas clases, es necesario crearlas
+
+###Tarea 7 (condicional)
+####Creando los Archivos de enrutado
+
+Como se mencionó en la tarea anterior, si no existen las clases RouteConfig.cs y/o WebApiConfig.cs dentro de la carpeta App_Start, es necesario crearlos, si existen estas clases podemos pasar a la tarea 8 si lo desean.
+
+- Lo primero que haremos en esta tarea es crear la clase RouteConfig.cs dentro de la carpeta App_Start de la misma manera en que se crearon las clases dentro de la carpeta Models, haciendo clic derecho sobre  la carpeta App_Start, seleccionando la opción Add->New Item y escogiendo la opción Code de la ventana que se abre y la plantilla Class.
+
+![MVC](img/T07_01.png)
+
+![MVC](img/T07_02.png)
+
+- La clase RouteConfig debe quedar de la siguiente manera, en donde contendrá el mapeado de las rutas que trabajará internamente "{controller}/{action}/{id} (parámetro opcional)" y por defecto tendrá la siguiente ruta controller = "Home", action = "Index", id = UrlParameter.Optional, por esa razón toma al Index del Home por defecto.
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace MVC_HOL
+{
+    public class RouteConfig
+    {
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+        }
+    }
+}
+```
+
+- Lo siguiente es crear la clase WebApiConfig.cs dentro de la carpeta App_Start de la misma manera en que se crearon las clases dentro de la carpeta Models, haciendo clic derecho sobre  la carpeta App_Start, seleccionando la opción Add->New Item y escogiendo la opción Code de la ventana que se abre y la plantilla Class.
+
+![MVC](img/T07_01.png)
+
+![MVC](img/T07_03.png)
+
+- La clase WebApiConfig debe quedar de la siguiente manera, en donde contendrá el mapeado de las rutas que trabajará internamente "api/{controller}/{id} (parámetro opcional)" y en este caso no hay valor por defecto.
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+
+namespace MVC_HOL
+{
+    public static class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // Web API configuration and services
+
+            // Web API routes
+            config.MapHttpAttributeRoutes();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+        }
+    }
+}
+```
+
+- Para que queden activas es necesario abrir la clase Global.asax y realizar la configuración cuando la aplicación inicia: método Application_Start.
+
+![MVC](img/T07_04.png)
+
+- Deberá agregarse dos lineas de código:
+```
+	GlobalConfiguration.Configure(WebApiConfig.Register);
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+```
+El código completo de Global.asax debería verse similar a:
+```
+using System;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Http;
+
+namespace MVC_HOL
+{
+    public class Global : HttpApplication
+    {
+        void Application_Start(object sender, EventArgs e)
+        {
+            // Code that runs on application startup
+            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+        }
+    }
+}
+```
+- Compilamos la solución haciendo clic en la pestaña Build y luego en Build Solution:
+![MVC](img/T07_05.png)
+
+Ejecutamos utilizando la tecla F5 y realizamos los ultimos dos pasos de la Tarea 6.
+
+###Tarea 8
+####Knockoutjs conectándonos con el controller
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
