@@ -22,7 +22,7 @@ Para esto es necesario contar con:
 - [Tarea 8 - Knockoutjs conectándonos con el controller.] (#tarea-8)
 - [Tarea 9 - Mostrando datos en nuestra vista.] (#tarea-9)
 - [Tarea 10 - Desde Cero un nuevo diseño Bootstrap para nuestra UI (Repaso general).] (#tarea-10)
-- [Vínculos - Vínculos de interés.] (#vinculos)
+- [Vínculos - Vínculos de interés.] (#vínculos)
 
 ###Tarea 1
 ####MVC 5 WebApps
@@ -1040,15 +1040,15 @@ Para finalizar, agregamos los llamados a los javascript necesarios para que se e
 
 Lo que hemos construido deberá verse similar a:
 
-[MVC](img/T10_05.png)
+![MVC](img/T10_05.png)
 
 Al hacer clic sobre alguno de los elementos de la lista aparecerá nuestra ventana modal con los detalles de la misma.
 
-[MVC](img/T10_06.png)
+![MVC](img/T10_06.png)
 
 ######La siguiente imagen muestra el código completo:
 
-[MVC](img/T10_07.png)
+![MVC](img/T10_07.png)
 
 ###Vínculos
 ####Vínculos de interés
