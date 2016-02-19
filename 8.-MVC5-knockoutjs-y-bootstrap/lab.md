@@ -169,7 +169,7 @@ namespace MVC_HOL.Models
 
 - Trabajaremos con 'C#', por esa razón en la ventana emergente seleccionaremos esta opción en lenguaje, así como seleccionaremos Code (Código) y la plantilla Class (Clase), recordemos darle el nombre <strong>MovieRepository</strong> y hacemos clic en Add (Agregar)
 
-![MVC](img/T04_02.png)!
+![MVC](img/T04_02.png)
 
 - Al final nuestra carpeta Models deberá quedar con estos dos archivos:
 
@@ -312,6 +312,8 @@ namespace MVC_HOL.Models
         return movie;
     }
 ```
+Éste último método es de tipo asíncrono por eso es necesario plantear que es una tarea y al mismo tiempo agregarle las palabras reservadas async y await, así como la referencia using System.Threading.Tasks.
+
 #####El código completo de la clase MovieRepository.cs quedaría de la siguiente manera:
 ```
 using System;
@@ -432,23 +434,140 @@ namespace MVC_HOL.Models
 ###Tarea 5
 ####Nuestro Controller (Controlador)
 
+#####Tarea 5.1 Web API Controller
 
+- Vamos a crear nuestra clase Controladora haciendo clic derecho sobre la carpeta Controllers->Add->Controller (Agregar Controller)
 
+![MVC](img/T05_01.png)
 
+- En este punto podemos crear un controlador, ya sea para manejo del codigo o un tipo de servicio Web API, para este ejercicio seleccionaremos la opción de Web API Controller Empty (Vacio):
 
+![MVC](img/T05_02.png)
 
+- Lo llamaremos MoviesController
 
+![MVC](img/T05_03.png)
 
+- Nuestra carpeta Controllers se verá con la clase que acabamos de crear.
 
+![MVC](img/T05_04.png)
 
+- Con esto ya tenemos la base para empezar a construir un esquema que se conecte con la base de datos y con Knockoutjs podemos trabajar la interface de usuario.
 
+- Ahora agregaremos el código necesario a nuestro controlador iniciando con el siguiente código de base:
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 
+namespace MVC_HOL.Controllers
+{
+    public class MoviesController : ApiController
+    {
+    }
+}
+```
+En donde <strong>MoviesController : ApiController</strong> nos indica que esta clase hereda de la clase ApiController.
 
+- Agreamos el método que nos traerá una colección de datos de tipo IEnumerable de todas las películas guardadas (si las hay).
+```
+	public IEnumerable<Movie> GetAllMovies()
+    {
+        var movies = MovieRepository.GetAllMovies();
+        return movies;
+    }
+```
+- ahora agregamos el método que nos trae un único objeto de tipo Movie utilizando el Id.
+```
+	public Movie GetMoviesById(string id)
+    {
+        return MovieRepository.GetMovieById(id);
+    }
+```
+- Y luego el método que nos permitirá agregar un nuevo registro en nuestra base de datos:
+```
+	public async Task<IHttpActionResult> PostMovie(Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            await MovieRepository.CreateMovie(movie);
 
+            return CreatedAtRoute("DefaultApi", new { id = movie.Id }, movie);
 
+        }
+```
+Éste último método es de tipo asíncrono por eso es necesario plantear que es una tarea y al mismo tiempo agregarle las palabras reservadas async y await, así como la referencia using System.Threading.Tasks.
 
+#####El código completo quedaría de la siguiente manera:
+```
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Web.Http;
+using MVC_HOL.Models;
 
+namespace MVC_HOL.Controllers
+{
+    public class MoviesController : ApiController
+    {
+        public IEnumerable<Movie> GetAllMovies()
+        {
+            var movies = MovieRepository.GetAllMovies();
+            return movies;
+        }
+
+        public Movie GetMoviesById(string id)
+        {
+            return MovieRepository.GetMovieById(id);
+        }
+
+        public async Task<IHttpActionResult> PostMovie(Movie movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await MovieRepository.CreateMovie(movie);
+
+            return CreatedAtRoute("DefaultApi", new { id = movie.Id }, movie);
+
+        }
+    }
+}
+```
+
+#####Tarea 5.2 HomeController
+- Vamos a crear un controlador para asociarlo con una vista haciendo clic derecho sobre la carpeta Controllers->Add->Controller (Agregar Controller)
+
+![MVC](img/T05_01.png)
+
+- Para crear este controlador seleccionaremos la primera opción que es crear un controlador vacio (Controller Empty):
+
+![MVC](img/T05_05.png)
+
+- Lo llamaremos HomeController.
+
+![MVC](img/T05_06.png)
+
+- Nuestra carpeta Controllers ahora se verá de esta manera:
+
+![MVC](img/T05_07.png)
+
+- El resultado es una clase cuyo código debera verse de la siguiente manera:
+
+![MVC](img/T05_08.png)
+
+Esta será la base para continuar con la siguiente tarea.
+
+###Tarea 6
+####Nuestra View (Vista)
 
 
 
