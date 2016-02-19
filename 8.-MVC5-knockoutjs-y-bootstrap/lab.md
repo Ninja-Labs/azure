@@ -807,7 +807,7 @@ Recordemos que ésta Api la creamos en tareas anteriores (Revisar Tarea 6 y Tare
         });
     }	
 ```
-Se esta comunicando a través del GET con la API en su método GetAllMovies, en donde trae el listado de las películas, convirtiéndolo en un formato legible para el javascript.
+Se esta comunicando a través del GET del ApiController en su método GetAllMovies, en donde trae el listado de las películas, convirtiéndolo en un formato legible para el javascript.
 
 ![MVC](img/T08_06.png)
 
@@ -819,7 +819,7 @@ self.getMovieDetail = function (item) {
         });
     }
 ```
-Se esta comunicando a través del GET con la API en su método GetMoviesById, en donde trae el un unico objeto de tipo Movie.
+Se esta comunicando a través del GET del ApiController en su método GetMoviesById, en donde trae el un unico objeto de tipo Movie.
 
 ![MVC](img/T08_07.png)
 
@@ -917,12 +917,12 @@ var ViewModel = function () {
 };
 
 ko.applyBindings(new ViewModel());
+```
 
-
-######Ahora vamos a integrar todo lo anterior a nuestra vista Index dentro del Home.
+#####Ahora vamos a integrar todo lo anterior a nuestra vista Index dentro del Home.
 
 ###Tarea 9
-####Mostrando datos en nuestra vista
+######Mostrando datos en nuestra vista
 
 
 
