@@ -400,6 +400,16 @@ public static async Task<Movie> CreateMovie(Movie entity)
 }
 ```
 
+* Seguimos con el método que permite eliminar un documento, así que creamos el método
+`DeleteMovieAsync` el cual va a recibir como parámetro el id del documento:
+
+```javascript
+public static async Task DeleteMovieAsync(string id)
+{
+    await Client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DatabaseId, CollectionId, id));
+}
+```
+
 ## Tarea 4: Creando el controlador
 
 En esta tarea se va a crear el controlador que va exponer las funciones para interactuar 
@@ -488,9 +498,27 @@ Para validar el método, en **Fiddler** seleccionamos **POST**, en el header del
 
 ![Fiddler Test Create](http://res.cloudinary.com/julitogtu/image/upload/v1455310861/WebAPIAndNoSQL28_ay8xxc.png)
 
+* Ahora vamos a implementar la acción que permita realizar la eliminación del documento, en este caso, creamos una
+nueva acción con el nombre `Delete`, dicha acción debe decorarse con el atributo `HttpDelete`
+para que pueda responder para la acción HTTP de eliminar:
+
+```javascript
+[HttpDelete("{id}")]
+public async Task<IActionResult> Delete(string id)
+{
+	await MovieRepository.DeleteMovieAsync(id);
+	return Ok();
+}
+```
+
+Para validar el método, en **Fiddler** seleccionamos el verbo **DELETE**, y en la URL adicionamos
+el id de la película que deseamos eliminar:
+
+![Fiddler Test Delete](http://res.cloudinary.com/julitogtu/image/upload/v1455937036/labdelete_eurxya.png)
+
 * El controlador `MoviesController` debe verse:
 
- ```javascript
+```javascript
 [Route("api/[controller]")]
 public class MoviesController : Controller
 {
