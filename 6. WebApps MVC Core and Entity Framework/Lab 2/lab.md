@@ -549,6 +549,13 @@ public class MoviesController : Controller
 		var movie = await MovieRepository.CreateMovie(entity);
 		return CreatedAtRoute("GetMovie", new { controller = "Movie", id = entity.Id }, entity);
 	}
+    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        await MovieRepository.DeleteMovieAsync(id);
+        return Ok();
+    }
 }
  ```
 
