@@ -7,6 +7,7 @@
 1. En el explorados de soluciones damos click derecho sobre el archivo `Package.appxmanifest` y seleccionamos `ViewCode`
     ![view code](img/IMG-01.png) 
 1. Una vez abierto nos desplazamos hasta la parte final del archivo y nos aseguramos que la etiqueta `<Capabilities>` quede como se ve a continuación
+
     ```
     <Capabilities>
         <Capability Name="internetClient" />
@@ -19,6 +20,7 @@
 1. Nos aseguramos de pasar al modo de edición de código `XAML` dando doble click sobre la pestaña que aparece en la aprte inferior.  
     ![XAML mode](img/IMG-02.png) 
 1. Reemplazamos el objeto `<Grid>` por el código que viene a continuación 
+
     ```
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
           HorizontalAlignment="Stretch" 
@@ -40,6 +42,7 @@
     ```
 1. Debemos notar que cada uno de los objetos tiene un nombre asignado, unas dimensiones y de manera muy importante debemos notar que a cada uno se le indica en que columna del `Grid` definido en el paso anterior deben qudar los objetos. Ámbos están en la misma Columna.
 1. Justp debajo del `<Canvas>` debemos crear un objeto `<Button>` en la segunda Columna y con un manejador de eventos para cuando se le haga Click.
+
     ```
         <Button x:Name="Picture" 
                 Grid.Column="1" Height="200" 
@@ -50,6 +53,7 @@
         </Button>
      ```
 1. Ebrimos el archivo `MainPage.xaml.cs` que es el code behind de la UI creada anteriormente, nos desplazamos hasta el final del archivo y justo antes de los dos últimos brackets `}` pegamos este código.
+
     ```
         private async void Picture_Click(object sender, RoutedEventArgs e)
         {
@@ -65,6 +69,7 @@
 1. En el proyecto adicionamos una nueva clase y la llamaremos `EmotionCapturer.cs`    
     ![EmotionCapturer.cs](img/IMG-04.png)
 1. En dicha clase nos aseguramos de tener todos estos `using`
+
     ```
     using Microsoft.ProjectOxford.Emotion;
     using Microsoft.ProjectOxford.Emotion.Contract;
@@ -78,6 +83,7 @@
     using Windows.Storage.Streams;  
     ```
 1. Justo al inicio de la clase adicionamos estos campos, propiedades y métodos
+
     ```
         ImageEncodingProperties _imgFormat = ImageEncodingProperties.CreateJpeg();
         MediaCapture _takePhotoManager;
@@ -88,6 +94,7 @@
         public async Task StartPreviewAsync() => await _takePhotoManager.StartPreviewAsync();  
     ```    
 1. Creamos un método que nos permita inicializar todo lo que se necesario.
+
     ```
         public async Task InitializeAsync()
         {
@@ -96,6 +103,7 @@
         }
     ```
 1. Desde luego ninguno de estos métodos existe aún así procedemos a crearlos, los componentes de la webcam y de la API `Emotion` suelen tomarse un tiempo para inicializar y usualmente son postergados a su primer uso, así que una manera de optimizar la experiencia de usuario es tomando una foto falsa al inicio y mandarla a la API. Aún no sabemos como tomar fotos pero dejaremos este código escrito simulando la obtención de la foto y luego si ejecutando un llamado real a la API.
+
     ```
         private async Task InitializeEmotionAPIAsync()
         {
@@ -106,6 +114,7 @@
         }
     ``` 
 1. De acuerdo a como utilizamos las API de emotion necesitamos un fotografía cargada en memoria, así que utilzamos el objeto `_takePhotoManager` para capturar la foto con el formato indicado y una vez la tenemos la ponemos en un formato compatible con la API.
+
     ```
         public async Task<Stream> CapturePictureAsync()
         {
@@ -118,6 +127,7 @@
         } 
     ```                
 1. Ya tenemos el código para inicializar la API `Emotion` pero nos hace falta inicializar la cámara para poderla usar, es decir el método `InitializeCameraAsync`. Inicializamos `_takePhotoManager` 
+
     ```
         private async Task InitializeCameraAsync()
         {
@@ -155,6 +165,7 @@
     ![My subscriptions](img/IMG-05.png)
 1. En el listado seleccionamos "Emotion API - Free" y donde dice "Primary Key" le damos click en `Show`, allí obtendremos el API KEY.
 1. En el inicio de la clase `EmotionCapturer.cs` ubicamos esta línea y ponemos allí el API KEY.
+
     ```
     EmotionServiceClient emotionServiceClient = new EmotionServiceClient("YOUR_API_KEY");
     ```
@@ -172,10 +183,12 @@
     mc:Ignorable="d" Loaded="Page_Loaded">
  
 1. Abrimos `MainPage.xaml.cs` y justo al inicio de la clase declaramos el siguiente campo del tipo `EmotionCapturer`
+
     ```
     EmotionCapturer _emotionCapturer = new EmotionCapturer();
     ```
 1. Debajo de donde habiamos creado el método `Picture_Click` crearemos ahora el siguiente método. En el cual inicializamos el objeto  `EmotionCapturer` y lo vinculamos con la interfaz gráfica con el objeto `PhotoPreview` creado en el XAML. Finalmente inicializamos la vista previa llamando `_emotionCapturer.StartPreviewAsync()`
+
     ```
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -193,6 +206,7 @@
 1. Toma nota de alguna de las que tiene `W:800` y `FRate:30`, toma nota tambien del `H:`
 1. Regresamos a `EmotionCapturer` justo despúes de donde quedamos, abajo del `foreach`
 1. Allí buscaremos una resolución adecuada a nuestras necesidades utilizando una consulta de `linq`, en mi caso los datos seleccionados fueron : W: 800, H:448, FRate:30
+
     ```
             var resolutionProperty = (from VideoEncodingProperties resolution in res
                                       where resolution.Width == 800
@@ -201,6 +215,7 @@
                                       select resolution).FirstOrDefault(); 
     ```
 1. Una vez hallada la propiedad de resolución se la asignamos a la webcam
+
     ```
             if (resolutionProperty != null)
                 await _takePhotoManager.VideoDeviceController.SetMediaStreamPropertiesAsync(MediaStreamType.VideoPreview, resolutionProperty);
@@ -208,6 +223,7 @@
                 throw new Exception("INVALID RESOLUTION");    
     ``` 
 1. El código completo de este método se muestra a continuación
+
     ```
         private async Task InitializeCameraAsync()
         {
@@ -238,6 +254,7 @@
         }
     ```
 1. Vamos a `MainPage.xaml`, y nos aseguramos que estos objetos tengan las medidas que correspondientes al tamaño de la camara que hemos seleccionado, quedando en mi caso así
+
     ```
         <CaptureElement Width="800" Height="448" x:Name="PhotoPreview" Grid.Column="0"/>
         
@@ -252,6 +269,7 @@
 
 1. Vamos s dibujar un rostro sobre las caras detectadas por la webcam
 1. En `MainPage.xaml.cs` agregamos todos estos `using`
+
     ```
     using Microsoft.ProjectOxford.Emotion.Contract;
     using System;
@@ -265,6 +283,7 @@
     using System.Text;
     ```
 1. Emotion nos devuelve por cada foto un grupo de rectangulos, pero estos rectangulos no los podemos dibujar en un App así nada más; así que debemos convertirlos a rectangulos 'dibujables' Y para ponerle algo de picante le pondremos algunos colores de manera aleatoria. Todo esto con este  código que adicionaremos a `MainPage.xaml.cs`
+
     ```
         static readonly Color[] colores = new Color[] { Colors.Green, Colors.Red, Colors.Blue,
                                                         Colors.White, Colors.Pink, Colors.Salmon,
@@ -312,10 +331,12 @@
 1. Taraaaaaaaaaaaaaaan! Hora de probarlo, ejecutemos la App, pongámonos en frente de la cámara y demos click en el botón! un rectangulo se debe dibujar por cada rostro detectado.
 1. Ahora volvámoslo una tarea más automática. Pero antes debemos aclarar que la API de `Emotion` tiene ciertos límites en l versión gratuita por lo que la máxima cantidad de transacciones por minuto es : 20. Por ello no podremos tener los cuadros actualizados tan rápido como quisieramos, pero es algo que podemo solucionar metiendonos la mano al bolsillo.
 1. Apenas iniciando la clase `MainPage` agregaremos el siguiente campo
+
     ```
         DispatcherTimer PeriodicTimer;
     ```
 1. En el evento `PageLoaded` justo después de `_emotionCapturer.StartPreviewAsync()` inicializaremos el Timer y le pediremos que 20 veces por minuto tome una foto y dibuje los cuadros
+
     ```
             PeriodicTimer = new DispatcherTimer
             {
