@@ -406,6 +406,7 @@
 
     ![Stream query](img/IMG-17.png)
 1. Allí colocamos el siguiente query, en el que debemos cambiar `JuanKFaceSA` y `JuanKFAceSAout` por el correspondiente nombre de `input` y `output` creados anteriormente.
+
     ```
     WITH Sumas AS (
     SELECT Device,
