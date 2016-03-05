@@ -48,6 +48,7 @@ En este laboratorio usaremos Azure Active Directory como proveedor de autenticac
 5. Ubique la sección "appRoles":[] que generalmente está al inicio del archivo.
 6. Agregue la siguiente sección dentro del arreglo para crear un nuevo rol.
 
+```javascript
 {
     "allowedMemberTypes": ["User"],
     "description": "Admins can manage roles and perform all task actions.",
@@ -57,6 +58,7 @@ En este laboratorio usaremos Azure Active Directory como proveedor de autenticac
     "origin": "Application",
     "value": "Admin"
 }
+```
 
 Debe repetir esta entidad json por cada rol que desee crear, se recomienda crear como mínimo dos roles (Admin, Viewer), para esto debe cambiar las siguientes propiedades: 
     * description
@@ -66,6 +68,7 @@ Debe repetir esta entidad json por cada rol que desee crear, se recomienda crear
 
 Al finalizar la sección appRoles debe ser similar a la siguiente:
 
+```javascript
 "approles":[
    {
         "allowedMemberTypes": ["User"],
@@ -86,6 +89,7 @@ Al finalizar la sección appRoles debe ser similar a la siguiente:
         "value": "Viewer"
     }
 ]
+```
 
 7. Guarde el archivo y subalo al portal de azure usando el mismo botón "Administrar Manifiesto", pero esta vez seleccione la opción "Cargar Manifiesto".
 8. Asigne un rol a cada usuario
