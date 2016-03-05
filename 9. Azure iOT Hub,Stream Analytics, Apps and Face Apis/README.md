@@ -592,5 +592,4 @@
 1. Desde el "Cloud Explorer" abrimos nuevamente la tabla `averageemotion` y refrescamos los datos. Podemos ver como Stream Analytics esta colocando en la tabla el valor de la emoción promedio cada 10 segundos.
  
      ![VS Cloud Explorer](img/IMG-21.png)
-1. Fin NHK /play ohyeah
-     
+1. Fin NHK :alien:
