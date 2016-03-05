@@ -28,7 +28,7 @@ En este laboratorio usaremos Azure Active Directory como proveedor de autenticac
 9. Explore la aplicación, autentiquese, y cierre sesión.
     * Puede probar abriendo la aplicación en una pestaña de navegación privada para que su logeo en el portal de azure no interfiera.
 
-## Paso 4 - Agregue usuarios a su aplicación.
+## Paso 4 - Adicione usuarios a su aplicación.
 1. En el portal de administración dirijase a la pestaña de usuarios.
 2. En la parte inferior encontrará un botón agregar un nuevo usuario.
 3. En el tipo de usuario seleccione "Nuevo usuario en la organización".
@@ -39,7 +39,7 @@ En este laboratorio usaremos Azure Active Directory como proveedor de autenticac
 8. Corra de nuevo la aplicación web creada en una pestaña privada del navegador e ingrese con los datos del nuevo usuario.
     * Por ser la primera vez que ingresa el sitio de autenticación le pedirá cambiar la contraseña.
 
-## Paso 5 - Agrege roles a su aplicación.
+## Paso 5 - Adicione roles a su aplicación.
 1. En el portal administrativo de Azure, dirijase a la pestaña aplicaciones.
 2. Seleccione su aplicación (Debe tener el mismo nombre que el proyecto web creado en Visual Studio).
     * Si tiene alguna dificultad encontrando su aplicación, pruebe recargando la página.
