@@ -8,7 +8,7 @@
     ![view code](img/IMG-01.png) 
 1. Una vez abierto nos desplazamos hasta la parte final del archivo y nos aseguramos que la etiqueta `<Capabilities>` quede como se ve a continuación
 
-    ```
+    ```xml
     <Capabilities>
         <Capability Name="internetClient" />
         <DeviceCapability Name="microphone" />
@@ -22,7 +22,7 @@
     ![XAML mode](img/IMG-02.png) 
 1. Reemplazamos el objeto `<Grid>` por el código que viene a continuación 
 
-    ```
+    ```xml
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
           HorizontalAlignment="Stretch" 
           VerticalAlignment="Stretch">
@@ -35,7 +35,7 @@
     
 1. Justo abajo de los tag `Grid.ColumnDefinitions` crearemos un objeto de tipo `CaptureElement` que será el que mostrará el preview de la cámara y justo encima de el colocaremos un objeto `Canvas` sobre el cual podremos dibujar encima del preview de la cámara.
 
-    ```
+    ```xml
         <CaptureElement Width="800" Height="448" x:Name="PhotoPreview" Grid.Column="0"/>
         
         <Canvas x:Name="canvas" Grid.Column="0"  
@@ -46,7 +46,7 @@
 1. Debemos notar que cada uno de los objetos tiene un nombre asignado, unas dimensiones y de manera muy importante debemos notar que a cada uno se le indica en que columna del `Grid` definido en el paso anterior deben qudar los objetos. Ámbos están en la misma Columna.
 1. Justp debajo del `<Canvas>` debemos crear un objeto `<Button>` en la segunda Columna y con un manejador de eventos para cuando se le haga Click.
 
-    ```
+    ```xml
         <Button x:Name="Picture" 
                 Grid.Column="1" Height="200" 
                 Width="200" 
@@ -57,8 +57,8 @@
      ```
      
 1. Ebrimos el archivo `MainPage.xaml.cs` que es el code behind de la UI creada anteriormente, nos desplazamos hasta el final del archivo y justo antes de los dos últimos brackets `}` pegamos este código.
-
-    ```
+    
+    ```csharp
         private async void Picture_Click(object sender, RoutedEventArgs e)
         {
 
