@@ -75,7 +75,7 @@
     ![EmotionCapturer.cs](img/IMG-04.png)
 1. En dicha clase nos aseguramos de tener todos estos `using`
 
-    ```
+    ```csharp
     using Microsoft.ProjectOxford.Emotion;
     using Microsoft.ProjectOxford.Emotion.Contract;
     using System;
@@ -90,7 +90,7 @@
     
 1. Justo al inicio de la clase adicionamos estos campos, propiedades y métodos
 
-    ```
+    ```csharp
         ImageEncodingProperties _imgFormat = ImageEncodingProperties.CreateJpeg();
         MediaCapture _takePhotoManager;
         public MediaCapture PhotoManager { get { return _takePhotoManager; } }
@@ -102,7 +102,7 @@
     
 1. Creamos un método que nos permita inicializar todo lo que se necesario.
 
-    ```
+    ```csharp
         public async Task InitializeAsync()
         {
             await InitializeCameraAsync();
@@ -112,7 +112,7 @@
     
 1. Desde luego ninguno de estos métodos existe aún así procedemos a crearlos, los componentes de la webcam y de la API `Emotion` suelen tomarse un tiempo para inicializar y usualmente son postergados a su primer uso, así que una manera de optimizar la experiencia de usuario es tomando una foto falsa al inicio y mandarla a la API. Aún no sabemos como tomar fotos pero dejaremos este código escrito simulando la obtención de la foto y luego si ejecutando un llamado real a la API.
 
-    ```
+    ```csharp
         private async Task InitializeEmotionAPIAsync()
         {
             using (var picture = await CapturePictureAsync())
@@ -124,7 +124,7 @@
     
 1. De acuerdo a como utilizamos las API de emotion necesitamos un fotografía cargada en memoria, así que utilzamos el objeto `_takePhotoManager` para capturar la foto con el formato indicado y una vez la tenemos la ponemos en un formato compatible con la API.
 
-    ```
+    ```csharp
         public async Task<Stream> CapturePictureAsync()
         {
             var stream = new InMemoryRandomAccessStream();
@@ -138,7 +138,7 @@
            
 1. Ya tenemos el código para inicializar la API `Emotion` pero nos hace falta inicializar la cámara para poderla usar, es decir el método `InitializeCameraAsync`. Inicializamos `_takePhotoManager` 
 
-    ```
+    ```csharp
         private async Task InitializeCameraAsync()
         {
             _takePhotoManager = new MediaCapture();
@@ -152,7 +152,7 @@
     
 1. Una vez inicializado debemos establecer una resolución adecuada, como no conocemos las cpacidades de tu webcam debemos preguntar porque resoluciones soporta, para ello enseguida de `_takePhotoManager.InitializeAsync()` obtendremos las resoluciones posibles para fotos y las listaremos en la consola de depuración.
 
-    ```
+    ```csharp
         private async Task InitializeCameraAsync()
         {
             _takePhotoManager = new MediaCapture();
@@ -178,14 +178,14 @@
 1. En el listado seleccionamos "Emotion API - Free" y donde dice "Primary Key" le damos click en `Show`, allí obtendremos el API KEY.
 1. En el inicio de la clase `EmotionCapturer.cs` ubicamos esta línea y ponemos allí el API KEY.
 
-    ```
+    ```csharp
     EmotionServiceClient emotionServiceClient = new EmotionServiceClient("YOUR_API_KEY");
     ```
     
 1. Abrimos `MainPage.xaml` en modo de edcición de XAML, en el tag inicial `<Page>` adicionamos `Loaded="Page_Loaded"`
  quedando así
  
-    ```
+    ```xml
     <Page
     x:Class="AppiOT.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -198,13 +198,13 @@
  
 1. Abrimos `MainPage.xaml.cs` y justo al inicio de la clase declaramos el siguiente campo del tipo `EmotionCapturer`
 
-    ```
+    ```csharp
     EmotionCapturer _emotionCapturer = new EmotionCapturer();
     ```
     
 1. Debajo de donde habiamos creado el método `Picture_Click` crearemos ahora el siguiente método. En el cual inicializamos el objeto  `EmotionCapturer` y lo vinculamos con la interfaz gráfica con el objeto `PhotoPreview` creado en el XAML. Finalmente inicializamos la vista previa llamando `_emotionCapturer.StartPreviewAsync()`
 
-    ```
+    ```csharp
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await _emotionCapturer.InitializeAsync();
@@ -223,7 +223,7 @@
 1. Regresamos a `EmotionCapturer` justo despúes de donde quedamos, abajo del `foreach`
 1. Allí buscaremos una resolución adecuada a nuestras necesidades utilizando una consulta de `linq`, en mi caso los datos seleccionados fueron : W: 800, H:448, FRate:30
 
-    ```
+    ```csharp
             var resolutionProperty = (from VideoEncodingProperties resolution in res
                                       where resolution.Width == 800
                                       && resolution.Height == 448
@@ -232,7 +232,7 @@
     ```
 1. Una vez hallada la propiedad de resolución se la asignamos a la webcam
 
-    ```
+    ```csharp
             if (resolutionProperty != null)
                 await _takePhotoManager.VideoDeviceController.SetMediaStreamPropertiesAsync(MediaStreamType.VideoPreview, resolutionProperty);
             else
@@ -241,7 +241,7 @@
      
 1. El código completo de este método se muestra a continuación
 
-    ```
+    ```csharp
         private async Task InitializeCameraAsync()
         {
             _takePhotoManager = new MediaCapture();
@@ -273,7 +273,7 @@
     
 1. Vamos a `MainPage.xaml`, y nos aseguramos que estos objetos tengan las medidas que correspondientes al tamaño de la camara que hemos seleccionado, quedando en mi caso así
 
-    ```
+    ```xml
         <CaptureElement Width="800" Height="448" x:Name="PhotoPreview" Grid.Column="0"/>
         
         <Canvas x:Name="canvas" Grid.Column="0"  
@@ -289,7 +289,7 @@
 1. Vamos s dibujar un rostro sobre las caras detectadas por la webcam
 1. En `MainPage.xaml.cs` agregamos todos estos `using`
 
-    ```
+    ```csharp
     using Microsoft.ProjectOxford.Emotion.Contract;
     using System;
     using System.Linq;
@@ -304,7 +304,7 @@
     
 1. Emotion nos devuelve por cada foto un grupo de rectangulos, pero estos rectangulos no los podemos dibujar en un App así nada más; así que debemos convertirlos a rectangulos 'dibujables' Y para ponerle algo de picante le pondremos algunos colores de manera aleatoria. Todo esto con este  código que adicionaremos a `MainPage.xaml.cs`
 
-    ```
+    ```csharp
         static readonly Color[] colores = new Color[] { Colors.Green, Colors.Red, Colors.Blue,
                                                         Colors.White, Colors.Pink, Colors.Salmon,
                                                         Colors.Violet, Colors.LimeGreen, Colors.Lime };
@@ -328,7 +328,7 @@
     
 1. Creamos el método `CaptureAndShowUIAsync` donde llamaremos `_emotionCapturer` para tomar una foto y luego enviarla a reconocimiento de emociones. Adicinalmente utilizaremos `canvas` para dibujar los rectangulos que nos da emotion encima de cada fotografía.
 
-    ```
+    ```csharp
         private async Task CaptureAndShowUIAsync()
         {
             canvas.Children.Clear();
@@ -347,7 +347,7 @@
     
 1. Buscamos el método `Picture_Click` y lo reemplazamos por lo siguiente
 
-    ```
+    ```csharp
     private async void Picture_Click(object o, RoutedEventArgs e) => await CaptureAndShowUIAsync();
     ```
     
@@ -355,13 +355,13 @@
 1. Ahora volvámoslo una tarea más automática. Pero antes debemos aclarar que la API de `Emotion` tiene ciertos límites en l versión gratuita por lo que la máxima cantidad de transacciones por minuto es : 20. Por ello no podremos tener los cuadros actualizados tan rápido como quisieramos, pero es algo que podemo solucionar metiendonos la mano al bolsillo.
 1. Apenas iniciando la clase `MainPage` agregaremos el siguiente campo
 
-    ```
+    ```csharp
         DispatcherTimer PeriodicTimer;
     ```
     
 1. En el evento `PageLoaded` justo después de `_emotionCapturer.StartPreviewAsync()` inicializaremos el Timer y le pediremos que 20 veces por minuto tome una foto y dibuje los cuadros
 
-    ```
+    ```csharp
             PeriodicTimer = new DispatcherTimer
             {
                 //dispararse 20 veces por minuto
@@ -380,14 +380,14 @@
     
 1. Ahora inicializaremos el Timer, pero es posible que la cámara aún no este lista /hardware world/ por lo que pondremos una pequeña espera previa
 
-    ```
+    ```csharp
             await Task.Delay(2000);
             PeriodicTimer.Start();
     ```    
 
 1. `Page_Loaded` completo queda así
 
-    ```
+    ```csharp
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -454,7 +454,7 @@
     ![Stream query](img/IMG-17.png)
 1. Allí colocamos el siguiente query, en el que debemos cambiar `JuanKFaceSA` y `JuanKFAceSAout` por el correspondiente nombre de `input` y `output` creados anteriormente.
 
-    ```
+    ```SQL
     WITH Sumas AS (
     SELECT Device,
         Sum(CAST(Anger     AS FLOAT)) as Anger, 
@@ -539,14 +539,14 @@
     * Newtonsoft.Json
 1. En `MainPage.xaml.cs` agregamos estos `using`
 
-    ```
+    ```csharp
     using Microsoft.Azure.Devices.Client;
     using Newtonsoft.Json;
     ```
     
 1. Ahora debemos conectarnos al IoT Hub para ello declaramos el siguiente campo al inicio de la clase, cambiando desde luego "MY_IOT_HUB_CONN_STR" por el connection string del IoT Hub
 
-    ```
+    ```csharp
         DeviceClient deviceClient = DeviceClient.CreateFromConnectionString(
                 "MY_IOT_HUB_CONN_STR",
                 TransportType.Http1);
@@ -554,7 +554,7 @@
     
 1. Crearemos un método `SendEmotionsToIoTHub` que dada una emoción recibida por la API de Emotion envie esos datos al Azure IoT Hub . La API de Emotion devuelve a parte del rectangulo de cada cara, un conjunto de 8 emociones valoradas con un valor de probabilidad. Subiremos estos valores al IoT Hub en Formato Json.
 
-    ```
+    ```csharp
         private async Task SendEmotionsToIoTHub(Emotion[] emotions)
         {
             var msgs = new Message[emotions.Length];
@@ -584,7 +584,7 @@
 1. Si te fijas el deviceClient puede enviar lotes de mensajes, o enviarlos de uno. En este ejemplo lo hemos hehco en lotes de manera que en cada envio se van tantos mensajes como objetos Emotion se reciban.
 1. Regresamos al método `CaptureAndShowUIAsync` y justo al final haremos un llamado a la funcionalidad anterior adicionando.
 
-    ```
+    ```csharp
             await SendEmotionsToIoTHub(emotionResult);
     ```
     
