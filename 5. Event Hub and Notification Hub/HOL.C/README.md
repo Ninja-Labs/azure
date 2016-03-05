@@ -90,9 +90,9 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
 1. A continuación crearemos unas variables globales que almacenarán los datos básico de acceso a nuestro EventHub. 
 
 	```csharp
-	private static readonly string sas = "SharedAccessSignature sr=https%3a%2f%2feventhubwebapidevcamp-ns.servicebus.windows.net%2feventhubwebapidevcamp%2fpublishers%2fnavegador%2fmessages&sig=OlDNMPMM6i6BM%2bkByFga6PWESmCb3wJdmj5OYIUoEpM%3d&se=1457140975&skn=Send";
-    private static readonly string serviceNamespace = "eventhubwebapidevcamp-ns";
-    private static readonly string hubName = "eventhubwebapidevcamp";
+	private static readonly string sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
+    private static readonly string serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+    private static readonly string hubName = "<< YOUR_HUBNAME >>";
 	```
 
 1. Recordemos que debemos agregar los espacios de nombres utilizados hasta el momento.
@@ -114,9 +114,9 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
     {
         public class EventHubController : ApiController
         {
-            private static readonly string sas = "SharedAccessSignature sr=https%3a%2f%2feventhubwebapidevcamp-ns.servicebus.windows.net%2feventhubwebapidevcamp%2fpublishers%2fnavegador%2fmessages&sig=OlDNMPMM6i6BM%2bkByFga6PWESmCb3wJdmj5OYIUoEpM%3d&se=1457140975&skn=Send";
-            private static readonly string serviceNamespace = "eventhubwebapidevcamp-ns";
-            private static readonly string hubName = "eventhubwebapidevcamp";
+            private static readonly string sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
+            private static readonly string serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+            private static readonly string hubName = "<< YOUR_HUBNAME >>";
 
             [HttpPost]
             public IHttpActionResult sendMessage(string value)
@@ -189,14 +189,14 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
 
 ##TAREA 3: Preparando para enviar al EventHub  
 
-1. Con el EventHub creado y configurado solo resta ingresar la configuración de conexión en nuestro proyecto de igual forma debemos crear la cadena de autenticación contra el EventHub, para construir está autenticación de forma fácil podemos descargar la herramienta EventHubs Signature Generator, https://github.com/sandrinodimattia/RedDog/releases/tag/0.2.0.1, en el cual ingresaremos la información de conexión a nuestro EventHub, posteriormente la cadena la reemplazaremos en el método <b>SendHttpMessage</b>
+1. Con el EventHub creado y configurado solo resta ingresar la configuración de conexión en nuestro proyecto, de igual forma debemos crear la cadena de autenticación contra el EventHub, para construir está autenticación de forma fácil podemos descargar la herramienta EventHubs Signature Generator, https://github.com/sandrinodimattia/RedDog/releases/tag/0.2.0.1, en la cual ingresaremos la información de conexión a nuestro EventHub, posteriormente la cadena la reemplazaremos en el método <b>SendHttpMessage</b>
 
     ![Servicios Activos](img/11.png)
 
     ```csharp
-	private static readonly string sas = "SharedAccessSignature sr=https%3a%2f%2feventhubwebapidevcamp-ns.servicebus.windows.net%2feventhubwebapidevcamp%2fpublishers%2fnavegador%2fmessages&sig=zpDXXXXXXXXXXck%2fYupk%3d&se=1457437975&skn=Send";
-    private static readonly string serviceNamespace = "eventhubwebapidevcamp-ns";
-    private static readonly string hubName = "eventhubwebapidevcamp";
+	private static readonly string sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
+    private static readonly string serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+    private static readonly string hubName = "<< YOUR_HUBNAME >>";
 	```
 
 ##TAREA 4: Enviando información al EventHub 
@@ -207,7 +207,7 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
 
 ##Parte 2 - Consumo desde cliente Javascript
 
-1. Para el cliente Javascript simplemente necesitaremos una página html en la cual crearemos una estructura simple de página que nos permita indicar un mensaje a enviar:
+1. Para el cliente Javascript simplemente necesitaremos una página html en la cual crearemos una estructura simple de página que nos permita indicar un mensaje a enviar, en este caso utilizaremos un text llamado <b>value</b> y un botón llamado <b>sendButton</b> que llamará la función <b>sendMessage()</b>, la cual se comunicará con nuestro EventHub, el resultado del envío será mostrado en un label con id <b>status</b>:
     
     ```Html
     <!DOCTYPE html>
@@ -219,23 +219,70 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
     </head>
     <body>
         <input type="text" value="0" id="value" />
-        <input type="button" value="Enviar Mensaje" onclick="sendMessage()" />
+        <input type="button" value="Enviar Mensaje" onclick="sendMessage()" id="sendButton" />
         <label id="status"></label>
 
     </body>
     </html>
     ```
 
-1. Añadiremos también la lógica para realizar el llamado por medio de un objeto xmlHttpRequest a nuestro EventHub 
+1. Añadiremos también la lógica para realizar el llamado por medio de un objeto xmlHttpRequest a nuestro EventHub esto lo haremos con una función llamada <b>sendMessage()</b>.
+
+    ```Javacript
+    <script type="text/javascript">
+        function sendMessage() {
+            
+            }
+    </script>
+    ```
+
+1. Agregamos las variables de configuración de nuestro EventHub, la URL de consumo del mismo, de igual :
+
+    ```Javacript
+    <script type="text/javascript">
+        function sendMessage() {
+            // Generar el token SAS por medio la herramienta EventHubs Signature Generator, https://github.com/sandrinodimattia/RedDog/releases/tag/0.2.0.1
+            var sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
+
+            var serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+            var hubName = "<< YOUR_HUBNAME >>";
+            var deviceName = "navegador";
+
+        }
+    </script>
+    ```
+ 1. Continuamos realizando la configuración de nuestro objeto XMLHttpRequest indicando la URL de consumo de nuestro EventHub autorización, credenciales y codificación que utilizaremos:
  
     ```Javacript
     <script type="text/javascript">
         function sendMessage() {
             // Generar el token SAS por medio la herramienta EventHubs Signature Generator, https://github.com/sandrinodimattia/RedDog/releases/tag/0.2.0.1
-            var sas = "SharedAccessSignature sr=https%3a%2f%2feventhubwebapidevcamp-ns.servicebus.windows.net%2feventhubwebapidevcamp%2fpublishers%2fnavegador%2fmessages&sig=zpDzV6xwgedyVtMN2YLb8Y8uNzNKNSF74A5Bck%2fYupk%3d&se=1457437975&skn=Send";
+            var sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
 
-            var serviceNamespace = "eventhubwebapidevcamp-ns";
-            var hubName = "eventhubwebapidevcamp";
+            var serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+            var hubName = "<< YOUR_HUBNAME >>";
+            var deviceName = "navegador";
+
+            var xmlHttpRequest = new XMLHttpRequest();
+            xmlHttpRequest.open("POST", "https://" + serviceNamespace + ".servicebus.windows.net/" + hubName + "/publishers/" + deviceName + "/messages", true);
+
+            xmlHttpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+            xmlHttpRequest.setRequestHeader("Access-Control-Allow-Credentials", "true");
+            xmlHttpRequest.setRequestHeader('Content-Type', "application/atom+xml;type=entry;charset=utf-8");
+            xmlHttpRequest.setRequestHeader("Authorization", sas);
+        }
+    </script>
+    ```
+ 1. Por último añadimos la lógica que finalmente ejecutará nuestro objeto XMLHttpRequest y en donde obtendremos el resultado del proceso para indicarlo en pantalla
+ 
+    ```Javacript
+    <script type="text/javascript">
+        function sendMessage() {
+            // Generar el token SAS por medio la herramienta EventHubs Signature Generator, https://github.com/sandrinodimattia/RedDog/releases/tag/0.2.0.1
+            var sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
+
+            var serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+            var hubName = "<< YOUR_HUBNAME >>";
             var deviceName = "navegador";
 
             var xmlHttpRequest = new XMLHttpRequest();
@@ -262,7 +309,61 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
 
             xmlHttpRequest.send(document.getElementById('value').value);
         }
+    </script>
+    ```
+
+1. En este punto nuestro página Html debe lucir similar a la siguiente:
+
+    ```Html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <input type="text" value="0" id="value" />
+        <input type="button" value="Enviar Mensaje" onclick="sendMessage()" id="sendButton" />
+        <label id="status"></label>
+
+        <script type="text/javascript">
+            function sendMessage() {
+                // Generar el token SAS por medio la herramienta EventHubs Signature Generator, https://github.com/sandrinodimattia/RedDog/releases/tag/0.2.0.1
+                var sas = "<< YOUR_SharedAccessSignature_TOKEN >>";
+
+                var serviceNamespace = "<< YOUR_SERVICE_NAMESPACE >>";
+                var hubName = "<< YOUR_HUBNAME >>";
+                var deviceName = "navegador";
+
+                var xmlHttpRequest = new XMLHttpRequest();
+                xmlHttpRequest.open("POST", "https://" + serviceNamespace + ".servicebus.windows.net/" + hubName + "/publishers/" + deviceName + "/messages", true);
+
+                xmlHttpRequest.setRequestHeader("Access-Control-Allow-Origin", "*");
+                xmlHttpRequest.setRequestHeader("Access-Control-Allow-Credentials", "true");
+                xmlHttpRequest.setRequestHeader('Content-Type', "application/atom+xml;type=entry;charset=utf-8");
+                xmlHttpRequest.setRequestHeader("Authorization", sas);
+
+
+                xmlHttpRequest.onreadystatechange = function () {
+                    if (this.readyState == 4) {
+
+                        if (this.status == 201) {
+                            document.getElementById('status').innerText =
+                                'Enviado: ' + document.getElementById('value').value;
+                        } else {
+                            document.getElementById('status').innerText =
+                                this.status;
+                        }
+                    }
+                };
+
+                xmlHttpRequest.send(document.getElementById('value').value);
+            }
         </script>
+
+    </body>
+    </html>
     ```
 
 1. Solo falta abrir nuestra página Html, ingresar el valor del mensaje a enviar y dar clic en <b>Enviar Mensaje</b>. 
