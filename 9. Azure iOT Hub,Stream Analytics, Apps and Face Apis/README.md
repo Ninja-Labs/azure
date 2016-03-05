@@ -532,7 +532,7 @@
     ![VS Cloud Explorer](img/IMG-20.png)
 1. Damos doble click a la tabla para que se vea el editor
 
-##Tarea 5 Enviando datos al iOT Hub
+##Tarea 6 Enviando datos al iOT Hub
 
 1. Regresamos al proyecto y agregamos dos nuevos paquetes de nuget
     * Microsoft.Azure.Devices.Client
