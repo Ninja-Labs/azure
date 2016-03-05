@@ -201,7 +201,7 @@ Empezaremos por la creación del proyecto que finalmente se convertirá en nuest
 
 ##TAREA 4: Enviando información al EventHub 
 
-1. Finalmente al ejecutar nuestra aplicación WebApi, podremos consumirlo con cualquier cliente HTTP, para este caso lo estoy consumiendo por medio de una extensión para Google Chrome llamada PostMan, de igual forma tener en cuenta que puede ser utilizada cualquier herramienta de pruebas HTTP como Fiddler o cualquier otra herramienta similar, el valor a envíar debe ser concatenar en la solicitud al parámetro <b>value</b>. 
+1. Finalmente al ejecutar nuestra aplicación WebApi, podremos consumirlo con cualquier cliente HTTP, para este caso lo estoy consumiendo por medio de una extensión para Google Chrome llamada PostMan, de igual forma tener en cuenta que puede ser utilizada cualquier herramienta de pruebas HTTP como Fiddler o cualquier otra herramienta similar, el valor a envíar debe ser concatenado en la solicitud al parámetro <b>value</b>. 
 
     ![Agregar referencia](img/13.png)
 
