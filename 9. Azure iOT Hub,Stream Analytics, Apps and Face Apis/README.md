@@ -544,11 +544,11 @@
     using Newtonsoft.Json;
     ```
     
-1. Ahora debemos conectarnos al IoT Hub para ello declaramos el siguiente campo al inicio de la clase, cambiando desde luego "MY_IOT_HUB_CONN_STR" por el connection string del IoT Hub
+1. Ahora debemos conectarnos al IoT Hub para ello declaramos el siguiente campo al inicio de la clase, cambiando desde luego "MY_IOT_HUB_CONN_STR" por el connection string del IoT Hub, también es necesario un nombre para el device, puedes ponerle el nombre que quieras, en mi caso he usado "JuanKApp" , en un entorno de producción el device ID debe ser nu identificador único para cada dispositivo.
 
     ```csharp
         DeviceClient deviceClient = DeviceClient.CreateFromConnectionString(
-                "MY_IOT_HUB_CONN_STR",
+                "MY_IOT_HUB_CONN_STR","JuanKApp",
                 TransportType.Http1);
     ```
     
