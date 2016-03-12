@@ -439,7 +439,7 @@
 1. Una vez creado damos click en `Inputs` 
  
     ![storage account](img/IMG-13.png)
-1. Y adicionamos uno nuevo de tipo `iOT Hub` al cual debes asignarle nombre,  los datos copiados anteriormente "Shared Policy Name" = iothubowner Y el **CONNECTION STRING**  correspondiente. Formato JSON y encoding UTF-8
+1. Y adicionamos uno nuevo de tipo `iOT Hub` al cual debes asignarle un alias a tu gusto, colocas el **nombre asignado al iOTHub creado** y los datos copiados anteriormente "Shared Policy Name" = iothubowner Y el SharedKey correspondiente. Formato JSON y encoding UTF-8
 
     ![Stream Input](img/IMG-14.png)
 1. Ahora vamos a `Outputs` 
