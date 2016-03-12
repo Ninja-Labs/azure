@@ -543,12 +543,20 @@
     using Microsoft.Azure.Devices.Client;
     using Newtonsoft.Json;
     ```
-    
-1. Ahora debemos conectarnos al IoT Hub para ello declaramos el siguiente campo al inicio de la clase, cambiando desde luego "MY_IOT_HUB_CONN_STR" por el connection string del IoT Hub, también es necesario un nombre para el device, puedes ponerle el nombre que quieras, en mi caso he usado "JuanKApp" , en un entorno de producción el device ID debe ser nu identificador único para cada dispositivo.
+1.  Visitamos la siguiente URL y descargamos el "Device Explorer" https://github.com/Azure/azure-iot-sdks/releases , allí buscamos SetupDeviceExplorer.msi
+1. Lo desargamos y una vez instalado procedemos a abrirlo
+1. En la pestaña Configuration colocamos el connection string del IOT Hub y damos click en Update
+    ![Device Explorer](img/DeviceExplorer.png)
+1. Ahora vamos a la pestaña **Management** y alli damos click en Create
+1. Colocamos el nombre que querrramos a nuestro device, las claves son autogeneradas y procedemos a crearlo
+    ![Device Explorer](img/MyDevice.png)
+1. Una vez creado, desde el tool hacemos click derecho y seleccionamos "Copy connection string for selected device"
+
+1. Ahora debemos conectarnos al IoT Hub para ello declaramos el siguiente campo al inicio de la clase, cambiando desde luego "MY_IOT_HUB_CONN_STR" por el connection string copiado en el punto anterior, también es necesario un nombre para el device, puedes ponerle el nombre que quieras, en mi caso he usado "JuanKApp" , en un entorno de producción el device ID debe ser nu identificador único para cada dispositivo.
 
     ```csharp
         DeviceClient deviceClient = DeviceClient.CreateFromConnectionString(
-                "MY_IOT_HUB_CONN_STR","JuanKApp",
+                "MY_IOT_HUB_CONN_STR",
                 TransportType.Http1);
     ```
     
