@@ -5,6 +5,7 @@
 1. Una vez creado procedemos a compilarlo, para obtener los paquetes necesarios.
 1. Ejecutamos la solución en blanco y la cerramos
 1. En el explorados de soluciones damos click derecho sobre el archivo `Package.appxmanifest` y seleccionamos `ViewCode`
+
     ![view code](img/IMG-01.png) 
 1. Una vez abierto nos desplazamos hasta la parte final del archivo y nos aseguramos que la etiqueta `<Capabilities>` quede como se ve a continuación
 
@@ -17,8 +18,8 @@
     ```
     
 1. Esto autorizará la app para hacer uso del micrófono y la cámara
-1. Desde el explorado de soluciones abrimos el archivo `MainPage.xaml` 
-1. Nos aseguramos de pasar al modo de edición de código `XAML` dando doble click sobre la pestaña que aparece en la aprte inferior.  
+1. Desde el explorador de soluciones abrimos el archivo `MainPage.xaml` 
+1. Nos aseguramos de pasar al modo de edición de código `XAML` dando doble click sobre la pestaña que aparece en la parte inferior.  
     ![XAML mode](img/IMG-02.png) 
 1. Reemplazamos el objeto `<Grid>` por el código que viene a continuación 
 
@@ -44,7 +45,7 @@
     ```
     
 1. Debemos notar que cada uno de los objetos tiene un nombre asignado, unas dimensiones y de manera muy importante debemos notar que a cada uno se le indica en que columna del `Grid` definido en el paso anterior deben qudar los objetos. Ámbos están en la misma Columna.
-1. Justp debajo del `<Canvas>` debemos crear un objeto `<Button>` en la segunda Columna y con un manejador de eventos para cuando se le haga Click.
+1. Justo debajo del `<Canvas>` debemos crear un objeto `<Button>` en la segunda Columna y con un manejador de eventos para cuando se le haga Click.
 
     ```xml
         <Button x:Name="Picture" 
@@ -55,8 +56,8 @@
             Photo!
         </Button>
      ```
-     
-1. Ebrimos el archivo `MainPage.xaml.cs` que es el code behind de la UI creada anteriormente, nos desplazamos hasta el final del archivo y justo antes de los dos últimos brackets `}` pegamos este código.
+
+1. Abrimos el archivo `MainPage.xaml.cs` que es el code behind de la UI creada anteriormente, nos desplazamos hasta el final del archivo y justo antes de los dos últimos brackets `}` pegamos este código.
     
     ```csharp
         private async void Picture_Click(object sender, RoutedEventArgs e)
@@ -70,7 +71,7 @@
 1. En las referencias del proyecto damos click derecho y seleccionaos `Manage Nuget Packages`
 1. En el recuadro que se abre vamos a `Browse` y buscamos `Emotion`, en el listado que aparece ubicamos `Microsoft.ProjectOxford.Emotion` y procedemos a instalarlo.
     ![nuget emotion](img/IMG-03.png) 
-1. Alobservar las referencias en el explorador de soluciones podremos observar las nuevas referencias adicionadas. Emotion es una API de reconocimiento facial que permite determinar las expresiones de las personas.
+1. Al observar las referencias en el explorador de soluciones podremos observar las nuevas referencias adicionadas. Emotion es una API de reconocimiento facial que permite determinar las expresiones de las personas.
 1. En el proyecto adicionamos una nueva clase y la llamaremos `EmotionCapturer.cs`    
     ![EmotionCapturer.cs](img/IMG-04.png)
 1. En dicha clase nos aseguramos de tener todos estos `using`
@@ -110,7 +111,7 @@
         }
     ```
     
-1. Desde luego ninguno de estos métodos existe aún así procedemos a crearlos, los componentes de la webcam y de la API `Emotion` suelen tomarse un tiempo para inicializar y usualmente son postergados a su primer uso, así que una manera de optimizar la experiencia de usuario es tomando una foto falsa al inicio y mandarla a la API. Aún no sabemos como tomar fotos pero dejaremos este código escrito simulando la obtención de la foto y luego si ejecutando un llamado real a la API.
+1. Desde luego ninguno de estos métodos existe aún así que procedemos a crearlos, los componentes de la webcam y de la API `Emotion` suelen tomarse un tiempo para inicializar y usualmente son postergados a su primer uso, así que una manera de optimizar la experiencia de usuario es tomando una foto falsa al inicio y mandarla a la API. Aún no sabemos como tomar fotos pero dejaremos este código escrito simulando la obtención de la foto y luego si ejecutando un llamado real a la API.
 
     ```csharp
         private async Task InitializeEmotionAPIAsync()
@@ -150,7 +151,7 @@
         }
     ```
     
-1. Una vez inicializado debemos establecer una resolución adecuada, como no conocemos las cpacidades de tu webcam debemos preguntar porque resoluciones soporta, para ello enseguida de `_takePhotoManager.InitializeAsync()` obtendremos las resoluciones posibles para fotos y las listaremos en la consola de depuración.
+1. Una vez inicializado debemos establecer una resolución adecuada, como no conocemos las capacidades de tu webcam debemos preguntar porque resoluciones soporta, para ello enseguida de `_takePhotoManager.InitializeAsync()` obtendremos las resoluciones posibles para fotos y las listaremos en la consola de depuración.
 
     ```csharp
         private async Task InitializeCameraAsync()
@@ -171,11 +172,22 @@
         }
      ```   
      
-1. Para hacer funcionar la API necesitamos un key, así que par encontrar el key debemos ir a https://www.projectoxford.ai/ e iniciamos sesión.
-1. Una vez iniciada la sesión vamos a `My subscriptions`
+1. Para hacer funcionar la API necesitamos un key, así que par encontrar el key debemos ir a https://portal.azure.com e iniciamos sesión.
+1. Una vez iniciada la sesión seguimos los siguientes pasos para crear un nuevo `Cognitive Service`
     
-    ![My subscriptions](img/IMG-05.png)
-1. En el listado seleccionamos "Emotion API - Free" y donde dice "Primary Key" le damos click en `Show`, allí obtendremos el API KEY.
+    ![Crear nuevo cognitive](img/IMG-22.png)
+1. Llenamos ahora los siguientes campos, en nombre puedes poner lo que quieras, en API Type seleccionamos `Emotion API` que es la API de reconocimiento de emociones y rostros. en resource group puedes seleccionar el que desees o crear uno nuevo. Para Pricing tier selecciona `Free` No olvides aceptar los terminos legales.
+
+   ![Crear nuevo cognitive](img/IMG-23.png)
+
+1. Presiona Crear. Una vez creado abre el servicio e ingresa a Settings
+
+   ![Cognitive Services Settings](img/IMG-24.png)
+
+1. Luego vamos a keys, y copiamos la primera de ellas.
+
+   ![Cognitive Services Key](img/IMG-25.png) 
+
 1. En el inicio de la clase `EmotionCapturer.cs` ubicamos esta línea y ponemos allí el API KEY.
 
     ```csharp
